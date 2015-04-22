@@ -6,8 +6,25 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# gems for production db
+gem 'mysql2'
+gem 'pg'
+
+# gem for auth
+gem 'devise'
+
+# gem for easy tags
+gem 'acts-as-taggable-on'
+
+# gem for wysiwyg editor
+gem 'ckeditor'
+
+# gem for uploads
+gem 'paperclip'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
