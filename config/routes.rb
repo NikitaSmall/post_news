@@ -1,9 +1,7 @@
 PostNews::Application.routes.draw do
+  get "user/index"
+  get "user/view"
   resources :posts
-
-  namespace :admin do
-    resources :posts
-  end
 
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
