@@ -16,3 +16,12 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require_tree .
+
+
+CKEDITOR.editorConfig = function( config )
+{
+    config.toolbar_Easy =
+        [
+    {name: 'insert', items : [ 'Image', 'Flash', 'Table', 'Iframe' ] }
+    ];
+};

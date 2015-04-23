@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # methods that make the admins from newbie
   def admin!
     self.rank = 4
     self.save
@@ -22,5 +23,26 @@ class User < ActiveRecord::Base
   def corrector!
     self.rank = 1
     self.save
+  end
+
+  # methods that check the user status
+  def newbie?
+    rank == 0
+  end
+
+  def admin?
+    rank == 4
+  end
+
+  def editor?
+    rank == 3
+  end
+
+  def author?
+    rank == 2
+  end
+
+  def corrector?
+    rank == 1
   end
 end

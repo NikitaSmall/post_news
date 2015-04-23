@@ -19,10 +19,13 @@
     <%= f.label :content %><br>
     <%= f.cktext_area :content, :value => 'Default value', :id => 'sometext' %>
   </div>
+    <%= f.hidden_field :author, value: current_user.id %>
+
   <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %>
   </div>
+
   <div class="field">
     <%= f.label :main %><br>
     <%= f.text_field :main %>

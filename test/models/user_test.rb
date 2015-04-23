@@ -29,6 +29,8 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "should_"
+  test "should_be_a_user-newbie" do
+    assert @user.newbie?
+  end
 
 end
