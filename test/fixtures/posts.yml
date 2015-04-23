@@ -3,13 +3,23 @@
 one:
   title: MyString
   content: MyText
-  author_id: 1
+  user_id: 1
   main: 0
   featured: 0
+  position: 1
 
 two:
   title: MyString
   content: MyText
-  author_id: 1
+  user_id: 1
   main: 0
   featured: 0
+  position: 2
+
+three:
+  title: MyString
+  content: MyText
+  user_id: 1
+  main: 1
+  featured: 0
+  position: 4
