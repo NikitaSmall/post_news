@@ -1,21 +1,30 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
+  before_action :check_role
 
+  # GET /posts
+  # GET /posts.json
   def index
     @posts = Post.all
   end
 
+  # GET /posts/1
+  # GET /posts/1.json
   def show
   end
 
+  # GET /posts/new
   def new
     @post = Post.new
   end
 
+  # GET /posts/1/edit
   def edit
   end
 
+  # POST /posts
+  # POST /posts.json
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -31,6 +40,8 @@ class PostsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /posts/1
+  # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -43,6 +54,8 @@ class PostsController < ApplicationController
     end
   end
 
+  # DELETE /posts/1
+  # DELETE /posts/1.json
   def destroy
     @post.destroy
     respond_to do |format|
@@ -58,5 +71,10 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :content, :user, :main, :featured, :position, :tag_list)
+    end
+
+    def check_role
+      redirect_to root_path, notice: 'Ты ещё слишком молод для этого.' if current_user.newbie?
+      redirect_to posts_url, notice: 'Ты не можешь создавать новый контент.' if (params[:action] == 'new' || params[:action] == 'create') && current_user.corrector?
     end
 end

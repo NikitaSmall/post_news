@@ -5,12 +5,44 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   username: nickname1
-  email: example@test.com
+  email: 1example@test.com
+  rank: 4
+
+corrector:
+  id: 3
+  username: nickname13
+  email: 2example@test.com
+  rank: 1
+
+newbie:
+  id: 4
+  username: nickname14
+  email: 3example@test.com
   rank: 0
 
+author:
+  id: 5
+  username: nickname15
+  email: 4example@test.com
+  rank: 2
+
+editor:
+  id: 6
+  username: nickname16
+  email: 5example@test.com
+  rank: 3
+
+admin:
+  id: 7
+  username: nickname17
+  email: 6example@test.com
+  rank: 4
+
 two:
+  id: 2
   username: nickname2
-  email: example@test1.com
+  email: 6example@test1.com
   rank: 0
 

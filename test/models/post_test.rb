@@ -19,7 +19,7 @@ class PostTest < ActiveSupport::TestCase
 
   test "should_switch_positions" do
     post_one = posts(:one)
-    post_two = posts(:two)
+    post_two = posts(:three)
     old_post_one_pos = post_one.position
     old_post_two_pos = post_two.position
 
