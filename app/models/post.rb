@@ -1,3 +1,4 @@
 class Post < ActiveRecord::Base
-  belongs_to :author
+  acts_as_taggable
+  belongs_to :user
 end

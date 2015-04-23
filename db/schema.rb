@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423183252) do
+ActiveRecord::Schema.define(version: 20150423191211) do
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150423183252) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "author_id"
+    t.integer  "user_id"
     t.boolean  "main"
     t.boolean  "featured"
     t.datetime "created_at"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150423183252) do
     t.integer  "position"
   end
 
-  add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

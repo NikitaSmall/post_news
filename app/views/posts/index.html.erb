@@ -1,6 +1,6 @@
 <h1>Listing posts</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -18,8 +18,8 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.author %></td>
+        <td><%= post.content.html_safe %></td>
+        <td><%= post.user.username %></td>
         <td><%= post.main %></td>
         <td><%= post.featured %></td>
         <td><%= link_to 'Show', post %></td>

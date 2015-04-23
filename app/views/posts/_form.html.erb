@@ -19,7 +19,6 @@
     <%= f.label :content %><br>
     <%= f.cktext_area :content, :value => 'Default value', :id => 'sometext' %>
   </div>
-    <%= f.hidden_field :author, value: current_user.id %>
 
   <div class="field">
     <%= f.label :tag_list, "Tags (separated by commas)" %><br />
@@ -28,11 +27,11 @@
 
   <div class="field">
     <%= f.label :main %><br>
-    <%= f.text_field :main %>
+    <%= f.check_box :main %>
   </div>
   <div class="field">
     <%= f.label :featured %><br>
-    <%= f.text_field :featured %>
+    <%= f.check_box :featured %>
   </div>
   <div class="actions">
     <%= f.submit %>

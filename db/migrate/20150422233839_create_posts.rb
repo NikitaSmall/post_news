@@ -3,7 +3,7 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.text :content
-      t.belongs_to :author, index: true
+      t.belongs_to :user, index: true
       t.boolean :main
       t.boolean :featured
 
