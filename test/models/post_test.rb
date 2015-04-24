@@ -55,4 +55,20 @@ class PostTest < ActiveSupport::TestCase
 
     assert post == same_post
   end
+
+  test "should_make_featured_post" do
+    post = posts(:one)
+
+    post.featured!
+
+    assert post.featured?
+  end
+
+  test "should_defeature_post" do
+    post = posts(:four)
+
+    post.defeature!
+
+    assert !post.featured?
+  end
 end

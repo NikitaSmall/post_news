@@ -30,5 +30,5 @@ four:
   content: MyText
   user_id: 5
   main: true
-  featured: 0
+  featured: true
   position: 4

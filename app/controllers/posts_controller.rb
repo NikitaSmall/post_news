@@ -55,6 +55,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /switch/1/2
   def switch
     first = Post.find(params[:first])
     second = Post.find(params[:second])
@@ -66,6 +67,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /switch/1
   def switch_with_next
     first = Post.find(params[:first])
     second = first.next
@@ -79,6 +81,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /switch/2
   def switch_with_prev
     first = Post.find(params[:first])
     second = first.prev
@@ -86,6 +89,26 @@ class PostsController < ApplicationController
     if first.prev.present?
       first.switch second
     end
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
+  # PATCH/PUT /feature/1
+  def feature
+    post = Post.find(params[:id])
+    post.featured!
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
+  # PATCH/PUT /defeature/1
+  def defeature
+    post = Post.find(params[:id])
+    post.defeature!
 
     respond_to do |format|
       format.html { redirect_to posts_url }

@@ -7,6 +7,9 @@ PostNews::Application.routes.draw do
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'
   patch '/switch/prev/:first' => 'posts#switch_with_prev', as: 'switch_with_prev'
 
+  patch '/feature/:id' => 'posts#feature', as: 'feature'
+  patch '/defeature/:id' => 'posts#defeature', as: 'defeature'
+
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
 

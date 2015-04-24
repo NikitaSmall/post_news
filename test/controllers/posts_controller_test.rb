@@ -117,7 +117,7 @@ class PostsControllerTest < ActionController::TestCase
 
     # see the fixtures. This post is author ownership
 
-    patch :update, id: posts(:four), post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    patch :update, id: @post, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
     assert_redirected_to post_path(assigns(:post))
   end
 
@@ -197,6 +197,26 @@ class PostsControllerTest < ActionController::TestCase
     @post_one = Post.find(@post_one.id)
 
     assert_equal @post_one.position, old_post_one_pos
+    assert_redirected_to posts_path
+  end
+
+  test "should_make_post_featured" do
+    @post_one = posts(:one)
+
+    patch :feature, id: @post_one
+    @post_one = Post.find(@post_one.id)
+
+    assert @post_one.featured?
+    assert_redirected_to posts_path
+  end
+
+  test "should_make_post_defeatured" do
+    @post_one = posts(:four)
+
+    patch :defeature, id: @post_one
+    @post_one = Post.find(@post_one.id)
+
+    assert !@post_one.featured?
     assert_redirected_to posts_path
   end
 end

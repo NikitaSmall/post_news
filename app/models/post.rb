@@ -38,4 +38,18 @@ class Post < ActiveRecord::Base
     self.position ||= self.id
     self.save
   end
+
+  def featured!
+    self.featured = true
+    self.save
+  end
+
+  def featured?
+    self.featured
+  end
+
+  def defeature!
+    self.featured = false
+    self.save
+  end
 end
