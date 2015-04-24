@@ -55,6 +55,43 @@ class PostsController < ApplicationController
     end
   end
 
+  def switch
+    first = Post.find(params[:first])
+    second = Post.find(params[:second])
+
+    first.switch second
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
+  def switch_with_next
+    first = Post.find(params[:first])
+    second = first.next
+
+    if first.next.present?
+      first.switch second
+    end
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
+  def switch_with_prev
+    first = Post.find(params[:first])
+    second = first.prev
+
+    if first.prev.present?
+      first.switch second
+    end
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
