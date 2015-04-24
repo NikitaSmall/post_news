@@ -1,6 +1,11 @@
 PostNews::Application.routes.draw do
-  get "user/index"
-  get "user/view"
+  get '/users' => 'user#index', as: 'users'
+  get '/users/:id' => 'user#view', as: 'user'
+
+  patch '/users/to_corrector/:id' => 'user#to_corrector', as: 'to_corrector'
+  patch '/users/to_author/:id' => 'user#to_author', as: 'to_author'
+  patch '/users/to_editor/:id' => 'user#to_editor', as: 'to_editor'
+  patch '/users/to_admin/:id' => 'user#to_admin', as: 'to_admin'
 
   resources :posts
   patch '/switch/:first/:second' => 'posts#switch', as: 'switch'
