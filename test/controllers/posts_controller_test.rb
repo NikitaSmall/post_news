@@ -21,7 +21,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1" }
     end
 
     assert_redirected_to post_path(assigns(:post))
@@ -82,5 +82,42 @@ class PostsControllerTest < ActionController::TestCase
 
     post :create, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
     assert_not_nil assigns(:post)
+  end
+
+  test "should_block_author_to_edit_other_man_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+
+    get :edit, id: posts(:one).id
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_author_to_update_other_man_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+
+    patch :update, id: @post, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    assert_redirected_to posts_path
+  end
+
+  test "should_edit_authors_own_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+
+    # see the fixtures. This post is author ownership
+
+    get :edit, id: posts(:four).id
+    assert_response :success
+  end
+
+  test "should_update_authors_own_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+    @post = posts(:four)
+
+    # see the fixtures. This post is author ownership
+
+    patch :update, id: posts(:four), post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    assert_redirected_to post_path(assigns(:post))
   end
 end

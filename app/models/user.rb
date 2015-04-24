@@ -3,11 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_many :posts, dependent: :destroy
 
   validates :username, :email, uniqueness: true
   validates :username, :email, presence: true
-
-  has_many :posts, dependent: :destroy
 
   # methods that make the admins from newbie
   def admin!

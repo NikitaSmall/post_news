@@ -1,14 +1,14 @@
 class Post < ActiveRecord::Base
   acts_as_taggable
 
-  validates :title, :content, presence: true
-  validates :title, uniqueness: true
-
   belongs_to :user
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
   scope :by_position, -> { order(position: :desc) }
   scope :by_position_asc, -> { order(position: :asc) }
+
+  validates :title, :content, presence: true
+  validates :title, uniqueness: true
 
   def next
     Post.where('position > ?', position).order(position: :asc).first
