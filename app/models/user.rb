@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, :email, uniqueness: true
+  validates :username, :email, presence: true
+
   has_many :posts, dependent: :destroy
 
   # methods that make the admins from newbie

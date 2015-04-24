@@ -75,4 +75,12 @@ class PostsControllerTest < ActionController::TestCase
 
     assert_redirected_to posts_path
   end
+
+  test "should_create_a_position_for_new_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+
+    post :create, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    assert_not_nil assigns(:post)
+  end
 end

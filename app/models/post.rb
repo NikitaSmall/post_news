@@ -1,5 +1,9 @@
 class Post < ActiveRecord::Base
   acts_as_taggable
+
+  validates :title, :content, presence: true
+  validates :title, uniqueness: true
+
   belongs_to :user
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
@@ -27,6 +31,11 @@ class Post < ActiveRecord::Base
 
   def hide!
     self.main = false
+    self.save
+  end
+
+  def set_position
+    self.position ||= self.id
     self.save
   end
 end

@@ -46,4 +46,13 @@ class PostTest < ActiveSupport::TestCase
     end
     assert !post.main
   end
+
+  test "should_not_remove_existed_position" do
+    post = posts(:three)
+    same_post = posts(:three)
+
+    post.set_position
+
+    assert post == same_post
+  end
 end

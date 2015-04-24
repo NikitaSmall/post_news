@@ -1,1 +1,3 @@
-Hello from mainpage!
+<% @posts.each do |post| %>
+    <%= post.title %> : <%= post.main %> : <%= post.position %> <br />
+<% end %>

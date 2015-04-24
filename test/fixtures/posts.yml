@@ -2,25 +2,25 @@
 
 one:
   id: 1
-  title: MyString
+  title: MyString1
   content: MyText
   user_id: 1
-  main: 0
+  main: false
   featured: 0
   position: 1
 
 two:
-  title: MyString
+  title: MyString2
   content: MyText
   user_id: 1
-  main: 0
+  main: false
   featured: 0
   position: 2
 
 three:
-  title: MyString
+  title: MyString3
   content: MyText
   user_id: 1
-  main: 1
+  main: true
   featured: 0
   position: 4

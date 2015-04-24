@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = users(:one)
+    @user = users(:two)
   end
   # test unit-tests for work starts
   test "should_make_user_admin" do
