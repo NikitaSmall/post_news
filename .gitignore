@@ -18,4 +18,5 @@
 /.idea/
 /.idea/*
 
-/public/*
+/public/ckeditor_assets/*
+/public/system/*

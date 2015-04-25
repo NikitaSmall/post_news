@@ -4,7 +4,7 @@
   <% @users.each do |user| %>
   <tr>
     <td>
-      <%= user.username %> <%= user.rank %>
+     <%= image_tag user.avatar.url(:medium) %> <%= user.username %> <%= user.rank %>
     </td>
   </tr>
       <% end %>

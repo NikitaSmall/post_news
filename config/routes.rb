@@ -1,6 +1,6 @@
 PostNews::Application.routes.draw do
   get '/users' => 'user#index', as: 'users'
-  get '/users/:id' => 'user#view', as: 'user'
+  get '/users/show/:id' => 'user#view', as: 'user'
 
   patch '/users/to_corrector/:id' => 'user#to_corrector', as: 'to_corrector'
   patch '/users/to_author/:id' => 'user#to_author', as: 'to_author'

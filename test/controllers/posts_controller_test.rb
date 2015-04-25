@@ -219,4 +219,13 @@ class PostsControllerTest < ActionController::TestCase
     assert !@post_one.featured?
     assert_redirected_to posts_path
   end
+
+  test "should_give_position_from_id_on_creation" do
+    assert_difference('Post.count') do
+      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1" }
+    end
+
+    assert_equal @post.id, @post.position
+    assert_redirected_to post_path(assigns(:post))
+  end
 end
