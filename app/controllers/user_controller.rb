@@ -3,6 +3,7 @@ class UserController < ApplicationController
   before_action :check_role, except: [:index, :view]
 
   # GET /users
+  # GET /users.json
   def index
     @users = User.all
   end
