@@ -265,4 +265,33 @@ class PostsControllerTest < ActionController::TestCase
     end
     assert_redirected_to posts_path
   end
+
+  test "should_block_corrector_on_switch_actions" do
+    sign_out users(:one)
+    sign_in users(:corrector)
+
+    @old_p = @post.position
+
+    patch :switch_with_next, first: @post.id
+    @post = Post.find(@post.id)
+    @new_p = @post.position
+
+    assert_equal @old_p, @new_p
+    assert_redirected_to posts_path
+  end
+
+
+  test "should_block_author_on_switch_actions" do
+    sign_out users(:one)
+    sign_in users(:author)
+
+    @old_p = @post.position
+
+    patch :switch_with_next, first: @post.id
+    @post = Post.find(@post.id)
+    @new_p = @post.position
+
+    assert_equal @old_p, @new_p
+    assert_redirected_to posts_path
+  end
 end
