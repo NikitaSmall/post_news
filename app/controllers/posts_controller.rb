@@ -137,11 +137,11 @@ class PostsController < ApplicationController
     def check_role
       redirect_to root_path, notice: 'Ты ещё слишком молод для этого.' if current_user.newbie?
 
-      if (params[:action] == 'new' || params[:action] == 'create') && current_user.corrector?
+      if (params[:action] == 'new' || params[:action] == 'create' || params[:action] == 'destroy') && current_user.corrector?
         redirect_to posts_url, notice: 'Ты не можешь создавать новый контент.'
       end
 
-      if (params[:action] == 'update' || params[:action] == 'edit') && current_user.author? && current_user.id != @post.user.id
+      if (params[:action] == 'update' || params[:action] == 'edit' || params[:action] == 'destroy') && current_user.author? && current_user.id != @post.user.id
         redirect_to posts_url, notice: 'Ты не можешь менять чужой контент.'
       end
     end

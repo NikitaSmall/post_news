@@ -228,4 +228,41 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal @post.id, @post.position
     assert_redirected_to post_path(assigns(:post))
   end
+
+  test "should_block_corrector_on_deleting" do
+    sign_out users(:one)
+    sign_in users(:corrector)
+    @before = Post.count
+
+    delete :destroy, id: @post
+    @after = Post.count
+
+    assert_equal @before, @after
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_author_on_deleting_other_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+    @before = Post.count
+
+    delete :destroy, id: @post
+    @after = Post.count
+
+    assert_equal @before, @after
+    assert_redirected_to posts_path
+  end
+
+  test "should_delete_authors_own_post" do
+    sign_out users(:one)
+    sign_in users(:author)
+    @post = posts(:four)
+
+    # see the fixtures. This post is author ownership
+
+    assert_difference('Post.count', -1) do
+      delete :destroy, id: @post
+    end
+    assert_redirected_to posts_path
+  end
 end
