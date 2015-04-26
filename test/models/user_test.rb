@@ -33,4 +33,12 @@ class UserTest < ActiveSupport::TestCase
     assert @user.newbie?
   end
 
+  test "should_be_an_admin_when_alone" do
+    User.delete_all
+
+    User.create username: 'user', email: 'exp@mail.ru', password: '1234567890', password_confirmation: '1234567890'
+    @user = User.all.first
+
+    assert @user.admin?
+  end
 end

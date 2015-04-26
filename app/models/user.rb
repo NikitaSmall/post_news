@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :username, :email, uniqueness: true
   validates :username, :email, presence: true
 
+  after_create :check_last_stand
+
   # methods that make the admins from newbie
   def admin!
     self.rank = 4
@@ -52,5 +54,16 @@ class User < ActiveRecord::Base
 
   def corrector?
     rank == 1
+  end
+
+  def check_last_stand
+    if self.alone?
+      self.admin!
+    end
+  end
+
+  def alone?
+    return true if User.count == 1 && User.all.first == self
+    false
   end
 end

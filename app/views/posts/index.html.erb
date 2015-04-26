@@ -19,7 +19,7 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content.html_safe %></td>
-        <td><%= post.user.username %></td>
+        <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
         <td><%= post.main %></td>
         <td><%= post.featured %></td>
         <td><%= link_to 'Show', post %></td>
