@@ -18,6 +18,9 @@ PostNews::Application.routes.draw do
   patch '/feature/:id' => 'posts#feature', as: 'feature'
   patch '/defeature/:id' => 'posts#defeature', as: 'defeature'
 
+  patch '/main/:id' => 'posts#to_main', as: 'to_main'
+  patch '/hide/:id' => 'posts#hide', as: 'hide'
+
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
 

@@ -294,4 +294,22 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal @old_p, @new_p
     assert_redirected_to posts_path
   end
+
+  test "should_move_post_to_main" do
+    patch :to_main, id: @post.id
+    @post = Post.find(@post.id)
+
+    assert @post.main?
+    assert_redirected_to posts_path
+  end
+
+  test "should_hide_post_from_main" do
+    @post = posts(:four)
+
+    patch :hide, id: @post.id
+    @post = Post.find(@post.id)
+
+    assert !@post.main?
+    assert_redirected_to posts_path
+  end
 end

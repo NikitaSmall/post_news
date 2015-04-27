@@ -21,24 +21,24 @@
         <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
         <td>
           <%if post.main %>
-            <span class="btn btn-default">
+            <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </span>
+            <% end %>
           <% else %>
-            <span class="btn btn-default">
+            <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </span>
+            <% end %>
           <% end %>
         </td>
         <td>
           <%if post.featured %>
-            <span class="btn btn-default">
+            <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </span>
+            <% end %>
           <% else %>
-            <span class="btn btn-default">
+            <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </span>
+            <% end %>
           <% end %>
           <%# post.tag_list.each do |tag| %>
             <%# link_to tag, tag_posts_path(tag), method: :get, class: 'btn btn-default' %>

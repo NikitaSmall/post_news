@@ -124,6 +124,24 @@ class PostsController < ApplicationController
     end
   end
 
+  def to_main
+    post = Post.find(params[:id])
+    post.main!
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
+  def hide
+    post = Post.find(params[:id])
+    post.hide!
+
+    respond_to do |format|
+      format.html { redirect_to posts_url }
+    end
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
