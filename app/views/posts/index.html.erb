@@ -1,36 +1,73 @@
-<h1>Listing posts</h1>
+<h1>Новости <% if params[:tag] %>(Тэг: <%= params[:tag] %>)<% end %></h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Author</th>
-      <th>Main</th>
-      <th>Featured</th>
+      <th>Название</th>
+      <th>Текст</th>
+      <th>Автор</th>
+      <th>На главной</th>
+      <th>Зафичерено</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content.html_safe %></td>
+        <td><%= link_to post.title, post %></td>
+        <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
         <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
-        <td><%= post.main %></td>
-        <td><%= post.featured %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%if post.main %>
+            <span class="btn btn-default">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </span>
+          <% else %>
+            <span class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </span>
+          <% end %>
+        </td>
+        <td>
+          <%if post.featured %>
+            <span class="btn btn-default">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </span>
+          <% else %>
+            <span class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </span>
+          <% end %>
+          <%# post.tag_list.each do |tag| %>
+            <%# link_to tag, tag_posts_path(tag), method: :get, class: 'btn btn-default' %>
+          <%# end %>
+        </td>
+        <td>
+          <%= link_to post, class: "btn btn-default"  do %>
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+<div class=" col-sm-offset-4 col-md-offset-3">
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>
+
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+

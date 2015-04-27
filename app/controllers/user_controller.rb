@@ -2,6 +2,8 @@ class UserController < ApplicationController
   before_action :authenticate_user!, except: [:view]
   before_action :check_role, except: [:index, :view]
 
+  layout 'admin'
+
   # GET /users
   # GET /users.json
   def index

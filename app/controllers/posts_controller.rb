@@ -3,10 +3,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_role
 
+  layout 'admin'
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 10)
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 5)
+    else
+      @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 5)
+    end
+
   end
 
   # GET /posts/1
