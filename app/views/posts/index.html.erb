@@ -50,13 +50,17 @@
           <% end %>
         </td>
         <td>
-          <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <% unless current_user.author? && current_user.id != post.user_id %>
+              <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
           <% end %>
         </td>
         <td>
-          <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
-              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% unless current_user.corrector? || (current_user.author? && current_user.id != post.user_id) %>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
           <% end %>
         </td>
       </tr>

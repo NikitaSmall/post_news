@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :feature, :defeature, :to_main, :hide]
   before_action :authenticate_user!
   before_action :check_role
 
@@ -9,11 +9,11 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 5)
+      @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7)
     elsif params[:word]
-      @posts = Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 5)
+      @posts = Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 7)
     else
-      @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 5)
+      @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 7)
     end
 
   end
@@ -106,8 +106,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /feature/1
   def feature
-    post = Post.find(params[:id])
-    post.featured!
+    @post.featured!
 
     respond_to do |format|
       format.html { redirect_to posts_url }
@@ -116,8 +115,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /defeature/1
   def defeature
-    post = Post.find(params[:id])
-    post.defeature!
+    @post.defeature!
 
     respond_to do |format|
       format.html { redirect_to posts_url }
@@ -125,8 +123,7 @@ class PostsController < ApplicationController
   end
 
   def to_main
-    post = Post.find(params[:id])
-    post.main!
+    @post.main!
 
     respond_to do |format|
       format.html { redirect_to posts_url }
@@ -134,8 +131,7 @@ class PostsController < ApplicationController
   end
 
   def hide
-    post = Post.find(params[:id])
-    post.hide!
+    @post.hide!
 
     respond_to do |format|
       format.html { redirect_to posts_url }
