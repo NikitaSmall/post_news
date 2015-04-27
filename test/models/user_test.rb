@@ -41,4 +41,16 @@ class UserTest < ActiveSupport::TestCase
 
     assert @user.admin?
   end
+
+  # Этот тест проверяет, может ли последний админ лишить прав сам себя (не должен)
+  test "should_protect_alone_admin_from_smaller_rights" do
+    User.delete_all
+
+    User.create username: 'user', email: 'exp@mail.ru', password: '1234567890', password_confirmation: '1234567890'
+    @user = User.all.first
+
+    @user.corrector!
+
+    assert @user.admin?
+  end
 end

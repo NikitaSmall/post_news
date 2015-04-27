@@ -1,11 +1,55 @@
-<h1>User#index</h1>
-<p>Find me in app/views/user/index.html.erb</p>
-<table>
+<h1>Пользователи и администраторы: </h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td>
+      Фото
+    </td>
+    <td>
+      Имя
+    </td>
+    <td>
+      Почта
+    </td>
+    <td>
+      Ранг
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </thead>
   <% @users.each do |user| %>
   <tr>
     <td>
-     <%= image_tag user.avatar.url(:medium) %> <%= user.username %> <%= user.rank %>
+     <%= image_tag user.avatar.url(:medium), width: '80' %>
+    </td>
+    <td>
+      <%= user.username %>
+    </td>
+    <td>
+      <%= user.email %>
+    </td>
+    <td>
+      <% if user.newbie? %>Пользователь<% end %>
+      <% if user.corrector? %>Корректор<% end %>
+      <% if user.author? %>Автор<% end %>
+      <% if user.editor? %>Редактор<% end %>
+      <% if user.admin? %>Администратор<% end %>
+    </td>
+    <td class="text-center">
+      <% if current_user.admin? %>
+          <%= link_to 'В администратора!', to_admin_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
+          <%= link_to 'В редактора!', to_editor_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
+          <%= link_to 'В автора!', to_author_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
+          <%= link_to 'В корректора!', to_corrector_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
+      <% else %>
+      Только администратор может менять роли.
+      <% end %>
     </td>
   </tr>
       <% end %>
 </table>
+<div class=" col-sm-offset-4 col-md-offset-3">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>

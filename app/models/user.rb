@@ -21,17 +21,17 @@ class User < ActiveRecord::Base
   end
 
   def editor!
-    self.rank = 3
+    self.rank = 3 unless admin_alone?
     self.save
   end
 
   def author!
-    self.rank = 2
+    self.rank = 2 unless admin_alone?
     self.save
   end
 
   def corrector!
-    self.rank = 1
+    self.rank = 1 unless admin_alone?
     self.save
   end
 
@@ -57,13 +57,18 @@ class User < ActiveRecord::Base
   end
 
   def check_last_stand
-    if self.alone?
-      self.admin!
+    if admin_alone?
+      admin!
     end
   end
 
   def alone?
     return true if User.count == 1 && User.all.first == self
+    false
+  end
+
+  def admin_alone?
+    return true if User.where(rank: 4).count <= 1 && admin?
     false
   end
 end

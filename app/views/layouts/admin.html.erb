@@ -23,8 +23,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></li>
       </ul>
-      <%= form_tag posts_path, method: :get, class: 'navbar-form navbar-right' do %>
-          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'form-control', placeholder: 'Искать...' %>
+      <%= form_tag posts_path, method: :get, enforce_utf8: false, class: 'navbar-form navbar-right' do %>
+          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'form-control', placeholder: 'Искать новости' %>
       <% end %>
     </div>
   </div>
