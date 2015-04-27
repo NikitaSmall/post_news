@@ -71,4 +71,18 @@ class PostTest < ActiveSupport::TestCase
 
     assert !post.featured?
   end
+
+  test "should_find_post_through_search" do
+    post = posts(:four)
+
+    found = Post.search(post.title).first
+
+    assert_equal post, found
+  end
+
+  test "should_find_four_posts" do
+    found = Post.search('MyString').count
+
+    assert_equal found, Post.all.count
+  end
 end

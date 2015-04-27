@@ -8,7 +8,8 @@ PostNews::Application.routes.draw do
   patch '/users/to_admin/:id' => 'user#to_admin', as: 'to_admin'
 
   resources :posts
-  get 'posts/tag/:tag' => 'posts#index', as: 'tag_posts'
+  get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
+  # post '/posts/search' => 'posts#index', as: 'search'
 
   patch '/switch/:first/:second' => 'posts#switch', as: 'switch'
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'

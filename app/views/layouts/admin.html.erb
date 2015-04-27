@@ -26,9 +26,9 @@
         <li><a href="#">Profile</a></li>
         <li><a href="#">Help</a></li>
       </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search...">
-      </form>
+      <%= form_tag posts_path, method: :get, class: 'navbar-form navbar-right' do %>
+          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'form-control', placeholder: 'Искать...' %>
+      <% end %>
     </div>
   </div>
 </nav>
@@ -46,7 +46,7 @@
       <ul class="nav nav-sidebar">
         <div id="tag_cloud" >
           <% tag_cloud Post.tag_counts, %w[s m l] do |tag| %>
-              <%= link_to tag.name, tag_posts_path(tag.name), class: "btn #{tag_selected(tag.name)}" %>
+              <%= link_to tag.name, tag_posts_path(tag.name), class: "btn #{tag_selected(tag.name)}", style: 'line-height: 1.5;' %>
           <% end %>
         </div>
       </ul>

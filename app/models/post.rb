@@ -52,4 +52,9 @@ class Post < ActiveRecord::Base
     self.featured = false
     self.save
   end
+
+  def self.search(word)
+    word = "%#{word}%"
+    where 'title LIKE ? OR content LIKE ?', word, word
+  end
 end

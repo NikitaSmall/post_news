@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 5)
+    elsif params[:word]
+      @posts = Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 5)
     else
       @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 5)
     end
