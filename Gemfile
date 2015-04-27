@@ -26,6 +26,9 @@ gem 'paperclip'
 gem 'sass-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.3.3'
 
+# gem for pretty pagination
+gem 'will_paginate-bootstrap'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
