@@ -1,7 +1,14 @@
 class Ckeditor::Picture < Ckeditor::Asset
   has_attached_file :data,
-                    :url  => "/ckeditor_assets/pictures/:id/:style_:basename.:extension",
-                    :path => ":rails_root/public/ckeditor_assets/pictures/:id/:style_:basename.:extension",
+                    :url  => ":s3_domain_url",
+                    :path => "public/ckeditor_assets/pictures/:id/:style_:basename.:extension",
+                    :storage => :fog,
+                    :fog_credentials => {
+                        provider: 'AWS',
+                        aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+                        aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+                    },
+                    fog_directory: ENV["FOG_DIRECTORY"],
                     :styles => { :content => '800>', :thumb => '118x100#' }
 
   validates_attachment_presence :data
