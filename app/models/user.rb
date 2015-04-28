@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def check_last_stand
-    if admin_alone?
+    if alone?
       admin!
     end
   end
@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
   end
 
   def admin_alone?
-    return true if User.where(rank: 4).count <= 1 && admin?
+    return true if User.where(rank: 4).count == 1 && admin?
     false
   end
 end
