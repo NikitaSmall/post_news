@@ -29,6 +29,11 @@ gem 'bootstrap-sass', '~> 3.3.3'
 # gem for pretty pagination
 gem 'will_paginate-bootstrap'
 
+# gems to make frindship for paperclip, aws, heroku and ckeditor
+gem 'aws-sdk', '~> 1.36.1'
+gem 'fog'
+gem 'figaro'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
