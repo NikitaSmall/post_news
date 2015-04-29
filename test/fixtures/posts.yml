@@ -23,7 +23,7 @@ three:
   user_id: 1
   main: true
   featured: 0
-  position: 4
+  position: 3
 
 four:
   title: MyString4
@@ -32,3 +32,19 @@ four:
   main: true
   featured: true
   position: 4
+
+five:
+  title: MyString5
+  content: MyText
+  user_id: 1
+  main: false
+  featured: 0
+  position: 5
+
+six:
+  title: MyString6
+  content: MyText
+  user_id: 1
+  main: true
+  featured: 0
+  position: 6

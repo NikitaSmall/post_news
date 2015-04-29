@@ -85,4 +85,22 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal found, Post.all.count
   end
+
+  test "should_switch_with_next_main_post" do
+    main_post = posts(:four)
+    next_main_post = posts(:six)
+
+    post = main_post.next_main
+
+    assert_equal post, next_main_post
+  end
+
+  test "should_switch_with_prev_main_post" do
+    main_post = posts(:six)
+    prev_main_post = posts(:four)
+
+    post = main_post.prev_main
+
+    assert_equal post, prev_main_post
+  end
 end

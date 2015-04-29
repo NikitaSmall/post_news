@@ -23,10 +23,10 @@
   <% @posts.each do |post| %>
       <tr>
         <td>
-          <%= link_to switch_with_next_path(post.id), method: :patch, class: 'btn btn-default' do %>
+          <%= link_to switch_with_next_main_path(post.id), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           <% end %> <br />
-          <%= link_to switch_with_prev_path(post.id), method: :patch, class: 'btn btn-default' do %>
+          <%= link_to switch_with_prev_main_path(post.id), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
           <% end %>
         </td>

@@ -159,7 +159,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_switch_next_with_the_last" do
-    @post_one = posts(:four)
+    @post_one = posts(:six)
     old_post_one_pos = @post_one.position
 
     patch :switch_with_next, first: @post_one.id
@@ -311,5 +311,65 @@ class PostsControllerTest < ActionController::TestCase
 
     assert !@post.main?
     assert_redirected_to posts_path
+  end
+
+  test "should_switch_with_the_next_main_post" do
+    @post_one = posts(:four)
+    @post_two = @post_one.next_main
+
+    old_post_one_pos = @post_one.position
+    old_post_two_pos = @post_two.position
+
+    patch :switch_with_next_main, first: @post_one.id
+
+    @post_one = Post.find(@post_one.id)
+    @post_two = Post.find(@post_two.id)
+
+    assert_equal @post_one.position, old_post_two_pos
+    assert_equal @post_two.position, old_post_one_pos
+
+    assert_redirected_to main_posts_path
+  end
+
+  test "should_switch_with_the_prev_main_post" do
+    @post_one = posts(:six)
+    @post_two = @post_one.prev_main
+
+    old_post_one_pos = @post_one.position
+    old_post_two_pos = @post_two.position
+
+    patch :switch_with_prev_main, first: @post_one.id
+
+    @post_one = Post.find(@post_one.id)
+    @post_two = Post.find(@post_two.id)
+
+    assert_equal @post_one.position, old_post_two_pos
+    assert_equal @post_two.position, old_post_one_pos
+
+    assert_redirected_to main_posts_path
+  end
+
+  test "should_block_switch_prev_main_post_with_the_first" do
+    @post_one = posts(:one)
+    old_post_one_pos = @post_one.position
+
+    patch :switch_with_prev_main, first: @post_one.id
+
+    @post_one = Post.find(@post_one.id)
+
+    assert_equal @post_one.position, old_post_one_pos
+    assert_redirected_to main_posts_path
+  end
+
+  test "should_block_switch_next_main_post_with_the_first" do
+    @post_one = posts(:six)
+    old_post_one_pos = @post_one.position
+
+    patch :switch_with_next_main, first: @post_one.id
+
+    @post_one = Post.find(@post_one.id)
+
+    assert_equal @post_one.position, old_post_one_pos
+    assert_redirected_to main_posts_path
   end
 end

@@ -88,7 +88,7 @@ class PostsController < ApplicationController
     first = Post.find(params[:first])
     second = first.next
 
-    if first.next.present?
+    if second.present?
       first.switch second
     end
 
@@ -102,7 +102,7 @@ class PostsController < ApplicationController
     first = Post.find(params[:first])
     second = first.prev
 
-    if first.prev.present?
+    if second.present?
       first.switch second
     end
 
@@ -142,6 +142,34 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+    end
+  end
+
+  # PATCH/PUT /switch/1
+  def switch_with_next_main
+    first = Post.find(params[:first])
+    second = first.next_main
+
+    if second.present?
+      first.switch second
+    end
+
+    respond_to do |format|
+      format.html { redirect_to main_posts_url }
+    end
+  end
+
+  # PATCH/PUT /switch/2
+  def switch_with_prev_main
+    first = Post.find(params[:first])
+    second = first.prev_main
+
+    if second.present?
+      first.switch second
+    end
+
+    respond_to do |format|
+      format.html { redirect_to main_posts_url }
     end
   end
 

@@ -18,6 +18,14 @@ class Post < ActiveRecord::Base
     Post.where('position < ?', position).order(position: :asc).last
   end
 
+  def next_main
+    Post.main.where('position > ?', position).order(position: :asc).first
+  end
+
+  def prev_main
+    Post.main.where('position < ?', position).order(position: :asc).last
+  end
+
   def switch(post)
     self.position, post.position = post.position, self.position
     post.save
