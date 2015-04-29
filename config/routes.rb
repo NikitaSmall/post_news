@@ -11,7 +11,7 @@ PostNews::Application.routes.draw do
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
 
-  patch '/switch/:first/:second' => 'posts#switch', as: 'switch'
+  patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'
   patch '/switch/prev/:first' => 'posts#switch_with_prev', as: 'switch_with_prev'
 
