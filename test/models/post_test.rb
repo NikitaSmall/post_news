@@ -57,7 +57,7 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "should_make_featured_post" do
-    post = posts(:one)
+    post = posts(:three)
 
     post.featured!
 
@@ -102,5 +102,21 @@ class PostTest < ActiveSupport::TestCase
     post = main_post.prev_main
 
     assert_equal post, prev_main_post
+  end
+
+  test "should_remove_feature_flag_on_hidden_post" do
+    post = posts(:four)
+
+    post.hide!
+
+    assert !post.featured?, "featured - #{post.featured?}"
+  end
+
+  test "should_block_make_featured_post_that_hide" do
+    post = posts(:two)
+
+    post.featured!
+
+    assert !post.featured?, "featured - #{post.featured?}"
   end
 end

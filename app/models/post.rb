@@ -39,6 +39,7 @@ class Post < ActiveRecord::Base
 
   def hide!
     self.main = false
+    defeature!
     self.save
   end
 
@@ -48,7 +49,7 @@ class Post < ActiveRecord::Base
   end
 
   def featured!
-    self.featured = true
+    self.featured = true if main
     self.save
   end
 

@@ -201,7 +201,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_make_post_featured" do
-    @post_one = posts(:one)
+    @post_one = posts(:three)
 
     patch :feature, id: @post_one
     @post_one = Post.find(@post_one.id)
