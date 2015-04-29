@@ -1,3 +1,9 @@
 <% @posts.each do |post| %>
-    <%= post.title %> : <%= post.main %> : <%= post.position %> <br />
+    <div style="margin-left: -30px;">
+        <div class="contentTitle"><h1><%= post.title %> <% if post.featured? %>(Эта новость будет красиво выделена)<% end %></h1></div>
+        <div class="contentText">
+          <%= post.content.html_safe %>
+          <p><%= link_to 'Читать далее', '#', class: 'btn btn-link' %></p>
+        </div>
+    </div>
 <% end %>

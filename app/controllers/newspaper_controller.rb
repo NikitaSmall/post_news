@@ -1,4 +1,5 @@
 class NewspaperController < ApplicationController
+  layout 'application'
 
   def index
     @posts = Post.main.by_position

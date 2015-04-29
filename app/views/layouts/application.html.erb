@@ -5,12 +5,178 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <style>
+
+      html, body {
+          text-align: center;
+      }
+      p {text-align: left;}
+
+      body {
+          margin: 0;
+          padding: 0;
+          background: #697281;
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          //color: #F1F5F8;
+          background-color:#697281;
+      }
+      *
+      {
+          margin: 0 auto 0 auto;
+          text-align:left;}
+
+      #page
+      {
+          margin: 0 auto 0 auto;
+          display: block;
+          height:auto;
+          position: relative;
+          overflow: hidden;
+          background: #697281 url(/images/application_template/background.png) repeat-y;
+          width: 750px;
+      }
+
+      #header
+      {
+          background-image: url(/images/application_template/header.png);
+          background-repeat: no-repeat;
+          height:156px;
+          width:750px;
+      }
+
+      #headerTitle
+      {
+          position:relative;
+          left:30px;
+          top:75px;
+          color:#FFFFFF;
+          text-align:left;
+          font-size:30px;
+          font-weight:bold;
+          font-family:Arial, Helvetica, sans-serif;
+      }
+
+      #headerSubText
+      {
+          position:relative;
+          left:30px;
+          top:72px;
+          color:#DEE6F8;
+          text-align:left;
+          font-size:16px;
+          font-weight:bold;
+          font-family:Arial, Helvetica, sans-serif;
+      }
+
+
+      #bar
+      {
+          background-image:url(/images/application_template/bar.png);
+          background-repeat:no-repeat;
+          height:53px;
+          width:750px;
+          padding-bottom:15px;
+
+      }
+
+
+
+      #bar .navLink a
+      {
+          position:relative;
+          top:16px;
+          margin-left:35px;
+          color:#FFFFFF;
+          text-align:center;
+          font-size:15px;
+          float:left;
+
+      }
+
+      #bar .navLink a:hover
+      {
+          color:#E4EBFA;
+      }
+
+
+      .contentTitle
+      {
+          width:700px;
+          height:44px;
+          margin-top:20px;
+          margin-left:25px;
+          margin-right:25px;
+          background-image:url(/images/application_template/tab_back.png);
+          background-repeat:no-repeat;
+
+      }
+
+      .contentTitle h1
+      {
+          margin-left:21px;
+          padding-top:8px;
+          font-size:17px;
+          font-weight:bold;
+          color:#071027;
+      }
+
+
+      .contentText
+      {
+          width:680px;
+          padding-left:30px;
+          padding-right:30px;
+          font-size:13px;
+          color:#030712;
+          line-height:30px;
+      }
+
+      a
+      {
+          text-decoration:none;
+          color:#223F8D;
+      }
+
+      a:hover
+      {
+          color:#5478D6;
+      }
+
+
+      #footer {
+          width: 750px;
+          height:49px;
+          background: url(/images/application_template/footer.png) no-repeat;
+          text-align:center;
+          font-size:9px;
+          color:#223F8D;
+          padding-top:36px;
+      }
+
+      html, body {
+          text-align: center;
+      }
+      p {text-align: left;}
+  </style>
 </head>
 <body>
 <p class="notice h4 text-warning"><%= notice %></p>
 <p class="alert h4 text-danger"><%= alert %></p>
+<div id="page">
 
-<%= yield %>
+  <div id="header">
+    <div id="headerTitle"><a style="color: #ffffff;" href="/">Apex-news</a> </div> <br />
+    <div id="headerSubText">Пре-альфа релиз. Всё, что сейчас есть - изменится в лучшую сторону.</div>
+
+  </div>
+
+<div style="margin-left: 30px;">
+    <%= yield %>
+</div>
+
+</div>
+<div id="footer"><a href="http://apex-news.herokuapp.com/">apex news</a> by <a href="http://github.com/nikitasmall">nikitasmall</a></div>
 
 </body>
 </html>
