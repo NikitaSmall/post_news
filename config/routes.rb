@@ -9,6 +9,8 @@ PostNews::Application.routes.draw do
 
   resources :posts
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
+  get '/posts_main' => 'posts#main', as: 'main_posts'
+  get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
 
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'

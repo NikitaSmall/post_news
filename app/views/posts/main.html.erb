@@ -1,26 +1,26 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><%= link_to 'Все новости', posts_path %></li>
-  <li role="presentation"><%= link_to 'Новости на главной', main_posts_path %></li>
+  <li role="presentation"><%= link_to 'Все новости', posts_path %></li>
+  <li role="presentation" class="active"><%= link_to 'Новости на главной', main_posts_path %></li>
   <li role="presentation"><%= link_to 'Скрытые новости', hidden_posts_path %></li>
 </ul>
 <br />
 
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th></th>
-      <th>Название</th>
-      <th>Текст</th>
-      <th>Автор</th>
-      <th>Главная</th>
-      <th>Зафичерено</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th></th>
+    <th>Название</th>
+    <th>Текст</th>
+    <th>Автор</th>
+    <th>Главная</th>
+    <th>Зафичерено</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
   <tbody>
-    <% @posts.each do |post| %>
+  <% @posts.each do |post| %>
       <tr>
         <td>
           <%= link_to switch_with_next_path(post.id), method: :patch, class: 'btn btn-default' do %>
@@ -35,29 +35,29 @@
         <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
         <td>
           <%if post.main %>
-            <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <% end %>
+              <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% end %>
           <% else %>
-            <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <% end %>
+              <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
           <% end %>
         </td>
         <td>
           <%if post.featured %>
-            <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <% end %>
+              <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% end %>
           <% else %>
-            <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
-              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <% end %>
+              <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
           <% end %>
         </td>
         <td>
           <%= link_to post, class: "btn btn-default"  do %>
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <% end %>
         </td>
         <td>
@@ -75,13 +75,9 @@
           <% end %>
         </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
-<div class=" col-sm-offset-4 col-md-offset-3">
-  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
-</div>
-
 
 <br>
 

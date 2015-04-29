@@ -15,7 +15,14 @@ class PostsController < ApplicationController
     else
       @posts = Post.all.by_position.paginate(:page => params[:page], :per_page => 7)
     end
+  end
 
+  def main
+    @posts = Post.main.by_position
+  end
+
+  def hidden
+    @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /posts/1

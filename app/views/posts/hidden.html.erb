@@ -1,0 +1,78 @@
+<ul class="nav nav-tabs">
+  <li role="presentation"><%= link_to 'Все новости', posts_path %></li>
+  <li role="presentation"><%= link_to 'Новости на главной', main_posts_path %></li>
+  <li role="presentation" class="active"><%= link_to 'Скрытые новости', hidden_posts_path %></li>
+</ul>
+<br />
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Текст</th>
+    <th>Автор</th>
+    <th>Главная</th>
+    <th>Зафичерено</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.title, post %></td>
+        <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
+        <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
+        <td>
+          <%if post.main %>
+              <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% end %>
+          <% else %>
+              <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%if post.featured %>
+              <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <% end %>
+          <% else %>
+              <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <% end %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to post, class: "btn btn-default"  do %>
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          <% end %>
+        </td>
+        <td>
+          <% unless current_user.author? && current_user.id != post.user_id %>
+              <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% unless current_user.corrector? || (current_user.author? && current_user.id != post.user_id) %>
+              <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class=" col-sm-offset-4 col-md-offset-3">
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>
+
+<br>
+
+

@@ -34,7 +34,7 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li <% if params[:action] == 'index' && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Список новостей', posts_path %></li>
+        <li <% if (params[:action] == 'index' || params[:action] == 'main' || params[:action] == 'hidden') && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Список новостей', posts_path %></li>
         <li <% if params[:action] == 'index' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Список пользователей', users_path %></li>
       </ul>
       <ul class="nav nav-sidebar">
@@ -50,8 +50,7 @@
     </div>
 
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <p class="notice h4 text-warning"><%= notice %></p>
-      <p class="alert h4 text-danger"><%= alert %></p>
+      <p class="notice h4 text-warning"><%= notice %> <span class="text-danger"><%= alert %></span></p>
 
       <%= yield %>
     </div>
