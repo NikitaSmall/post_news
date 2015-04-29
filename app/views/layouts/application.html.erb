@@ -132,6 +132,15 @@
           line-height:30px;
       }
 
+      .contentText:after
+      {
+          content: ".";
+          display:block;
+          height:0;
+          clear:both;
+          visibility:hidden;
+      }
+
       a
       {
           text-decoration:none;
@@ -158,6 +167,15 @@
           text-align: center;
       }
       p {text-align: left;}
+
+          p:after
+          {
+              content: ".";
+              display:block;
+              height:0;
+              clear:both;
+              visibility:hidden;
+          }
   </style>
 </head>
 <body>
