@@ -117,6 +117,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 
@@ -126,6 +127,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 
@@ -134,6 +136,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 
@@ -142,6 +145,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 

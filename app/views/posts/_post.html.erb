@@ -13,23 +13,23 @@
   <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
   <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
   <td id="main_post-<%= post.id %>">
-    <%if post.main %>
-        <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
+    <% if post.main %>
+        <%= link_to hide_path(post), method: :patch, remote: true, class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
         <% end %>
     <% else %>
-        <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
+        <%= link_to to_main_path(post), method: :patch, remote: true, class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         <% end %>
     <% end %>
   </td>
   <td id="feature_post-<%= post.id %>">
-    <%if post.featured %>
-        <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
+    <% if post.featured %>
+        <%= link_to defeature_path(post), method: :patch, remote: true, class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
         <% end %>
     <% else %>
-        <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
+        <%= link_to feature_path(post), method: :patch, remote: true, class: 'btn btn-default' do %>
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
         <% end %>
     <% end %>
