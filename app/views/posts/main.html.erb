@@ -21,7 +21,7 @@
   </thead>
   <tbody>
   <% @posts.each do |post| %>
-      <%= render partial: post %>
+      <%= render partial: 'main_post', locals: {post: post} %>
   <% end %>
   </tbody>
 </table>

@@ -73,10 +73,10 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /switch/1/2
   def switch
-    first = Post.find(params[:first])
-    second = Post.find(params[:second])
+    @first = Post.find(params[:first])
+    @second = Post.find(params[:second])
 
-    first.switch second
+    @first.switch @second
 
     respond_to do |format|
       format.html { redirect_to posts_url }
@@ -85,29 +85,31 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /switch/1
   def switch_with_next
-    first = Post.find(params[:first])
-    second = first.next
+    @first = Post.find(params[:first])
+    @second = @first.next
 
-    if second.present?
-      first.switch second
+    if @second.present?
+      @first.switch @second
     end
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 
   # PATCH/PUT /switch/2
   def switch_with_prev
-    first = Post.find(params[:first])
-    second = first.prev
+    @first = Post.find(params[:first])
+    @second = @first.prev
 
-    if second.present?
-      first.switch second
+    if @second.present?
+      @first.switch @second
     end
 
     respond_to do |format|
       format.html { redirect_to posts_url }
+      format.js {}
     end
   end
 
@@ -151,29 +153,31 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /switch/1
   def switch_with_next_main
-    first = Post.find(params[:first])
-    second = first.next_main
+    @first = Post.find(params[:first])
+    @second = @first.next_main
 
-    if second.present?
-      first.switch second
+    if @second.present?
+      @first.switch @second
     end
 
     respond_to do |format|
       format.html { redirect_to main_posts_url }
+      format.js {}
     end
   end
 
   # PATCH/PUT /switch/2
   def switch_with_prev_main
-    first = Post.find(params[:first])
-    second = first.prev_main
+    @first = Post.find(params[:first])
+    @second = @first.prev_main
 
-    if second.present?
-      first.switch second
+    if @second.present?
+      @first.switch @second
     end
 
     respond_to do |format|
       format.html { redirect_to main_posts_url }
+      format.js {}
     end
   end
 

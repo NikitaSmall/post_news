@@ -1,0 +1,6 @@
+$('#post-<%= @first.id %>').replaceWith("<%= escape_javascript(render @second) %>");
+if(document.getElementById('post-<%= @second.id %>') == null) {
+
+} else {
+    $('#post-<%= @second.id %>').replaceWith("<%= escape_javascript(render @first) %>");
+}

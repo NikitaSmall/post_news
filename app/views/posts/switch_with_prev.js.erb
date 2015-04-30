@@ -1,0 +1,2 @@
+$('#post-<%= @first.id %>').replaceWith("<%= escape_javascript(render @second) %>");
+$('#post-<%= @second.id %>').replaceWith("<%= escape_javascript(render @first) %>");

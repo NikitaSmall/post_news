@@ -1,0 +1,2 @@
+$('#post-<%= @second.id %>').replaceWith("<%= escape_javascript(render partial: 'main_post', locals: {post: @first}) %>");
+$('#post-<%= @first.id %>').replaceWith("<%= escape_javascript(render partial: 'main_post', locals: {post: @second}) %>");

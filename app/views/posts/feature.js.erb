@@ -1,1 +1,5 @@
-$('#post-<%= @post.id %>').replaceWith("<%= escape_javascript(render @post) %>");
+if ($('#post-<%= @post.id %>').data('main') == 1) {
+    $('#post-<%= @post.id %>').replaceWith("<%= escape_javascript( render partial: 'main_post', locals: {post: @post}) %>");
+} else {
+    $('#post-<%= @post.id %>').replaceWith("<%= escape_javascript(render @post) %>");
+}
