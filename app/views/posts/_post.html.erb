@@ -1,0 +1,56 @@
+<%# This partial template is valid only in admin panel table (just like table at index or main template) %>
+
+<tr id="post-<%= post.id %>" data-position="<%= post.position %>">
+  <td>
+    <%= link_to switch_with_next_main_path(post.id), method: :patch, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+    <% end %> <br />
+    <%= link_to switch_with_prev_main_path(post.id), method: :patch, class: 'btn btn-default' do %>
+        <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+    <% end %>
+  </td>
+  <td><%= link_to post.title, post %></td>
+  <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
+  <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
+  <td id="main_post-<%= post.id %>">
+    <%if post.main %>
+        <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <% end %>
+    <% else %>
+        <%= link_to to_main_path(post), method: :patch, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <% end %>
+    <% end %>
+  </td>
+  <td id="feature_post-<%= post.id %>">
+    <%if post.featured %>
+        <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <% end %>
+    <% else %>
+        <%= link_to feature_path(post), method: :patch, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to post, class: "btn btn-default"  do %>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <% end %>
+  </td>
+  <td>
+    <% unless current_user.author? && current_user.id != post.user_id %>
+        <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        <% end %>
+    <% end %>
+  </td>
+  <td>
+    <% unless current_user.corrector? || (current_user.author? && current_user.id != post.user_id) %>
+        <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+    <% end %>
+  </td>
+</tr>

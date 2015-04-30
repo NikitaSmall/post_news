@@ -21,7 +21,7 @@
   </thead>
   <tbody>
   <% @posts.each do |post| %>
-      <tr>
+      <tr id="post-<%= post.id %>" data-position="<%= post.position %>">
         <td>
           <%= link_to switch_with_next_main_path(post.id), method: :patch, class: 'btn btn-default' do %>
               <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
@@ -33,7 +33,7 @@
         <td><%= link_to post.title, post %></td>
         <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
         <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
-        <td>
+        <td id="main_post-<%= post.id %>">
           <%if post.main %>
               <%= link_to hide_path(post), method: :patch, class: 'btn btn-default' do %>
                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -44,7 +44,7 @@
               <% end %>
           <% end %>
         </td>
-        <td>
+        <td id="feature_post-<%= post.id %>">
           <%if post.featured %>
               <%= link_to defeature_path(post), method: :patch, class: 'btn btn-default' do %>
                   <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
