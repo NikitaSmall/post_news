@@ -1,4 +1,6 @@
 PostNews::Application.routes.draw do
+  root 'newspaper#index'
+
   get '/users' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
 
@@ -8,6 +10,7 @@ PostNews::Application.routes.draw do
   patch '/users/to_admin/:id' => 'user#to_admin', as: 'to_admin'
 
   resources :posts
+  get '/admin' => 'posts#index'
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
   get '/posts_main' => 'posts#main', as: 'main_posts'
   get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
@@ -28,8 +31,7 @@ PostNews::Application.routes.draw do
 
   devise_for :users
   mount Ckeditor::Engine => '/ckeditor'
-
-  root 'newspaper#index'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

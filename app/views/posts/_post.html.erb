@@ -35,7 +35,7 @@
   </td>
   <td>
     <% unless current_user.author? && current_user.id != post.user_id %>
-        <%= link_to edit_post_path(post), class: "btn btn-warning"  do %>
+        <%= link_to edit_post_path(post), class: "btn btn-info" do %>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
         <% end %>
     <% end %>
