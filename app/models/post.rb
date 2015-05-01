@@ -7,7 +7,13 @@ class Post < ActiveRecord::Base
   scope :by_position, -> { order(position: :desc) }
   scope :by_position_asc, -> { order(position: :asc) }
 
-  validates :title, :content, presence: true
+  has_attached_file :photo, {
+                              :styles => {:thumb => '50x50#', :original => '800x800>'}
+                          }.merge(PAPERCLIP_STORAGE_OPTIONS)
+
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
+  validates :title, :content, :photo, presence: true
   validates :title, uniqueness: true
 
   def next

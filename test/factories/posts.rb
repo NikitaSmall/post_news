@@ -7,6 +7,9 @@ FactoryGirl.define do
     main false
     featured 0
     position 1
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 
   factory :post_two, class: Post do
@@ -17,6 +20,9 @@ FactoryGirl.define do
     main false
     featured 0
     position 2
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 
   factory :post_three, class: Post do
@@ -27,6 +33,9 @@ FactoryGirl.define do
     main true
     featured 0
     position 3
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 
   factory :post_four, class: Post do
@@ -37,6 +46,9 @@ FactoryGirl.define do
     main true
     featured true
     position 4
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 
   factory :post_five, class: Post do
@@ -47,6 +59,9 @@ FactoryGirl.define do
     main false
     featured 0
     position 5
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 
   factory :post_six, class: Post do
@@ -57,5 +72,8 @@ FactoryGirl.define do
     main true
     featured 0
     position 6
+    photo_file_name { 'missing.png' }
+    photo_content_type { 'image/png' }
+    photo_file_size { 1024 }
   end
 end

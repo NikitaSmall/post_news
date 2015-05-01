@@ -11,6 +11,10 @@
 </p>
 
 <p>
+  <% unless @post.photo.nil? %><%= image_tag @post.photo.url %><% end %>
+</p>
+
+<p>
   <strong>Author:</strong>
   <%= @post.user.username %>
 </p>

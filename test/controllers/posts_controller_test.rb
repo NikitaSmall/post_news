@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
+  include ActionDispatch::TestProcess
   setup do
     @post = create(:post_one)
 
@@ -26,8 +27,9 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should create post" do
+    photo = fixture_file_upload('missing.png', 'image/png')
     assert_difference('Post.count') do
-      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1" }
+      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1", photo: photo }
     end
 
     assert_redirected_to post_path(assigns(:post))
@@ -83,11 +85,12 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_create_a_position_for_new_post" do
-
     sign_out @user
     sign_in @author
 
-    post :create, post: {  user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    photo = fixture_file_upload('missing.png', 'image/png')
+
+    post :create, post: {  user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title, photo: photo }
     new_post = Post.order(created_at: :asc).last
 
     assert_equal new_post.id, new_post.position
@@ -234,8 +237,9 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_give_position_from_id_on_creation" do
+    photo = fixture_file_upload('missing.png', 'image/png')
     assert_difference('Post.count') do
-      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1" }
+      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: @post.featured, main: @post.main, title: "#{@post.title}1", photo: photo }
     end
 
     assert_equal @post.id, @post.position
