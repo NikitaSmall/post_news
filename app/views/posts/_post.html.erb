@@ -42,7 +42,7 @@
   </td>
   <td>
     <% unless current_user.corrector? || (current_user.author? && current_user.id != post.user_id) %>
-        <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
+        <%= link_to post, method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do %>
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         <% end %>
     <% end %>

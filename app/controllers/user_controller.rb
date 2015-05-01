@@ -21,6 +21,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to users_url }
+      format.js {}
     end
   end
 
@@ -30,6 +31,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to users_url }
+      format.js {}
     end
   end
 
@@ -39,6 +41,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to users_url }
+      format.js {}
     end
   end
 
@@ -48,6 +51,7 @@ class UserController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to users_url }
+      format.js {}
     end
   end
 

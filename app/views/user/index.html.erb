@@ -22,40 +22,8 @@
   </tr>
   </thead>
   <% @users.each do |user| %>
-  <tr>
-    <td style="vertical-align: middle;">
-     <%= image_tag user.avatar.url(:medium), width: '80' %>
-    </td>
-    <td style="vertical-align: middle;">
-      <%= user.username %>
-    </td>
-    <td style="vertical-align: middle;">
-      <%= user.email %>
-    </td>
-    <td style="vertical-align: middle;">
-      <% if user.newbie? %>Пользователь<% end %>
-      <% if user.corrector? %>Корректор<% end %>
-      <% if user.author? %>Автор<% end %>
-      <% if user.editor? %>Редактор<% end %>
-      <% if user.admin? %>Администратор<% end %>
-    </td>
-    <td class="text-center" style="vertical-align: middle;">
-      <% if current_user.admin? %>
-          <%= link_to 'В администратора!', to_admin_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
-          <%= link_to 'В редактора!', to_editor_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
-          <%= link_to 'В автора!', to_author_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
-          <%= link_to 'В корректора!', to_corrector_path(user), method: :patch, class: 'btn btn-default btn-xs' %> <br />
-      <% else %>
-      Только администратор может менять роли.
-      <% end %>
-    </td>
-    <td style="vertical-align: middle;">
-      <% if current_user.id == user.id %>
-        <abbr title="Это вы"><span class="btn btn-default"><span class="glyphicon glyphicon-user"></span></span></abbr>
-      <% end %>
-    </td>
-  </tr>
-      <% end %>
+    <%= render partial: 'user/user', locals: {user: user} %>
+  <% end %>
 </table>
 <div class=" col-sm-offset-4 col-md-offset-3">
   <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
