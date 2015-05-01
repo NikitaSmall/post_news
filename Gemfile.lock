@@ -67,6 +67,11 @@ GEM
     erubis (2.7.0)
     excon (0.45.3)
     execjs (2.5.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     figaro (1.1.0)
       thor (~> 0.14)
     fission (0.5.0)
@@ -280,6 +285,7 @@ DEPENDENCIES
   ckeditor
   coffee-rails (~> 4.0.0)
   devise
+  factory_girl_rails
   figaro
   fog
   jbuilder (~> 1.2)

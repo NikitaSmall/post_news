@@ -3,9 +3,15 @@ require 'test_helper'
 class PostsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   setup do
-    @post = posts(:one)
-    @post.user_id = users(:one).id
-    sign_in users(:one)
+    @post = create(:post_one)
+
+    @user = create(:one)
+    @newbie = create(:newbie)
+    @corrector = create(:corrector)
+    @author = create(:author)
+
+    @post.user_id = @user.id
+    sign_in @user
   end
 
   test "should get index" do
@@ -51,16 +57,16 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_newbie_user" do
-    sign_out users(:one)
-    sign_in users(:two)
+    sign_out @user
+    sign_in @newbie
 
     get :index
     assert_redirected_to root_path
   end
 
   test "should_block_corrector_on_new" do
-    sign_out users(:one)
-    sign_in users(:corrector)
+    sign_out @user
+    sign_in @corrector
 
     get :new
 
@@ -68,8 +74,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_corrector_on_create" do
-    sign_out users(:one)
-    sign_in users(:corrector)
+    sign_out @user
+    sign_in @corrector
 
     post :create, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
 
@@ -77,43 +83,48 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_create_a_position_for_new_post" do
-    sign_out users(:one)
-    sign_in users(:author)
 
-    post :create, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    sign_out @user
+    sign_in @author
+
+    post :create, post: {  user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
+    new_post = Post.order(created_at: :asc).last
+
+    assert_equal new_post.id, new_post.position
     assert_not_nil assigns(:post)
   end
 
   test "should_block_author_to_edit_other_man_post" do
-    sign_out users(:one)
-    sign_in users(:author)
+    sign_out @user
+    sign_in @author
 
-    get :edit, id: posts(:one).id
+    get :edit, id: @post.id
     assert_redirected_to posts_path
   end
 
   test "should_block_author_to_update_other_man_post" do
-    sign_out users(:one)
-    sign_in users(:author)
+    sign_out @user
+    sign_in @author
 
     patch :update, id: @post, post: { user_id: @post.user_id, content: @post.content, featured: @post.featured, main: @post.main, title: @post.title }
     assert_redirected_to posts_path
   end
 
   test "should_edit_authors_own_post" do
-    sign_out users(:one)
-    sign_in users(:author)
+    sign_out @user
+    sign_in @author
 
-    # see the fixtures. This post is author ownership
+    # see the fixtures (factory). This post is author ownership
+    @post_four = create(:post_four)
 
-    get :edit, id: posts(:four).id
+    get :edit, id: @post_four.id
     assert_response :success
   end
 
   test "should_update_authors_own_post" do
-    sign_out users(:one)
-    sign_in users(:author)
-    @post = posts(:four)
+    sign_out @user
+    sign_in @author
+    @post = create(:post_four)
 
     # see the fixtures. This post is author ownership
 
@@ -122,8 +133,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_switch_two_random_posts" do
-    @post_one = posts(:one)
-    @post_two = posts(:four)
+    @post_one = @post
+    @post_two = create(:post_four)
 
     old_post_one_pos = @post_one.position
     old_post_two_pos = @post_two.position
@@ -141,7 +152,9 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_switch_with_the_next" do
-    @post_one = posts(:one)
+    create(:post_two)
+
+    @post_one = @post
     @post_two = @post_one.next
 
     old_post_one_pos = @post_one.position
@@ -159,7 +172,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_switch_next_with_the_last" do
-    @post_one = posts(:six)
+    @post_one = create(:post_six)
     old_post_one_pos = @post_one.position
 
     patch :switch_with_next, first: @post_one.id
@@ -171,7 +184,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_switch_with_the_prev" do
-    @post_one = posts(:two)
+    @post_one = create(:post_two)
     @post_two = @post_one.prev
 
     old_post_one_pos = @post_one.position
@@ -189,7 +202,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_switch_prev_with_the_first" do
-    @post_one = posts(:one)
+    @post_one = @post
     old_post_one_pos = @post_one.position
 
     patch :switch_with_prev, first: @post_one.id
@@ -201,7 +214,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_make_post_featured" do
-    @post_one = posts(:three)
+    @post_one = create(:post_three)
 
     patch :feature, id: @post_one
     @post_one = Post.find(@post_one.id)
@@ -211,7 +224,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_make_post_defeatured" do
-    @post_one = posts(:four)
+    @post_one = create(:post_four)
 
     patch :defeature, id: @post_one
     @post_one = Post.find(@post_one.id)
@@ -230,8 +243,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_corrector_on_deleting" do
-    sign_out users(:one)
-    sign_in users(:corrector)
+    sign_out @user
+    sign_in @corrector
     @before = Post.count
 
     delete :destroy, id: @post
@@ -242,8 +255,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_author_on_deleting_other_post" do
-    sign_out users(:one)
-    sign_in users(:author)
+    sign_out @user
+    sign_in @corrector
     @before = Post.count
 
     delete :destroy, id: @post
@@ -254,9 +267,9 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_delete_authors_own_post" do
-    sign_out users(:one)
-    sign_in users(:author)
-    @post = posts(:four)
+    sign_out @user
+    sign_in @author
+    @post = create(:post_four)
 
     # see the fixtures. This post is author ownership
 
@@ -267,8 +280,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_corrector_on_switch_actions" do
-    sign_out users(:one)
-    sign_in users(:corrector)
+    sign_out @user
+    sign_in @corrector
 
     @old_p = @post.position
 
@@ -282,8 +295,8 @@ class PostsControllerTest < ActionController::TestCase
 
 
   test "should_block_author_on_switch_actions" do
-    sign_out users(:one)
-    sign_in users(:author)
+    sign_out @user
+    sign_in @author
 
     @old_p = @post.position
 
@@ -304,7 +317,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_hide_post_from_main" do
-    @post = posts(:four)
+    @post = create(:post_four)
 
     patch :hide, id: @post.id
     @post = Post.find(@post.id)
@@ -314,7 +327,10 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_switch_with_the_next_main_post" do
-    @post_one = posts(:four)
+    create(:post_five)
+    create(:post_six)
+
+    @post_one = create(:post_four)
     @post_two = @post_one.next_main
 
     old_post_one_pos = @post_one.position
@@ -332,7 +348,10 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_switch_with_the_prev_main_post" do
-    @post_one = posts(:six)
+    create(:post_five)
+    create(:post_four)
+
+    @post_one = create(:post_six)
     @post_two = @post_one.prev_main
 
     old_post_one_pos = @post_one.position
@@ -350,7 +369,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_switch_prev_main_post_with_the_first" do
-    @post_one = posts(:one)
+    @post_one = @post
     old_post_one_pos = @post_one.position
 
     patch :switch_with_prev_main, first: @post_one.id
@@ -362,7 +381,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "should_block_switch_next_main_post_with_the_first" do
-    @post_one = posts(:six)
+    @post_one = create(:post_six)
     old_post_one_pos = @post_one.position
 
     patch :switch_with_next_main, first: @post_one.id

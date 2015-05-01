@@ -2,7 +2,8 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = users(:two)
+    @user = create(:two, email: 'foo@mail.com', username: 'nameless')
+    @user = create(:two)
   end
   # test unit-tests for work starts
   test "should_make_user_admin" do

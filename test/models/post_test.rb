@@ -1,83 +1,73 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  test "should_show_next_post" do
-    post_one = posts(:one)
-    post_two = posts(:two)
+  setup do
+    @post_one = create(:post_one)
+    @post_two = create(:post_two)
+    @post_three = create(:post_three)
+    @post_four = create(:post_four)
+    @post_five = create(:post_five)
+    @post_six = create(:post_six)
+  end
 
-    next_post = post_one.next
-    assert_equal post_two, next_post
+  test "should_show_next_post" do
+    @next_post = @post_one.next
+    assert_equal @post_two, @next_post
   end
 
   test "should_show_prev_post" do
-    post_one = posts(:one)
-    post_two = posts(:two)
-
-    prev_post = post_two.prev
-    assert_equal post_one, prev_post
+    @prev_post = @post_two.prev
+    assert_equal @post_one, @prev_post
   end
 
   test "should_switch_positions" do
-    post_one = posts(:one)
-    post_two = posts(:three)
-    old_post_one_pos = post_one.position
-    old_post_two_pos = post_two.position
+    old_post_one_pos = @post_one.position
+    old_post_two_pos = @post_two.position
 
-    post_one.switch post_two
+    @post_one.switch @post_two
 
-    assert_equal post_one.position, old_post_two_pos
-    assert_equal post_two.position, old_post_one_pos
+    assert_equal @post_one.position, old_post_two_pos
+    assert_equal @post_two.position, old_post_one_pos
   end
 
   test "should_force_post_to_show_on_main_page" do
-    post = posts(:one)
-
     assert_difference('Post.main.count', 1) do
-      post.main!
+      @post_one.main!
     end
-    assert post.main
+    assert @post_one.main
   end
 
   test "should_hide_post" do
-    post = posts(:three)
-
     assert_difference('Post.hidden.count', 1) do
-      post.hide!
+      @post_three.hide!
     end
-    assert !post.main
+    assert !@post_three.main
   end
 
   test "should_not_remove_existed_position" do
-    post = posts(:three)
-    same_post = posts(:three)
+    same_post = @post_three
 
-    post.set_position
+    @post_three.set_position
 
-    assert post == same_post
+    assert @post_three == same_post
   end
 
   test "should_make_featured_post" do
-    post = posts(:three)
+    @post_three.featured!
 
-    post.featured!
-
-    assert post.featured?
+    assert @post_three.featured?
   end
 
   test "should_defeature_post" do
-    post = posts(:four)
+    @post_four.defeature!
 
-    post.defeature!
-
-    assert !post.featured?
+    assert !@post_four.featured?
   end
 
   test "should_find_post_through_search" do
-    post = posts(:four)
+    found = Post.search(@post_four.title).first
 
-    found = Post.search(post.title).first
-
-    assert_equal post, found
+    assert_equal @post_four, found
   end
 
   test "should_find_four_posts" do
@@ -87,36 +77,26 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "should_switch_with_next_main_post" do
-    main_post = posts(:four)
-    next_main_post = posts(:six)
+    post = @post_four.next_main
 
-    post = main_post.next_main
-
-    assert_equal post, next_main_post
+    assert_equal post, @post_six
   end
 
   test "should_switch_with_prev_main_post" do
-    main_post = posts(:six)
-    prev_main_post = posts(:four)
+    post = @post_six.prev_main
 
-    post = main_post.prev_main
-
-    assert_equal post, prev_main_post
+    assert_equal post, @post_four
   end
 
   test "should_remove_feature_flag_on_hidden_post" do
-    post = posts(:four)
+    @post_four.hide!
 
-    post.hide!
-
-    assert !post.featured?, "featured - #{post.featured?}"
+    assert !@post_four.featured?, "featured - #{@post_four.featured?}"
   end
 
   test "should_block_make_featured_post_that_hide" do
-    post = posts(:two)
+    @post_two.featured!
 
-    post.featured!
-
-    assert !post.featured?, "featured - #{post.featured?}"
+    assert !@post_two.featured?, "featured - #{@post_two.featured?}"
   end
 end

@@ -36,6 +36,9 @@ gem 'aws-sdk', '~> 1.36.1'
 gem 'fog'
 gem 'figaro'
 
+# gem for better fixtures
+gem 'factory_girl_rails'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
