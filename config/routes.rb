@@ -17,7 +17,7 @@ PostNews::Application.routes.draw do
   # post '/posts/search' => 'posts#index', as: 'search'
 
   #ajax title validation:
-  post '/posts/check_title' => 'posts#check_title', as: 'check_title'
+  post '/posts_check_title' => 'posts#check_title', as: 'check_title'
 
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'

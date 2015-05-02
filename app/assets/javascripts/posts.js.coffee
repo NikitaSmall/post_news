@@ -5,16 +5,18 @@
 jQuery ->
 
   $('#new_post, [id^=edit_post_]').validate(
-    debug: true
+    #debug: true
     rules:
       'post[title]':
         required: true
         remote:
-          url: 'posts/check_title'
-          type: 'uniqueness'
-          message: 'Должно быть уникальным'
+          url: '/posts_check_title.json'
+          type: 'post'
       'post[photo]':
         required: true
       'post[content]':
         required: true
+    message:
+      'post[title]':
+        remote: 'Название должно быть уникальным'
   )

@@ -195,8 +195,14 @@ class PostsController < ApplicationController
   def check_title
     @post = Post.find_by_title(params[:post][:title])
 
+    if @post.nil?
+      message = true
+    else
+      message = 'Название должно быть уникальным'
+    end
+
     respond_to do |format|
-      format.json { render :json => !@post }
+      format.json { render json: message.to_json }
     end
   end
 
