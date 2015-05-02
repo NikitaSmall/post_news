@@ -4,7 +4,7 @@
 
 jQuery ->
 
-  $('#new_post, [id^=edit_post_]').validate(
+  $('#new_post, form.edit_post').validate(
     #debug: true
     rules:
       'post[title]':
@@ -14,7 +14,7 @@ jQuery ->
           type: 'post'
       'post[photo]':
         required: true
-      'post[content]':
+     'post[content]':
         required: true
     message:
       'post[title]':
