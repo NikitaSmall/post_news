@@ -39,6 +39,9 @@ gem 'figaro'
 # gem for better fixtures
 gem 'factory_girl_rails'
 
+# gem for ajax validation
+gem 'jquery-validation-rails'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

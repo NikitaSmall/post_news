@@ -192,6 +192,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def check_title
+    @post = Post.find_by_title(params[:post][:title])
+
+    respond_to do |format|
+      format.json { render :json => !@post }
+    end
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])

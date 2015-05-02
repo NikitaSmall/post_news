@@ -16,6 +16,9 @@ PostNews::Application.routes.draw do
   get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
 
+  #ajax title validation:
+  post '/posts/check_title' => 'posts#check_title', as: 'check_title'
+
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'
   patch '/switch/prev/:first' => 'posts#switch_with_prev', as: 'switch_with_prev'
