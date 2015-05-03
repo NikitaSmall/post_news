@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   validates :title, :content, :photo, presence: true
   validates :title, uniqueness: true
 
-  after_create :check_featured
+  after_create :check_featured, :set_position
 
   def next
     Post.where('position > ?', position).order(position: :asc).first
@@ -51,11 +51,6 @@ class Post < ActiveRecord::Base
     self.save
   end
 
-  def set_position
-    self.position ||= self.id
-    self.save
-  end
-
   def featured!
     self.featured = true if main
     self.save
@@ -78,5 +73,10 @@ class Post < ActiveRecord::Base
   protected
   def check_featured
     defeature! unless main
+  end
+
+  def set_position
+    self.position ||= self.id
+    self.save
   end
 end

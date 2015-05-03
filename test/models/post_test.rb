@@ -44,13 +44,13 @@ class PostTest < ActiveSupport::TestCase
     assert !@post_three.main
   end
 
-  test "should_not_remove_existed_position" do
-    same_post = @post_three
-
-    @post_three.set_position
-
-    assert @post_three == same_post
-  end
+  #test "should_not_remove_existed_position" do
+    # same_post = @post_three
+    #
+    # @post_three.set_position
+    #
+    # assert @post_three == same_post
+  #end
 
   test "should_make_featured_post" do
     @post_three.featured!
