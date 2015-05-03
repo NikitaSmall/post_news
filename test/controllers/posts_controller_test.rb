@@ -395,4 +395,17 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal @post_one.position, old_post_one_pos
     assert_redirected_to main_posts_path
   end
+
+  test "should_make_defeatured_when_create_hidden_featured_post" do
+    Post.delete_all
+    photo = fixture_file_upload('missing.png', 'image/png')
+
+    assert_difference('Post.count') do
+      post :create, post: { user_id: @post.user_id, content: "#{@post.content}1", featured: true, main: false, title: "#{@post.title}1", photo: photo }
+    end
+    post = Post.all.first
+
+    assert !post.featured
+    assert_redirected_to post_path(assigns(:post))
+  end
 end

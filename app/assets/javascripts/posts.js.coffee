@@ -4,7 +4,7 @@
 
 jQuery ->
 
-  $('#new_post, form.edit_post').validate(
+  $('[id^=new_post]').validate(
     #debug: true
     rules:
       'post[title]':
@@ -16,7 +16,25 @@ jQuery ->
         required: true
      'post[content]':
         required: true
+
     message:
       'post[title]':
         remote: 'Название должно быть уникальным'
   )
+
+  #$('[id^="edit_post_"]').validate(
+  #  #debug: true
+  #  rules:
+  #    'post[title]':
+  #      required: true
+  #      remote:
+  #        url: '/posts_check_title.json'
+  #        type: 'post'
+  #    'post[photo]':
+  #      required: true
+  #  'post[content]':
+  #    required: true
+  #  message:
+  #    'post[title]':
+  #      remote: 'Название должно быть уникальным'
+  #)

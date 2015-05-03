@@ -16,6 +16,8 @@ class Post < ActiveRecord::Base
   validates :title, :content, :photo, presence: true
   validates :title, uniqueness: true
 
+  after_create :check_featured
+
   def next
     Post.where('position > ?', position).order(position: :asc).first
   end
@@ -71,5 +73,10 @@ class Post < ActiveRecord::Base
   def self.search(word)
     word = "%#{word}%"
     where 'title LIKE ? OR content LIKE ?', word, word
+  end
+
+  protected
+  def check_featured
+    defeature! unless main
   end
 end
