@@ -64,4 +64,36 @@ class UserControllerTest < ActionController::TestCase
     assert !user.admin?
     assert_redirected_to users_url
   end
+
+  test "should_delete_simple_user" do
+    @simple_user = create(:two, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', -1) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
+
+  test "should_block_deletion_of_admin" do
+    @simple_user = create(:one, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', 0) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
+
+  test "should_block_deletion_for_non_admin_user" do
+    sign_out @user
+    sign_in create(:editor)
+    @simple_user = create(:two, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', 0) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
 end

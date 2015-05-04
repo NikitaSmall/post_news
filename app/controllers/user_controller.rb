@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor]
+  before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor, :destroy]
   before_action :authenticate_user!, except: [:view, :check_email, :check_username]
   before_action :check_role, except: [:view, :check_email, :check_username]
 
@@ -13,6 +13,15 @@ class UserController < ApplicationController
 
   # GET /users/1
   def view
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.js {}
+      format.json { head :no_content }
+    end
   end
 
   # PATCH /users/to_corrector/1

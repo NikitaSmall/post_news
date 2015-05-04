@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   validates :username, :email, presence: true
 
   after_create :check_last_stand
+  before_destroy :check_for_admin
 
   # methods that make the admins from newbie
   def admin!
@@ -80,5 +81,10 @@ class User < ActiveRecord::Base
   def admin_alone?
     return true if User.where(rank: 4).count == 1 && admin?
     false
+  end
+
+  protected
+  def check_for_admin
+    return false if admin?
   end
 end
