@@ -12,4 +12,8 @@ class NewspaperController < ApplicationController
   def all
     @posts = Post.all.by_position
   end
+
+  def all_users
+    @users = User.all
+  end
 end
