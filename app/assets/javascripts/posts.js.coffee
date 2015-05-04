@@ -10,9 +10,6 @@ on_ready = ->
     #debug: true
     ignore: []
     rules:
-      #content:
-      #  required: ->
-      #    CKEDITOR.instances.content.updateElement()
       'post[title]':
         required: true
         remote:
@@ -25,10 +22,6 @@ on_ready = ->
           CKEDITOR.instances[textarea.id].updateElement() # update textarea
           editorcontent = textarea.value.replace(/<[^>]*>/gi, '') # strip tags
           return editorcontent.length == 0
-
-    message:
-      'post[title]':
-        remote: 'Название должно быть уникальным'
     errorPlacement: (error, element) ->
       if element.attr('id') == 'content'
         error.insertBefore 'textarea#content'
@@ -38,20 +31,3 @@ on_ready = ->
 
 $(document).ready(on_ready)
 $(document).on('page:load', on_ready)
-
-  #$('[id^="edit_post_"]').validate(
-  #  #debug: true
-  #  rules:
-  #    'post[title]':
-  #      required: true
-  #      remote:
-  #        url: '/posts_check_title.json'
-  #        type: 'post'
-  #    'post[photo]':
-  #      required: true
-  #  'post[content]':
-  #    required: true
-  #  message:
-  #    'post[title]':
-  #      remote: 'Название должно быть уникальным'
-  #)

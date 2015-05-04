@@ -11,37 +11,41 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="form-group">
+    <%= f.label :title, 'Заголовок' %><br>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :content %><br>
+  <div class="form-group">
+    <%= f.label :content, 'Содержимое' %><br>
     <%= f.cktext_area :content, :id => 'content', :ckeditor => {:toolbar => 'mini'} %>
   </div>
 
-  <div class="field">
-    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-    <%= f.text_field :tag_list %>
+  <div class="form-group">
+    <%= f.label :tag_list, 'Теги (разделяйте запятыми)' %><br />
+    <%= f.text_field :tag_list, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :main %><br>
-    <%= f.check_box :main %>
+  <div class="form-group">
+    <%= f.check_box :main %> <%= f.label :main, 'Новость отображается на главной' %>
   </div>
 
-  <div class="field">
+    <div class="form-group">
+      <%= f.check_box :featured %> <%= f.label :featured, 'Новость выделена на главной' %>
+    </div>
+
+  <div class="form-group">
+    <%= f.label :photo, 'Главное фото новости:' %><br>
     <% if @post.photo.exists? %>
+        <label class="col-md-offset-1">Фото уже прикрепили:</label>
+        <div class="form-group col-md-offset-1">
+
         <%= image_tag @post.photo.url, width: 200 %>
+        </div>
     <% end %>
-    <%= f.label :photo %><br>
     <%= f.file_field :photo %>
   </div>
-  <div class="field">
-    <%= f.label :featured %><br>
-    <%= f.check_box :featured %>
-  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Опубликовать', class: 'btn btn-default' %>
   </div>
 <% end %>

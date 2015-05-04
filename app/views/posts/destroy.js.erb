@@ -1,1 +1,2 @@
 $('#post-<%= @post.id %>').fadeOut('fast');
+$('#tag_cloud').html("<%= escape_javascript(render partial: 'posts/tag_cloud') %>");
