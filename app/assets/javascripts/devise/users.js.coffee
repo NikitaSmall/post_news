@@ -3,10 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 on_ready = ->
-
-  name = $('#content').attr('name')
-
-  $('[id^=new_user]').validate(
+  $('#register').validate(
     #debug: true
     ignore: []
     rules:

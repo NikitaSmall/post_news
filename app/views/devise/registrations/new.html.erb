@@ -3,7 +3,7 @@
 
 <h2>Регистрация</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:id => 'register'}) do |f| %>
   <%= devise_error_messages! %>
 
     <div class="form-group">
