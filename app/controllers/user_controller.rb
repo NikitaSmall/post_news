@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor]
-  before_action :authenticate_user!, except: [:view]
-  before_action :check_role, except: [:view]
+  before_action :authenticate_user!, except: [:view, :check_email, :check_username]
+  before_action :check_role, except: [:view, :check_email, :check_username]
 
   layout :resolve_layout
 
@@ -52,6 +52,34 @@ class UserController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.js {}
+    end
+  end
+
+  def check_email
+    @user = User.find_by_email(params[:user][:email])
+
+    if @user.nil?
+      message = true
+    else
+      message = 'Эта почта уже используется'
+    end
+
+    respond_to do |format|
+      format.json { render json: message.to_json }
+    end
+  end
+
+  def check_username
+    @user = User.find_by_username(params[:user][:username])
+
+    if @user.nil?
+      message = true
+    else
+      message = 'Этот ник уже используется'
+    end
+
+    respond_to do |format|
+      format.json { render json: message.to_json }
     end
   end
 
