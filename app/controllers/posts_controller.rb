@@ -48,7 +48,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         #@post.set_position
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Новость была успешно добавлена.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Новость была успешно обновлена.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -227,7 +227,7 @@ class PostsController < ApplicationController
         redirect_to posts_url, notice: 'Ты не можешь создавать новый контент.'
       end
 
-      if (params[:action] == 'update' || params[:action] == 'edit' || params[:action] == 'destroy') && current_user.author? && current_user.id != @post.user.id
+      if (params[:action] == 'update' || params[:action] == 'edit') && current_user.author? && current_user.id != @post.user.id
         redirect_to posts_url, notice: 'Ты не можешь менять чужой контент.'
       end
 
@@ -235,7 +235,7 @@ class PostsController < ApplicationController
           params[:action] == 'switch_with_prev' || params[:action] == 'feature' ||
           params[:action] == 'defeature' || params[:action] == 'to_main' ||
           params[:action] == 'hide' || params[:action] == 'switch_with_next_main' ||
-          params[:action] == 'switch_with_prev_main') && current_user.author?
+          params[:action] == 'switch_with_prev_main' || params[:action] == 'destroy') && current_user.author?
         redirect_to posts_url, notice: 'Ты не можешь менять порядок.'
       end
     end

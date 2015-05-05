@@ -270,18 +270,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to posts_path
   end
 
-  test "should_delete_authors_own_post" do
-    sign_out @user
-    sign_in @author
-    @post = create(:post_four)
-
-    # see the fixtures. This post is author ownership
-
-    assert_difference('Post.count', -1) do
-      delete :destroy, id: @post
-    end
-    assert_redirected_to posts_path
-  end
 
   test "should_block_corrector_on_switch_actions" do
     sign_out @user
