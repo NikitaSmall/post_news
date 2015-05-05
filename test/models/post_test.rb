@@ -99,4 +99,20 @@ class PostTest < ActiveSupport::TestCase
 
     assert !@post_two.featured?, "featured - #{@post_two.featured?}"
   end
+
+  test "should_find_post_with_other_case" do
+    post_title = @post_one.title.downcase
+
+    found = Post.search(post_title).first
+
+    assert_equal found, @post_one
+  end
+
+  test "should_find_post_with_random_case" do
+    post_title = 'mYStRiNg1'
+
+    found = Post.search(post_title).first
+
+    assert_equal found, @post_one
+  end
 end

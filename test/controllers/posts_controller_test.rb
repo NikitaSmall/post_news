@@ -260,7 +260,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should_block_author_on_deleting_other_post" do
     sign_out @user
-    sign_in @corrector
+    sign_in @author
     @before = Post.count
 
     delete :destroy, id: @post
@@ -407,5 +407,53 @@ class PostsControllerTest < ActionController::TestCase
 
     assert !post.featured
     assert_redirected_to post_path(assigns(:post))
+  end
+
+  test "should_block_corrector_on_featuring_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_three)
+
+    patch :feature, id: @post
+    @post = Post.find(@post.id)
+
+    assert !@post.featured, "featured - #{@post.featured?}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_defeaturing_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_four)
+
+    patch :defeature, id: @post
+    @post = Post.find(@post.id)
+
+    assert @post.featured, "featured - #{@post.featured?}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_moving_post_to_main_page" do
+    sign_out @user
+    sign_in @corrector
+
+    @post
+    patch :to_main, id: @post
+    @post = Post.find(@post.id)
+
+    assert !@post.main, "main - #{@post.main}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_hiding_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_four)
+
+    patch :hide, id: @post
+    @post = Post.find(@post.id)
+
+    assert @post.main, "main - #{@post.main}"
+    assert_redirected_to posts_path
   end
 end

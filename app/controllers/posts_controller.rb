@@ -220,7 +220,9 @@ class PostsController < ApplicationController
 
       if (params[:action] == 'new' || params[:action] == 'create' ||
           params[:action] == 'destroy' || params[:action] == 'switch' ||
-          params[:action] == 'switch_with_next' || params[:action] == 'switch_with_prev') && current_user.corrector?
+          params[:action] == 'switch_with_next' || params[:action] == 'switch_with_prev' ||
+          params[:action] == 'feature' || params[:action] == 'defeature' ||
+          params[:action] == 'to_main' || params[:action] == 'hide') && current_user.corrector?
         redirect_to posts_url, notice: 'Ты не можешь создавать новый контент.'
       end
 
