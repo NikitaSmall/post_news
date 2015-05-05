@@ -231,7 +231,10 @@ class PostsController < ApplicationController
       end
 
       if (params[:action] == 'switch' || params[:action] == 'switch_with_next' ||
-          params[:action] == 'switch_with_prev') && current_user.author?
+          params[:action] == 'switch_with_prev' || params[:action] == 'feature' ||
+          params[:action] == 'defeature' || params[:action] == 'to_main' ||
+          params[:action] == 'hide' || params[:action] == 'switch_with_next_main' ||
+          params[:action] == 'switch_with_prev_main') && current_user.author?
         redirect_to posts_url, notice: 'Ты не можешь менять порядок.'
       end
     end

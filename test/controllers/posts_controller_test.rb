@@ -456,4 +456,21 @@ class PostsControllerTest < ActionController::TestCase
     assert @post.main, "main - #{@post.main}"
     assert_redirected_to posts_path
   end
+
+  test "should_block_switch_next_main_with_author" do
+    @post_four = create(:post_four)
+    @post_six = create(:post_six)
+    sign_out @user
+    sign_in @author
+
+    old_pos_four = @post_four.position
+    old_pos_six = @post_six.position
+
+    patch :switch_with_next_main, first: @post_four
+    @post_four = Post.find(@post_four.id)
+    @post_six = Post.find(@post_six.id)
+
+    assert_equal old_pos_four, @post_four.position
+    assert_equal old_pos_six, @post_six.position
+  end
 end
