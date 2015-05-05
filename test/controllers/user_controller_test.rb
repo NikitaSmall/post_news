@@ -96,4 +96,34 @@ class UserControllerTest < ActionController::TestCase
 
     assert_redirected_to users_url
   end
+
+  test "should_block_to_drop_admin_rights_for_himself" do
+    @admin = create(:admin)
+
+    patch :to_corrector, id: @user.id
+    @user = User.find(@user.id)
+
+    assert @user.admin?
+    assert_redirected_to users_url
+  end
+
+  test "should_block_to_drop_admin_rights_for_himself_to_editor" do
+    @admin = create(:admin)
+
+    patch :to_editor, id: @user.id
+    @user = User.find(@user.id)
+
+    assert @user.admin?
+    assert_redirected_to users_url
+  end
+
+  test "should_drop_admin_rights_for_other_admin" do
+    @admin = create(:admin)
+
+    patch :to_editor, id: @admin.id
+    @admin = User.find(@admin.id)
+
+    assert @admin.editor?
+    assert_redirected_to users_url
+  end
 end

@@ -26,7 +26,7 @@ class UserController < ApplicationController
 
   # PATCH /users/to_corrector/1
   def to_corrector
-    @user.corrector!
+    @user.corrector! unless user_personality?
 
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -36,7 +36,7 @@ class UserController < ApplicationController
 
   # PATCH /users/to_author/1
   def to_author
-    @user.author!
+    @user.author! unless user_personality?
 
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -46,7 +46,7 @@ class UserController < ApplicationController
 
   # PATCH /users/to_editor/1
   def to_editor
-    @user.editor!
+    @user.editor! unless user_personality?
 
     respond_to do |format|
       format.html { redirect_to users_url }
@@ -103,6 +103,10 @@ class UserController < ApplicationController
     unless current_user.admin? || params[:action] == 'index'
       redirect_to users_url, notice: 'Ты не можешь менять ранг.'
     end
+  end
+
+  def user_personality?
+    current_user.id == @user.id
   end
 
   def resolve_layout

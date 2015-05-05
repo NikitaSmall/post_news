@@ -68,13 +68,13 @@ class User < ActiveRecord::Base
   end
 
   def check_last_stand
-    if alone?
+    if alone_or_no_admin?
       admin!
     end
   end
 
-  def alone?
-    return true if User.count == 1 && User.all.first == self
+  def alone_or_no_admin?
+    return true if (User.count == 1 && User.all.first == self) || User.where(rank: 4).count == 0
     false
   end
 
