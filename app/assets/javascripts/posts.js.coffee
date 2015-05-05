@@ -29,5 +29,18 @@ on_ready = ->
         error.insertBefore element
   )
 
+  if $('#post_main').is(':checked')
+    $('#post_featured').prop 'disabled', false
+  else
+    $('#post_featured').removeAttr 'checked'
+    $('#post_featured').prop 'disabled', true
+
+  $('#post_main').click ->
+    if $('#post_main').is(':checked')
+      $('#post_featured').prop 'disabled', false
+    else
+      $('#post_featured').removeAttr 'checked'
+      $('#post_featured').prop 'disabled', true
+
 $(document).ready(on_ready)
 $(document).on('page:load', on_ready)
