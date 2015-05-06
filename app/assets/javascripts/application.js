@@ -22,5 +22,5 @@
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
-    return this.optional(element) || /[\wа-яА-ЯёЁ ]+$/i.test(value);
+    return this.optional(element) || /^[^0-9+-,!@#$%^&*();\/|<>]/i.test(value);
 }), 'В данном поле допустимы только символы');
