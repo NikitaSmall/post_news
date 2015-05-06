@@ -67,7 +67,7 @@ class Post < ActiveRecord::Base
 
   def self.search(word)
     word = "%#{word}%"
-    where 'title LIKE ? OR content LIKE ?', word, word
+    where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase
   end
 
   protected
