@@ -6,9 +6,9 @@ PostNews::Application.routes.draw do
 
   get '/users' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
-  devise_scope :user do
-    get '/register' => 'users/registrations#new'
-  end
+  #devise_scope :user do
+  #  get '/registration' => 'users/registrations#new'
+  #end
 
   patch '/users/to_corrector/:id' => 'user#to_corrector', as: 'to_corrector'
   patch '/users/to_author/:id' => 'user#to_author', as: 'to_author'

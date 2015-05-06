@@ -21,10 +21,12 @@
     <td></td>
   </tr>
   </thead>
+  <tbody id="users">
   <% @users.each do |user| %>
     <%= render partial: 'user/user', locals: {user: user} %>
   <% end %>
+  </tbody>
 </table>
-<div class=" col-sm-offset-4 col-md-offset-3">
+<div class=" col-sm-offset-4 col-md-offset-3" id="pagination">
   <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 </div>

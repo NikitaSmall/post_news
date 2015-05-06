@@ -17,6 +17,7 @@ class UserController < ApplicationController
 
   def destroy
     @user.destroy
+    @users = User.paginate(:page => params[:page], :per_page => 7)
     respond_to do |format|
       format.html { redirect_to users_url }
       format.js {}

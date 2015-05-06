@@ -1,1 +1,5 @@
 $('#user-<%= @user.id %>').fadeOut('slow');
+$('#users').html(
+    '<% @users.each do |user| %><%= escape_javascript(render partial: 'user/user', locals: {user: user}) %><% end %>'
+);
+$('#pagination').html('<%= will_paginate @users, renderer: BootstrapPagination::Rails %>');
