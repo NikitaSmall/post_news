@@ -2,6 +2,7 @@ class UserController < ApplicationController
   before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor, :destroy]
   before_action :authenticate_user!, except: [:view, :check_email, :check_username]
   before_action :check_role, except: [:view, :check_email, :check_username]
+  before_action :check_empty_page, only: [:index]
 
   layout :resolve_layout
 
@@ -17,7 +18,7 @@ class UserController < ApplicationController
 
   def destroy
     @user.destroy
-    @users = User.paginate(:page => params[:page], :per_page => 7)
+    # @users = User.paginate(:page => params[:page], :per_page => 7)
     respond_to do |format|
       format.html { redirect_to users_url }
       format.js {}
@@ -96,6 +97,10 @@ class UserController < ApplicationController
   protected
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def check_empty_page
+    params[:page] = (params[:page].to_i - 1).to_s while User.paginate(:page => params[:page], :per_page => 7).empty?
   end
 
   def check_role

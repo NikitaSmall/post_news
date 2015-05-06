@@ -126,4 +126,15 @@ class UserControllerTest < ActionController::TestCase
     assert @admin.editor?
     assert_redirected_to users_url
   end
+
+  test "should return_not_empty_result_on_pagination_after_last_page" do
+    8.times do |num|
+      create(:editor, username: "username#{num}", email: "email#{num}@mail.com")
+    end
+
+    get :index, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
 end
