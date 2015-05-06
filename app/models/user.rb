@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   validates :username, :email, uniqueness: true
   validates :username, :email, presence: true
+  validates :username, length: { in: 3..50 }
 
   after_create :check_last_stand
   before_destroy :check_for_admin

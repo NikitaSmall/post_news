@@ -9,6 +9,9 @@ on_ready = ->
     rules:
       'user[username]':
         required: true
+        minlength: 3
+        maxlength: 50
+        lettersonly: true
         remote:
           url: '/user_check_username'
           type: 'post'

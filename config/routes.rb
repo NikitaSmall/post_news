@@ -15,7 +15,7 @@ PostNews::Application.routes.draw do
   patch '/users/to_editor/:id' => 'user#to_editor', as: 'to_editor'
   patch '/users/to_admin/:id' => 'user#to_admin', as: 'to_admin'
 
-  delete '/users/:id' => 'user#destroy', as: 'delete_user'
+  delete '/users_profile/:id' => 'user#destroy', as: 'delete_user'
 
   #ajax validations:
   post '/posts_check_title' => 'posts#check_title', as: 'check_title'

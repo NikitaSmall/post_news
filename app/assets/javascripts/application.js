@@ -20,3 +20,7 @@
 //= require jquery.validate.localization/messages_ru
 //= require_tree ./ckeditor
 //= require_tree .
+
+jQuery.validator.addMethod('lettersonly', (function(value, element) {
+    return this.optional(element) || /^[a-z]+$/i.test(value);
+}), 'В данном поле допустимы только символы');
