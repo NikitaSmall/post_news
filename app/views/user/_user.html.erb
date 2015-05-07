@@ -17,10 +17,14 @@
   </td>
   <td class="text-center" style="vertical-align: middle;">
     <% if current_user.admin? %>
-        <%= link_to 'В администратора!', to_admin_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
-        <%= link_to 'В редактора!', to_editor_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
-        <%= link_to 'В автора!', to_author_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
-        <%= link_to 'В корректора!', to_corrector_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
+        <% if current_user.id != user.id %>
+            <%= link_to 'В администратора!', to_admin_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
+            <%= link_to 'В редактора!', to_editor_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
+            <%= link_to 'В автора!', to_author_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
+            <%= link_to 'В корректора!', to_corrector_path(user), remote: true, method: :patch, class: 'btn btn-default btn-xs' %> <br />
+        <% else %>
+            Вы не можете<br />изменить свои права<br />(вы администратор)
+        <% end%>
     <% else %>
         Только администратор может менять роли.
     <% end %>
@@ -28,6 +32,10 @@
   <td style="vertical-align: middle;">
     <% if current_user.id == user.id %>
         <abbr title="Это вы"><span class="btn btn-default"><span class="glyphicon glyphicon-user"></span></span></abbr>
+    <% elsif current_user.admin? && !user.admin? %>
+        <%= link_to delete_user_path(user), method: :delete, remote: true, data: { confirm: 'Вы хотите удалить этого пользователя?' }, class: 'btn btn-danger' do %>
+            <span class="glyphicon glyphicon-trash"></span>
+        <% end%>
     <% end %>
   </td>
 </tr>

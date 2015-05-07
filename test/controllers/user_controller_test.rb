@@ -64,4 +64,77 @@ class UserControllerTest < ActionController::TestCase
     assert !user.admin?
     assert_redirected_to users_url
   end
+
+  test "should_delete_simple_user" do
+    @simple_user = create(:two, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', -1) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
+
+  test "should_block_deletion_of_admin" do
+    @simple_user = create(:one, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', 0) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
+
+  test "should_block_deletion_for_non_admin_user" do
+    sign_out @user
+    sign_in create(:editor)
+    @simple_user = create(:two, email: 'mail@mail.com', username: 'mailmail_com')
+
+    assert_difference('User.count', 0) do
+      delete :destroy, id: @simple_user.id
+    end
+
+    assert_redirected_to users_url
+  end
+
+  test "should_block_to_drop_admin_rights_for_himself" do
+    @admin = create(:admin)
+
+    patch :to_corrector, id: @user.id
+    @user = User.find(@user.id)
+
+    assert @user.admin?
+    assert_redirected_to users_url
+  end
+
+  test "should_block_to_drop_admin_rights_for_himself_to_editor" do
+    @admin = create(:admin)
+
+    patch :to_editor, id: @user.id
+    @user = User.find(@user.id)
+
+    assert @user.admin?
+    assert_redirected_to users_url
+  end
+
+  test "should_drop_admin_rights_for_other_admin" do
+    @admin = create(:admin)
+
+    patch :to_editor, id: @admin.id
+    @admin = User.find(@admin.id)
+
+    assert @admin.editor?
+    assert_redirected_to users_url
+  end
+
+  test "should return_not_empty_result_on_pagination_after_last_page" do
+    8.times do |num|
+      create(:editor, username: "username#{num}", email: "email#{num}@mail.com")
+    end
+
+    get :index, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
 end

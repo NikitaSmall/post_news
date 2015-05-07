@@ -1,13 +1,26 @@
 PostNews::Application.routes.draw do
   root 'newspaper#index'
 
+  get '/all' => 'newspaper#all', as: 'all_posts'
+  get '/all_users' => 'newspaper#all_users', as: 'all_users'
+
   get '/users' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
+  #devise_scope :user do
+  #  get '/registration' => 'users/registrations#new'
+  #end
 
   patch '/users/to_corrector/:id' => 'user#to_corrector', as: 'to_corrector'
   patch '/users/to_author/:id' => 'user#to_author', as: 'to_author'
   patch '/users/to_editor/:id' => 'user#to_editor', as: 'to_editor'
   patch '/users/to_admin/:id' => 'user#to_admin', as: 'to_admin'
+
+  delete '/users_profile/:id' => 'user#destroy', as: 'delete_user'
+
+  #ajax validations:
+  post '/posts_check_title' => 'posts#check_title', as: 'check_title'
+  post '/user_check_username' => 'user#check_username', as: 'check_username'
+  post '/user_check_email' => 'user#check_email', as: 'check_email'
 
   resources :posts
   get '/admin' => 'posts#index'
@@ -15,9 +28,6 @@ PostNews::Application.routes.draw do
   get '/posts_main' => 'posts#main', as: 'main_posts'
   get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
-
-  #ajax title validation:
-  post '/posts_check_title' => 'posts#check_title', as: 'check_title'
 
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'
   patch '/switch/next/:first' => 'posts#switch_with_next', as: 'switch_with_next'

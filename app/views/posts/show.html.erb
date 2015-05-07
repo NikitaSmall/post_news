@@ -1,33 +1,26 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @post.title %></h2> <p>Автор: <%= @post.user.username %></p>
+<% if @post.main %>
+    <p class="text-primary">Эта новость отображается на главной странице</p>
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<% if @post.featured %>
+    <p class="text-primary">Эта новость выделена на главной странице</p>
+<% end %>
 
-<p>
-  <strong>Content:</strong>
+<div id="admin-content">
+  <div style="float: right;">
+    <%= image_tag @post.photo.url, width: 200, class: 'img-thumbnail img-responsive' %>
+  </div>
   <%= @post.content.html_safe %>
-</p>
+</div>
 
-<p>
-  <% unless @post.photo.nil? %><%= image_tag @post.photo.url %><% end %>
-</p>
+<div>
+  Теги:
+  <% @post.tag_list.each do |tag| %>
+      <%= link_to tag, tag_posts_path(tag), class: 'btn btn-default', style: 'line-height: 1.5;' %>
+  <% end %>
+</div>
 
-<p>
-  <strong>Author:</strong>
-  <%= @post.user.username %>
-</p>
+<br />
 
-<p>
-  <strong>Main:</strong>
-  <%= @post.main %>
-</p>
-
-<p>
-  <strong>Featured:</strong>
-  <%= @post.featured %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-default' %>

@@ -260,7 +260,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should_block_author_on_deleting_other_post" do
     sign_out @user
-    sign_in @corrector
+    sign_in @author
     @before = Post.count
 
     delete :destroy, id: @post
@@ -270,18 +270,6 @@ class PostsControllerTest < ActionController::TestCase
     assert_redirected_to posts_path
   end
 
-  test "should_delete_authors_own_post" do
-    sign_out @user
-    sign_in @author
-    @post = create(:post_four)
-
-    # see the fixtures. This post is author ownership
-
-    assert_difference('Post.count', -1) do
-      delete :destroy, id: @post
-    end
-    assert_redirected_to posts_path
-  end
 
   test "should_block_corrector_on_switch_actions" do
     sign_out @user
@@ -407,5 +395,92 @@ class PostsControllerTest < ActionController::TestCase
 
     assert !post.featured
     assert_redirected_to post_path(assigns(:post))
+  end
+
+  test "should_block_corrector_on_featuring_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_three)
+
+    patch :feature, id: @post
+    @post = Post.find(@post.id)
+
+    assert !@post.featured, "featured - #{@post.featured?}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_defeaturing_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_four)
+
+    patch :defeature, id: @post
+    @post = Post.find(@post.id)
+
+    assert @post.featured, "featured - #{@post.featured?}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_moving_post_to_main_page" do
+    sign_out @user
+    sign_in @corrector
+
+    @post
+    patch :to_main, id: @post
+    @post = Post.find(@post.id)
+
+    assert !@post.main, "main - #{@post.main}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_corrector_on_hiding_post" do
+    sign_out @user
+    sign_in @corrector
+    @post = create(:post_four)
+
+    patch :hide, id: @post
+    @post = Post.find(@post.id)
+
+    assert @post.main, "main - #{@post.main}"
+    assert_redirected_to posts_path
+  end
+
+  test "should_block_switch_next_main_with_author" do
+    @post_four = create(:post_four)
+    @post_six = create(:post_six)
+    sign_out @user
+    sign_in @author
+
+    old_pos_four = @post_four.position
+    old_pos_six = @post_six.position
+
+    patch :switch_with_next_main, first: @post_four
+    @post_four = Post.find(@post_four.id)
+    @post_six = Post.find(@post_six.id)
+
+    assert_equal old_pos_four, @post_four.position
+    assert_equal old_pos_six, @post_six.position
+  end
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_hidden" do
+    get :hidden, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
+
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_index" do
+    get :index, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_search" do
+    get :index, word: 'S', page: '3'
+
+    assert_response :success
+    assert_select 'td a'
   end
 end
