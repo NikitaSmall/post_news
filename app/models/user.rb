@@ -86,6 +86,6 @@ class User < ActiveRecord::Base
 
   protected
   def check_for_admin
-    return false if admin?
+    !admin?
   end
 end

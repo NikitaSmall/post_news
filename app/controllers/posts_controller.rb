@@ -222,7 +222,11 @@ class PostsController < ApplicationController
       end
       if params[:action] == 'index'
         params[:page] = (params[:page].to_i - 1).to_s while Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless params[:tag].nil?
-        params[:page] = (params[:page].to_i - 1).to_s while Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless params[:word].nil?
+        unless params[:word].nil?
+          unless Post.search(params[:word]).empty?
+            params[:page] = (params[:page].to_i - 1).to_s while Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 7).empty?
+          end
+        end
         params[:page] = (params[:page].to_i - 1).to_s while Post.all.by_position.paginate(:page => params[:page], :per_page => 7).empty? if params[:tag].nil? && params[:word].nil?
       end
     end
