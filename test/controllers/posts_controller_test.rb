@@ -461,4 +461,26 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal old_pos_four, @post_four.position
     assert_equal old_pos_six, @post_six.position
   end
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_hidden" do
+    get :hidden, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
+
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_index" do
+    get :index, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
+
+  test "should return_not_empty_result_on_pagination_after_last_page_for_posts_search" do
+    get :index, word: 'S', page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
 end

@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :feature, :defeature, :to_main, :hide]
   before_action :authenticate_user!
   before_action :check_role
+  before_action :check_empty_page, only: [:index, :hidden]
 
   layout 'admin'
 
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def hidden
-    @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /posts/1
@@ -213,6 +214,17 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :content, :user, :main, :featured, :position, :tag_list, :photo)
+    end
+
+    def check_empty_page
+      if params[:action] == 'hidden'
+        params[:page] = (params[:page].to_i - 1).to_s while Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7).empty?
+      end
+      if params[:action] == 'index'
+        params[:page] = (params[:page].to_i - 1).to_s while Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless params[:tag].nil?
+        params[:page] = (params[:page].to_i - 1).to_s while Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless params[:word].nil?
+        params[:page] = (params[:page].to_i - 1).to_s while Post.all.by_position.paginate(:page => params[:page], :per_page => 7).empty? if params[:tag].nil? && params[:word].nil?
+      end
     end
 
     def check_role
