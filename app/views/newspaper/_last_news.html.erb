@@ -10,9 +10,7 @@
       <% Post.main.order(created_at: :desc).first(5).each do |post|%>
       <div class="swiper-slide">
         <p class="news-text">
-          <a href="#">
-            <%= post.title %>
-          </a>
+            <%= link_to post.title, '#' %>
         </p>
         <time>15 мин назад</time>
       </div>

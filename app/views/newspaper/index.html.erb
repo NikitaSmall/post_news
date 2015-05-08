@@ -14,26 +14,24 @@
     <%= render partial: 'popular_news' %>
     <!--  END popular-news  -->
 
-
-
     <div class="news-items small">
       <% @posts.first(5).each_with_index do |post, index| %>
-          <a href="#" class="news-item <%= size(index + 1) %>">
+          <%= link_to '#', class: "news-item #{size(index + 1)}" do %>
             <%= image_tag post.photo.url %>
                     <span class="news-descrip">
                         <%= post.title %>
                              <span class="read-more">Читать далее...</span>
                     </span>
-          </a>
+          <% end %>
       <% end %>
     </div>
 
     <div class="news-items">
     <% @posts.offset(5).each_with_index do |post, index| %>
-          <a href="#" class="news-item <%= size(index) %>">
+          <%= link_to '#', class: "news-item #{size(index + 1)}" do %>
             <%= image_tag post.photo.url %>
             <span class="news-descrip"><%= post.title %></span>
-          </a>
+          <% end %>
     <% end %>
     </div>
 

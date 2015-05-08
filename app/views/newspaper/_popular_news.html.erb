@@ -1,25 +1,11 @@
 <div class="popular-news">
   <p class="title">популярное</p>
   <div class="popupal-items-wrap">
-    <a href="#" class="popular-item">
-      <time>19:48</time>
-      <span>Яценюк приехал тушить пожар в зоне Чернобыльской АЭС</span>
-    </a>
-    <a href="#" class="popular-item">
-      <time>19:09</time>
-      <span>Хакеры разместили в ЖЖ «Ночных волков» снимки мотоциклистов с ЛГБТ-флагами</span>
-    </a>
-    <a href="#" class="popular-item">
-      <time>17:35</time>
-      <span>ВМС Нидерландов получили самый крупный корабль в своей истории</span>
-    </a>
-    <a href="#" class="popular-item">
-      <time>11:18</time>
-      <span>Корабль «Прогресс» начал неконтролируемо вращаться вокруг своей оси</span>
-    </a>
-    <a href="#" class="popular-item">
-      <time>09:17</time>
-      <span>Хакеры разместили в ЖЖ «Ночных волков» снимки мотоциклистов с ЛГБТ-флагами</span>
-    </a>
+    <%# there should be a loop for popular posts %>
+      <%= link_to '#', class: 'popular-item' do %>
+        <time>19:48</time>
+        <span>Яценюк приехал тушить пожар в зоне Чернобыльской АЭС</span>
+      <% end %>
+    <%# end %>
   </div>
 </div>
