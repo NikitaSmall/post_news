@@ -3,6 +3,7 @@ class NewspaperController < ApplicationController
 
   def index
     @posts = Post.main.by_position
+    @featured_posts = Post.featured.by_position
   end
 
   def archive

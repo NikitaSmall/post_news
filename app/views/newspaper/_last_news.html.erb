@@ -7,31 +7,16 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
+      <% Post.main.order(created_at: :desc).first(5).each do |post|%>
       <div class="swiper-slide">
         <p class="news-text">
           <a href="#">
-            Жертвами землетрясения в Непале стали более 4000 человек
-            Жертвами землетрясения в Непале стали более 4000 человек
+            <%= post.title %>
           </a>
         </p>
         <time>15 мин назад</time>
       </div>
-      <div class="swiper-slide">
-        <p class="news-text">
-          <a href="#">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus corporis cum delectus, distinctio error excepturi harum, hic nam numquam officiis perspiciatis quas, quia quis quos rem sint suscipit ut!
-          </a>
-        </p>
-        <time>30 мин назад</time>
-      </div>
-      <div class="swiper-slide">
-        <p class="news-text">
-          <a href="#">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum nobis, voluptates! Eaque, iusto repellendus? Alias culpa deserunt earum, eveniet incidunt itaque laborum maxime molestias quas, temporibus vel veniam voluptates voluptatum.
-          </a>
-        </p>
-        <time>45 мин назад</time>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>

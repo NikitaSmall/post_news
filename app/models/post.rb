@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
+  scope :featured, -> { where(featured: true) }
   scope :by_position, -> { order(position: :desc) }
   scope :by_position_asc, -> { order(position: :asc) }
 

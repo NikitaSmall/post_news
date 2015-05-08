@@ -1,6 +1,6 @@
 <div class="container">
   <!--  begin slider  -->
-  <%= render partial: 'slider_news' %>
+  <%= render partial: 'slider_news', object: @featured_posts %>
   <!--  END slider  -->
 
   <!--  begin last news  -->
@@ -17,11 +17,11 @@
 
 
     <div class="news-items small">
-      <% (1..5).each do |index| %>
-          <a href="#" class="news-item <%= size(index) %>">
-            <img src="pic/news-pic-1.jpg" alt=""/>
+      <% @posts.first(5).each_with_index do |post, index| %>
+          <a href="#" class="news-item <%= size(index + 1) %>">
+            <%= image_tag post.photo.url %>
                     <span class="news-descrip">
-                        США предложили России продолжить ядерное разоружение
+                        <%= post.title %>
                              <span class="read-more">Читать далее...</span>
                     </span>
           </a>
@@ -29,10 +29,10 @@
     </div>
 
     <div class="news-items">
-    <% (1..5).each do |index| %>
+    <% @posts.offset(5).each_with_index do |post, index| %>
           <a href="#" class="news-item <%= size(index) %>">
-            <img src="pic/news-pic-6.jpg" alt=""/>
-            <span class="news-descrip">США предложили России продолжить ядерное разоружение</span>
+            <%= image_tag post.photo.url %>
+            <span class="news-descrip"><%= post.title %></span>
           </a>
     <% end %>
     </div>
@@ -41,13 +41,3 @@
   <!--  END news main  -->
 
 </div>
-
-<% @posts.each do |post| %>
-    <div style="margin-left: -30px;">
-        <div class="contentTitle"><h1><%= post.title %> <% if post.featured? %>(Эта новость будет красиво выделена)<% end %></h1></div>
-        <div class="contentText">
-          <%= post.content.html_safe %>
-          <p><%= link_to 'Читать далее', '#', class: 'btn btn-link' %></p>
-        </div>
-    </div>
-<% end %>
