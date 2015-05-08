@@ -218,7 +218,7 @@ class PostsController < ApplicationController
 
     def check_empty_page
       if params[:action] == 'hidden'
-        params[:page] = (params[:page].to_i - 1).to_s while Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7).empty?
+        params[:page] = (params[:page].to_i - 1).to_s while Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7).empty? unless Post.hidden.empty?
       end
       if params[:action] == 'index'
         params[:page] = (params[:page].to_i - 1).to_s while Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless params[:tag].nil?

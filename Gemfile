@@ -42,6 +42,10 @@ gem 'factory_girl_rails'
 # gem for ajax validation
 gem 'jquery-validation-rails'
 
+# gem for pretty photo gallery
+# gem 'swiper-rails'
+gem 'fotoramajs'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

@@ -1,3 +1,47 @@
+<div class="container">
+  <!--  begin slider  -->
+  <%= render partial: 'slider_news' %>
+  <!--  END slider  -->
+
+  <!--  begin last news  -->
+  <%= render partial: 'last_news' %>
+  <!--  END last news  -->
+
+  <!--  begin news main  -->
+  <div class="row">
+
+    <!--  begin popular-news  -->
+    <%= render partial: 'popular_news' %>
+    <!--  END popular-news  -->
+
+
+
+    <div class="news-items small">
+      <% (1..5).each do |index| %>
+          <a href="#" class="news-item <%= size(index) %>">
+            <img src="pic/news-pic-1.jpg" alt=""/>
+                    <span class="news-descrip">
+                        США предложили России продолжить ядерное разоружение
+                             <span class="read-more">Читать далее...</span>
+                    </span>
+          </a>
+      <% end %>
+    </div>
+
+    <div class="news-items">
+    <% (1..5).each do |index| %>
+          <a href="#" class="news-item <%= size(index) %>">
+            <img src="pic/news-pic-6.jpg" alt=""/>
+            <span class="news-descrip">США предложили России продолжить ядерное разоружение</span>
+          </a>
+    <% end %>
+    </div>
+
+  </div>
+  <!--  END news main  -->
+
+</div>
+
 <% @posts.each do |post| %>
     <div style="margin-left: -30px;">
         <div class="contentTitle"><h1><%= post.title %> <% if post.featured? %>(Эта новость будет красиво выделена)<% end %></h1></div>

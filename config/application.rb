@@ -24,5 +24,6 @@ module PostNews
     config.assets.precompile += Ckeditor.assets
     config.assets.precompile += %w(ckeditor/*)
 
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
   end
 end

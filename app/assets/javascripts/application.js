@@ -19,6 +19,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_ru
 //= require_tree ./ckeditor
+//= require fotorama
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {

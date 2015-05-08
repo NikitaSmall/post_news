@@ -7,4 +7,10 @@ module ApplicationHelper
     end
     'btn-default'
   end
+
+  def size(index)
+    num = index % 5
+    return 'big' if num <= 2 && num != 0
+    'small'
+  end
 end
