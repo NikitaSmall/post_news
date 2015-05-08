@@ -93,10 +93,12 @@
   <div class="popup-wrapper popup-search">
     <button class="popup-close"><i></i><i></i></button>
     <div class="popup-search-content">
-      <form action="#">
-        <input type="text" class="input-search" placeholder="Введите слово или фразу для поиска..."/>
-        <button class="search-btn"><i class="glyphicon glyphicon-search"></i></button>
-      </form>
+      <%= form_tag '#', method: :get, enforce_utf8: false do %>
+          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'input-search', placeholder: 'Введите слово или фразу для поиска...' %>
+          <%= button_tag class: 'search-btn' do %>
+              <i class="glyphicon glyphicon-search"></i>
+          <% end %>
+      <% end %>
     </div>
   </div>
 
