@@ -1,7 +1,8 @@
 class UserController < ApplicationController
+  # require "#{Rails.root}/lib/recaptcha"
   before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor, :destroy]
-  before_action :authenticate_user!, except: [:view, :check_email, :check_username]
-  before_action :check_role, except: [:view, :check_email, :check_username]
+  before_action :authenticate_user!, except: [:view, :check_email, :check_username, :check_recaptcha]
+  before_action :check_role, except: [:view, :check_email, :check_username, :check_recaptcha]
   before_action :check_empty_page, only: [:index]
 
   layout :resolve_layout
@@ -93,6 +94,14 @@ class UserController < ApplicationController
       format.json { render json: message.to_json }
     end
   end
+
+  # def check_recaptcha
+  #   answer = Captcha::Recaptcha.verify(params)
+  #
+  #   respond_to do |format|
+  #     format.json { render json: answer }
+  #   end
+  # end
 
   protected
   def set_user

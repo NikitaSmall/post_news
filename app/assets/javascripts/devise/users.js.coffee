@@ -31,5 +31,22 @@ on_ready = ->
         error.insertBefore element
   )
 
+  #$('#register').submit (event) ->
+  #  event.preventDefault()
+  #  $.ajax(
+  #    method: 'POST'
+  #    url: '/check_recaptcha'
+  #    data:
+  #      'g-recaptcha-response': 1 #$('#g-recaptcha-response').val
+  #  ).done (answer) ->
+  #    alert(answer)
+
+    #if $('#recaptcha-accessible-status').text() == 'Вы прошли проверку'
+    #  $('#captcha_error').text('Вы прошли капчу!')
+    #  return
+    #$('#captcha_error').text('Повторите попытку ввода капчи')
+    #return
+
+
 $(document).ready(on_ready)
 $(document).on('page:load', on_ready)

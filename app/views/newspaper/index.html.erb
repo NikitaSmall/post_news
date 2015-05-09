@@ -14,6 +14,7 @@
     <%= render partial: 'popular_news' %>
     <!--  END popular-news  -->
 
+    <% if !@posts.empty? %>
     <div class="news-items small">
       <% @posts.first(5).each_with_index do |post, index| %>
           <%= link_to '#', class: "news-item #{size(index + 1)}" do %>
@@ -34,6 +35,11 @@
           <% end %>
     <% end %>
     </div>
+    <% else %>
+        <h2 class="">На данный момент новостей на главной странице нет.
+          Пожалуйста, воспользуйтесь архивом или поиском для
+        обращения к старым материалам.</h2>
+    <% end %>
 
   </div>
   <!--  END news main  -->

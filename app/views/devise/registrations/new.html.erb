@@ -34,6 +34,11 @@
     <%= f.file_field :avatar %>
   </div>
 
+  <div class="form-group">
+    <span id="captcha_error"></span>
+    <%= recaptcha_tags ajax: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Зарегистрироваться", class: 'btn btn-default'  %>
   </div>

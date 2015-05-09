@@ -46,6 +46,15 @@ gem 'jquery-validation-rails'
 # gem 'swiper-rails'
 gem 'fotoramajs'
 
+# gem for captcha
+gem 'recaptcha' #, :require => 'recaptcha/rails'
+
+# some strange gem for recaptcha
+gem 'httparty'
+
+# gem for json parse
+gem 'json'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

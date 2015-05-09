@@ -21,6 +21,7 @@ PostNews::Application.routes.draw do
   post '/posts_check_title' => 'posts#check_title', as: 'check_title'
   post '/user_check_username' => 'user#check_username', as: 'check_username'
   post '/user_check_email' => 'user#check_email', as: 'check_email'
+  # get '/check_recaptcha' => 'user#check_recaptcha'
 
   resources :posts
   get '/admin' => 'posts#index'
