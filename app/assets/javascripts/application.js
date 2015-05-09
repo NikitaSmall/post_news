@@ -25,3 +25,7 @@
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
     return this.optional(element) || /^[^0-9+-,!@#$%^&*();\/|<>]/i.test(value);
 }), 'Первым символом может быть только буква');
+
+jQuery.validator.addMethod('right_email', (function(value, element) {
+    return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i.test(value);
+}), 'Допустим только корректный электронный адрес');

@@ -17,7 +17,7 @@ on_ready = ->
           type: 'post'
       'user[email]':
         required: true
-        email: true
+        right_email: true
         remote:
           url: '/user_check_email.json'
           type: 'post'
@@ -33,6 +33,7 @@ on_ready = ->
 
   #$('#register').submit (event) ->
   #  event.preventDefault()
+  #  alert($('#g-recaptcha-response').val)
   #  $.ajax(
   #    method: 'POST'
   #    url: '/check_recaptcha'
