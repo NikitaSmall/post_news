@@ -55,6 +55,9 @@ gem 'httparty'
 # gem for json parse
 gem 'json'
 
+# gem for good russian translation
+gem 'russian', '~> 0.6.0'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

@@ -25,5 +25,7 @@ module PostNews
     config.assets.precompile += %w(ckeditor/*)
 
     config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+    config.i18n.default_locale = :ru
   end
 end
