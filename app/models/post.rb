@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
+  scope :featured, -> { where(featured: true) }
   scope :by_position, -> { order(position: :desc) }
   scope :by_position_asc, -> { order(position: :asc) }
 
@@ -16,7 +17,7 @@ class Post < ActiveRecord::Base
   validates :title, :content, :photo, presence: true
   validates :title, uniqueness: true
 
-  after_create :check_featured
+  after_create :check_featured, :set_position
 
   def next
     Post.where('position > ?', position).order(position: :asc).first
@@ -51,11 +52,6 @@ class Post < ActiveRecord::Base
     self.save
   end
 
-  def set_position
-    self.position ||= self.id
-    self.save
-  end
-
   def featured!
     self.featured = true if main
     self.save
@@ -72,11 +68,16 @@ class Post < ActiveRecord::Base
 
   def self.search(word)
     word = "%#{word}%"
-    where 'title LIKE ? OR content LIKE ?', word, word
+    where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase
   end
 
   protected
   def check_featured
     defeature! unless main
+  end
+
+  def set_position
+    self.position ||= self.id
+    self.save
   end
 end

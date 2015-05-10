@@ -1,0 +1,22 @@
+<% unless Post.main.empty? %>
+<div class="row last-news-block">
+  <p class="title">
+    последние <br/>новости
+  </p>
+
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <% Post.main.order(created_at: :desc).first(5).each do |post|%>
+      <div class="swiper-slide">
+        <p class="news-text">
+            <%= link_to post.title, '#' %>
+        </p>
+        <time>15 мин назад</time>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

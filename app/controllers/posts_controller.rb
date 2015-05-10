@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :feature, :defeature, :to_main, :hide]
   before_action :authenticate_user!
   before_action :check_role
+  before_action :check_empty_page, only: [:index, :hidden]
 
   layout 'admin'
 
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def hidden
-    @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /posts/1
@@ -47,8 +48,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.set_position
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        #@post.set_position
+        format.html { redirect_to @post, notice: 'Новость была успешно добавлена.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -62,7 +63,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Новость была успешно обновлена.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -215,21 +216,48 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :content, :user, :main, :featured, :position, :tag_list, :photo)
     end
 
+    def check_empty_page
+      if params[:action] == 'hidden'
+        params[:page] = (params[:page].to_i - 1).to_s while Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7).empty? unless Post.hidden.empty?
+      end
+      if params[:action] == 'index'
+        unless params[:tag].nil?
+          unless Post.tagged_with(params[:tag]).empty?
+            params[:page] = (params[:page].to_i - 1).to_s while Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7).empty?
+          end
+        end
+
+        unless params[:word].nil?
+          unless Post.search(params[:word]).empty?
+            params[:page] = (params[:page].to_i - 1).to_s while Post.search(params[:word]).by_position.paginate(:page => params[:page], :per_page => 7).empty?
+          end
+        end
+
+        params[:page] = (params[:page].to_i - 1).to_s while Post.all.by_position.paginate(:page => params[:page], :per_page => 7).empty? if params[:tag].nil? && params[:word].nil? && !Post.all.empty?
+      end
+    end
+
     def check_role
       redirect_to root_path, notice: 'Ты ещё слишком молод для этого.' if current_user.newbie?
 
       if (params[:action] == 'new' || params[:action] == 'create' ||
           params[:action] == 'destroy' || params[:action] == 'switch' ||
-          params[:action] == 'switch_with_next' || params[:action] == 'switch_with_prev') && current_user.corrector?
+          params[:action] == 'switch_with_next' || params[:action] == 'switch_with_prev' ||
+          params[:action] == 'switch_with_next_main' || params[:action] == 'switch_with_prev_main' ||
+          params[:action] == 'feature' || params[:action] == 'defeature' ||
+          params[:action] == 'to_main' || params[:action] == 'hide') && current_user.corrector?
         redirect_to posts_url, notice: 'Ты не можешь создавать новый контент.'
       end
 
-      if (params[:action] == 'update' || params[:action] == 'edit' || params[:action] == 'destroy') && current_user.author? && current_user.id != @post.user.id
+      if (params[:action] == 'update' || params[:action] == 'edit') && current_user.author? && current_user.id != @post.user.id
         redirect_to posts_url, notice: 'Ты не можешь менять чужой контент.'
       end
 
       if (params[:action] == 'switch' || params[:action] == 'switch_with_next' ||
-          params[:action] == 'switch_with_prev') && current_user.author?
+          params[:action] == 'switch_with_prev' || params[:action] == 'feature' ||
+          params[:action] == 'defeature' || params[:action] == 'to_main' ||
+          params[:action] == 'hide' || params[:action] == 'switch_with_next_main' ||
+          params[:action] == 'switch_with_prev_main' || params[:action] == 'destroy') && current_user.author?
         redirect_to posts_url, notice: 'Ты не можешь менять порядок.'
       end
     end

@@ -42,6 +42,22 @@ gem 'factory_girl_rails'
 # gem for ajax validation
 gem 'jquery-validation-rails'
 
+# gem for pretty photo gallery
+# gem 'swiper-rails'
+gem 'fotoramajs'
+
+# gem for captcha
+gem 'recaptcha' #, :require => 'recaptcha/rails'
+
+# some strange gem for recaptcha
+gem 'httparty'
+
+# gem for json parse
+gem 'json'
+
+# gem for good russian translation
+gem 'russian', '~> 0.6.0'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

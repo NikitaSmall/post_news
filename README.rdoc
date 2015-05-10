@@ -1,28 +1,28 @@
-== README
+== Apex-news project (русская версия readme)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Данный проект был начат как проект для IT школы от DataArt (четвёртая итерация), 
+но благодаря самоотдачи участников и их любви к собственному делу
+проект имеет все шансы стать самостоятельным и независимым.
 
-Things you may want to cover:
+=== Ключевые технические особенности:
 
-* Ruby version
+* Ruby on Rails 4, mysql
+* Использование Amazon s3 в качестве хранилища материалов 
+* Хостинг на heroku
+* Активное использование методологии TDD на протяжении разработки
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Список наиболее значимых гемов:
+  1. Гемы для работы с базой данных: mysql2 и sqlite3 (для тестов).
+  2. devise для аутентификации пользователей и придоставления связанного фукнционала
+  3. paperclip для загрузки файлов на свой сервер (и сервера s3). 
+    Взят именно он из-за простоты, надёжности и гибкости использования.
+  4. Гемы для простого использования на фронте: sass-rails и bootstrap-sass.
+  5. ckeditor для включения редактрора wysiwyg.
+    Взят из-за гибкости настроек и простоты использования вместе с paperclip.
+  6. factory_girl_rails для создания удобных и динамических тестовых данных
+    (как замена стандартным фикстурам).
+  7. Комплект гемов для лёгкой связи aws s3 и проекта на heroku: aws-sdk, fog, figaro.
+  8. Остальные гемы с кратким описанием можно посмотреть в Gemfile. 
+    Здесь они не указаны либо из-за того, что это стандартные гемы, включенные любой проект rails, 
+    либо из-за того, что выполняют некоторую специфическую нишевую работу.
+  

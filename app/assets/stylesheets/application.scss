@@ -9,8 +9,22 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require dashboard
+ *= require scaffolds
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#admin-content:after
+{
+  content: ".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+
+.new_post .error {
+  color: #ff0000;
+}

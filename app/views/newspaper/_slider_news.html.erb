@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="fotorama main-slider">
+    <% @featured_posts.each do |post| %>
+    <div class="fotorama-slide">
+      <%= image_tag post.photo.url %>
+      <div class="slide-info">
+        <p class="title">
+          <%= post.title %>
+        </p>
+        <p class="text">
+          <%= truncate strip_tags(post.content.html_safe), length: 50 %>
+        </p>
+        <div class="counters">
+          <a href="#" class="views">
+            <i><span></span></i> 359
+          </a>
+          <a href="#" class="comments">
+            <i><span></span></i> 245
+          </a>
+          <a href="#" class="shares">
+            <i><span></span></i> 169
+          </a>
+        </div>
+        <%= link_to 'Читать полностью', '#', class: 'read-more-btn' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -166,7 +166,12 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    fotoramajs (4.6.3.2)
+      sprockets (>= 2)
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
@@ -187,6 +192,7 @@ GEM
     mini_portile (0.6.2)
     minitest (4.7.5)
     multi_json (1.11.0)
+    multi_xml (0.5.5)
     mysql2 (0.3.17)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -220,6 +226,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    recaptcha (0.4.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     rspec-core (3.2.3)
@@ -239,6 +246,8 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass (3.2.19)
     sass-rails (4.0.5)
       railties (>= 4.0.0, < 5.0)
@@ -291,14 +300,19 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   fog
+  fotoramajs
+  httparty
   jbuilder (~> 1.2)
   jquery-rails
   jquery-validation-rails
+  json
   mysql2
   paperclip
   pg
   rails (= 4.0.0)
+  recaptcha
   rspec-rails
+  russian (~> 0.6.0)
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3

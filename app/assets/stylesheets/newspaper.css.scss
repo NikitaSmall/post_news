@@ -1,3 +1,17 @@
 // Place all the styles related to the newspaper controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+ *
+ *= require_self
+ *= require style
+ *= require swiper.min
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "fotorama";
+
+#register .error {
+  color: #ff0000;
+}

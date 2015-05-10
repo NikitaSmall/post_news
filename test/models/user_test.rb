@@ -54,4 +54,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert @user.admin?
   end
+
+  test "should_save_admin_from_deleting" do
+    @admin = create(:admin)
+    old_count = User.count
+
+    @admin.destroy
+    count = User.count
+
+    assert_equal old_count, count
+  end
 end

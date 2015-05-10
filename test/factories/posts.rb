@@ -5,11 +5,12 @@ FactoryGirl.define do
     content 'MyText'
     user_id 1
     main false
-    featured 0
+    featured false
     position 1
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
+    # photo_updated_at '2015-05-04 19:50:44'
   end
 
   factory :post_two, class: Post do
