@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PostNews</title>
+  <title>Apex-news</title>
   <%= stylesheet_link_tag    "newspaper", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -38,7 +38,7 @@
             </ul>
           </nav>
           <time class="date-time">29 АПРЕЛЯ 2015, СРЕДА, 17:46</time>
-
+          <span class="notice h4 text-warning" style="margin-left: 20px;"> <%= notice %> <span class="text-danger"> <%= alert %> </span></span>
           <!--  begin search and archive  -->
           <div class="archive-search">
             <a href="#" class="js-search search-button">
