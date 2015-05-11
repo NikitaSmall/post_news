@@ -6,7 +6,7 @@ PostNews::Application.routes.draw do
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
 
-  get '/users' => 'user#index', as: 'users'
+  get '/users_admin' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
   #devise_scope :user do
   #  get '/registration' => 'users/registrations#new'
