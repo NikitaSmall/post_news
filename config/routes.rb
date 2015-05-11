@@ -1,6 +1,8 @@
 PostNews::Application.routes.draw do
   root 'newspaper#index'
 
+  get '/read/:id' => 'newspaper#read', as: 'read_post'
+
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
 
