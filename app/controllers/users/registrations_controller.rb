@@ -1,7 +1,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   require "#{Rails.root}/lib/recaptcha"
+
+  require "uri"
+  require "net/http"
   # before_action :verify_recaptcha, only: [:create]
-  force_ssl only: [:create]
+  # force_ssl only: [:create]
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
@@ -13,12 +16,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     def create
-      if verify_google_recptcha(ENV['RECAPTCHA_PRIVATE_KEY'], params['g-recaptcha-response'])
+      if verify_recaptcha
         super
       else
         build_resource(sign_up_params)
         clean_up_passwords(resource)
-        flash.now[:alert] = "There was an error with the recaptcha code below. Please re-enter the code."
+        flash.now[:alert] = "Пройдите капчу и докажите, что вы человек"
         flash.delete :recaptcha_error
         render :new
       end
@@ -72,8 +75,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def verify_google_recptcha(secret_key,response)
-    status = `curl 'https://www.google.com/recaptcha/api/siteverify?secret=#{secret_key}&response=#{response}'`
-    hash = JSON.parse(status)
-    hash['success'] == true ? true : false
+    params = {'secret' => secret_key,
+              'response' => response
+    }
+    answer = Net::HTTP.post_form(URI.parse('https://www.google.com/recaptcha/api/siteverify'), params)
+
+    puts answer
   end
 end

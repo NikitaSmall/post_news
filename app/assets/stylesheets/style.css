@@ -139,6 +139,7 @@ nav {
     display: inline-block;
     margin: 0 0 0 10px;
     font-size: 1.286em;
+    text-transform: uppercase;
     /*18px*/
 
     font-family: 'MyriadPro-Bold';

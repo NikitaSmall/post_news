@@ -45,7 +45,8 @@ PostNews::Application.routes.draw do
   patch '/main/:id' => 'posts#to_main', as: 'to_main'
   patch '/hide/:id' => 'posts#hide', as: 'hide'
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   mount Ckeditor::Engine => '/ckeditor'
   
   # The priority is based upon order of creation: first created -> highest priority.

@@ -27,5 +27,7 @@ module PostNews
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     config.i18n.default_locale = :ru
+
+    config.time_zone = 'Europe/Kiev'
   end
 end
