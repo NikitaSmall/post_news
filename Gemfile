@@ -58,6 +58,9 @@ gem 'json'
 # gem for good russian translation
 gem 'russian', '~> 0.6.0'
 
+# for site parsing (for weather forecasting!)
+gem 'nokogiri'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets

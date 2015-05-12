@@ -307,6 +307,7 @@ DEPENDENCIES
   jquery-validation-rails
   json
   mysql2
+  nokogiri
   paperclip
   pg
   rails (= 4.0.0)

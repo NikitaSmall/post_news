@@ -13,7 +13,7 @@
         <p class="news-text">
             <%= link_to post.title, read_post_path(post) %>
         </p>
-        <time>15 мин назад</time>
+        <time><%= time_ago_in_words(post.created_at) %> назад</time>
       </div>
       <% end %>
     </div>
