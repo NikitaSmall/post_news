@@ -115,4 +115,38 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal found, @post_one
   end
+
+  test "should_find_by_tag" do
+    @tagged = create(:post_one, title: 'TaggedString', tag_list: 'tag, test', id: 7)
+
+    @found = Post.tagged_with('tag')
+
+    assert_equal @tagged, @found.first
+  end
+
+  test "should_find_most_popular_tag" do
+    @tagged_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @tagged_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+    @tagged_three = create(:post_one, title: 'TaggedString3', tag_list: 'tag', id: 9)
+    @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'tag', id: 10)
+    @tagged_five = create(:post_one, title: 'TaggedString5', tag_list: 'another', id: 11)
+
+    @popular_tags = Post.popular_tags(2)
+
+    assert_equal @popular_tags.first.name, 'tag'
+    assert_equal @popular_tags.last.name, 'test'
+  end
+
+  test "should_find_most_tagged_posts" do
+    @tagged_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @tagged_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+    @tagged_three = create(:post_one, title: 'TaggedString3', tag_list: 'tag', id: 9)
+    @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'tag', id: 10)
+    @tagged_five = create(:post_one, title: 'TaggedString5', tag_list: 'another', id: 11)
+
+    @popular_posts = Post.popular_tagged_post(2)
+
+    assert_equal @popular_posts.first, @tagged_one
+    assert_equal @popular_posts.last, @tagged_three
+  end
 end

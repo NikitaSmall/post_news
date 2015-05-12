@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable
 
   belongs_to :user
+  scope :none, -> { where('1 = 0') }
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
   scope :featured, -> { where(featured: true) }
@@ -69,6 +70,20 @@ class Post < ActiveRecord::Base
   def self.search(word)
     word = "%#{word}%"
     where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase
+  end
+
+  def self.popular_tags(limit = 20)
+    ActsAsTaggableOn::Tag.most_used(limit)
+  end
+
+  def self.popular_tagged_post(limit = 20)
+    tags = popular_tags(limit)
+    popular_posts = Array.new
+
+    tags.each do |tag|
+      popular_posts << tagged_with(tag.name).to_a
+    end
+    popular_posts.flatten.first(limit)
   end
 
   protected
