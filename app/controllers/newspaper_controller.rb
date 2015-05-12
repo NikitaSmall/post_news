@@ -1,5 +1,5 @@
 class NewspaperController < ApplicationController
-
+  before_filter :get_popular_tags
   layout 'application'
 
   def index
@@ -21,5 +21,10 @@ class NewspaperController < ApplicationController
 
   def all_users
     @users = User.all
+  end
+
+  protected
+  def get_popular_tags
+    @popular_tags = Post.popular_tags(5)
   end
 end

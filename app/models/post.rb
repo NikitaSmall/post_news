@@ -73,7 +73,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.popular_tags(limit = 20)
-    ActsAsTaggableOn::Tag.most_used(limit)
+    ActsAsTaggableOn::Tag.most_used(limit).where('taggings_count > 0')
   end
 
   def self.popular_tagged_post(limit = 20)
