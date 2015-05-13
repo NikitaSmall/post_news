@@ -20,7 +20,11 @@
           <%= link_to read_post_path(post), class: "news-item #{size(index + 1)}" do %>
             <%= image_tag post.photo.url %>
                     <span class="news-descrip">
-                        <%= post.title %>
+                      <% if size(index + 1) == 'big' %>
+                        <%= truncate post.title, length: 150 %>
+                      <% else %>
+                        <%= truncate post.title, length: 70 %>
+                      <% end %>
                              <span class="read-more">Читать далее...</span>
                     </span>
           <% end %>
@@ -31,7 +35,13 @@
     <% @posts.offset(5).each_with_index do |post, index| %>
           <%= link_to read_post_path(post), class: "news-item #{size(index + 1)}" do %>
             <%= image_tag post.photo.url %>
-            <span class="news-descrip"><%= post.title %></span>
+            <span class="news-descrip">
+              <% if size(index + 1) == 'big' %>
+                <%= truncate post.title, length: 190 %>
+              <% else %>
+                <%= truncate post.title, length: 75 %>
+              <% end %>
+            </span>
           <% end %>
     <% end %>
     </div>

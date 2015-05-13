@@ -131,7 +131,7 @@ class PostTest < ActiveSupport::TestCase
     @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'tag', id: 10)
     @tagged_five = create(:post_one, title: 'TaggedString5', tag_list: 'another', id: 11)
 
-    p @popular_tags = Post.popular_tags(2)
+    @popular_tags = Post.popular_tags(2)
 
     assert_equal @popular_tags.first.name, 'tag'
     assert_equal @popular_tags.last.name, 'test'

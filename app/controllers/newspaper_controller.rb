@@ -11,12 +11,12 @@ class NewspaperController < ApplicationController
     @posts = Post.hidden.by_position
   end
 
-  def all
-    @posts = Post.all.by_position
-  end
-
   def read
     @post = Post.find(params[:id])
+  end
+
+  def all
+    @posts = Post.all.by_position
   end
 
   def all_users
@@ -25,6 +25,6 @@ class NewspaperController < ApplicationController
 
   protected
   def get_popular_tags
-    @popular_tags = Post.popular_tags(5)
+    @popular_tags = Post.popular_tags(8)
   end
 end

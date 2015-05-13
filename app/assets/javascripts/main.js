@@ -44,15 +44,54 @@ on_ready = function() {
     // END search and archive popups
 
 
-    // begin последние новости слайдер
+    // begin РїРѕСЃР»РµРґРЅРёРµ РЅРѕРІРѕСЃС‚Рё СЃР»Р°Р№РґРµСЂ
     var mySwiper = new Swiper ('.swiper-container', {
         direction: 'vertical',
         loop: true,
         autoplay: 5000,
         speed: 1300
     });
-    // END последние новости слайдер
+    // END РїРѕСЃР»РµРґРЅРёРµ РЅРѕРІРѕСЃС‚Рё СЃР»Р°Р№РґРµСЂ
+
+
 };
 
 $(document).ready(on_ready);
 $(document).on('page:load', on_ready);
+
+$(window).load(function() {
+    // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
+    if ( $('.news-item').length > 0 ) {
+        $('.news-item').each(function(){
+            var $this = $(this);
+            var itemHeight, imgHeight;
+            itemHeight = $this.height();
+            imgHeight = $this.children('img').height();
+            console.log(imgHeight);
+            console.log(itemHeight);
+            if ( imgHeight > itemHeight ) {
+                console.log('yup');
+                $(this).find('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
+            }
+        });
+    }
+    // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
+
+    // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+    if ( $('.fotorama-slide').length > 0 ) {
+        $('.fotorama-slide').each(function(){
+            var $this = $(this);
+            var itemHeight, imgHeight;
+            itemHeight = $this.height();
+            imgHeight = $this.find('img').height();
+            console.log(imgHeight);
+            console.log(itemHeight);
+            if ( imgHeight > itemHeight ) {
+                console.log('yup');
+                $(this).children('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
+            }
+        });
+    }
+    // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+
+});
