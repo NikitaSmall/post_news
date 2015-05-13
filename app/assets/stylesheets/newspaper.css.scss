@@ -4,6 +4,7 @@
 
 /*
  *
+ *= require weather-icons
  *= require_self
  *= require style
  *= require swiper.min
@@ -14,4 +15,11 @@
 
 #register .error {
   color: #ff0000;
+}
+
+.weather i {
+  font-size: 57px;
+  width: 57px;
+  float: right;
+  color: #9933cc;
 }
