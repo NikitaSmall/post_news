@@ -4,14 +4,21 @@ module Weather
 
     def initialize(city_name)
       link = "http://api.openweathermap.org/data/2.5/weather?q=#{city_name}&mode=xml&units=metric" #Odesa
-      data = Nokogiri::XML(open(link))
 
-      @temp = data.xpath('//temperature')[0]['value'].to_i.to_s
-      weather_code = data.xpath('//weather')[0]['icon']
+      begin
+        data = Nokogiri::XML(open(link))
 
-      @temp = "+#{@temp}" unless @temp.index('-')
+        @temp = data.xpath('//temperature')[0]['value'].to_i.to_s
+        weather_code = data.xpath('//weather')[0]['icon']
 
-      @weather = weather_name(weather_code)
+        @temp = "+#{@temp}" unless @temp.index('-')
+        @weather = weather_name(weather_code)
+      rescue OpenURI::HTTPError => e
+        if e.message == '404 Not Found' || e.message == '500 Not Found'
+          @temp = ''
+          @weather = '42'
+        end
+      end
     end
 
     def weather_name(weather_code)

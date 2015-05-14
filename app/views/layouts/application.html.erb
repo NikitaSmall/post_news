@@ -17,15 +17,7 @@
           <%= link_to (image_tag 'logo.jpg'), root_path, class: 'logo-img' %>
           <%= link_to 'APEX NEWS', root_path, class: 'logo-text' %>
           <div class="weather">
-            <% if @weather.weather == 'sunny' || @weather.weather == 'good' %><i class="wi wi-day-sunny"></i><% end %>
-            <% if @weather.weather == 'moonly' %><i class="wi wi-night-clear"></i><% end %>
-            <% if @weather.weather == 'day_cloud' %><i class="wi wi-day-cloudy"></i><% end %>
-            <% if @weather.weather == 'night_cloud' %><i class="wi wi-night-alt-cloudy"></i><% end %>
-            <% if @weather.weather == 'foggy' %><i class="wi wi-dust"></i><% end %>
-            <% if @weather.weather == 'windy' %><i class="wi wi-cloudy-gusts"></i><% end %>
-            <% if @weather.weather == 'snow' %><i class="wi wi-snow"></i><% end %>
-            <% if @weather.weather == 'thunder' %><i class="wi wi-thunderstorm"></i><% end %>
-            <% if @weather.weather == 'cloud' %><i class="wi wi-cloudy"></i><% end %>
+            <%= weather_selector(@weather.weather).html_safe %>
             <%# image_tag 'sun.png' %>
             <span>Одесса <br/> <%= @weather.temp %></span>
           </div>
