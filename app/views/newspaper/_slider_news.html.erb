@@ -14,9 +14,10 @@
           <a href="#" class="views">
             <i><span></span></i> 359
           </a>
-          <a href="#" class="comments">
-            <i><span></span></i> 245
-          </a>
+          <%= link_to read_post_path(post, anchor: 'disqus_thread'), class: 'comments' do %>
+              <i><span></span></i> 245
+          <% end %>
+
           <a href="#" class="shares">
             <i><span></span></i> 169
           </a>
