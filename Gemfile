@@ -64,6 +64,9 @@ gem 'nokogiri'
 # pretty weather icons (ready to bootstraping!)
 gem 'weather-icons-rails'
 
+# gem for discus integration
+gem 'disqus_rails'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
