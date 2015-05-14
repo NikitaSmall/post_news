@@ -2,37 +2,45 @@ module Weather
   class Weather
     attr_accessor :temp, :weather
 
-    def initialize
-      link = 'http://weather.yahooapis.com/forecastrss?w=929398&u=c' #929398 for Odessa
+    def initialize(city_name)
+      link = "http://api.openweathermap.org/data/2.5/weather?q=#{city_name}&mode=xml&units=metric" #Odesa
       data = Nokogiri::XML(open(link))
 
-      @temp = data.xpath('//item//yweather:condition')[0]['temp'].to_s
-      weather = data.xpath('//item//yweather:condition')[0]['code'].to_i
+      @temp = data.xpath('//temperature')[0]['value'].to_i.to_s
+      weather_code = data.xpath('//weather')[0]['icon']
 
       @temp = "+#{@temp}" unless @temp.index('-')
 
-      @weather = case weather
-                   when 33, 3200
-                     'sunny'
-                   when 34
-                     'moonly'
-                   when 30, 28
-                     'day_cloud'
-                   when 27, 29
-                     'night_cloud'
-                   when 20
-                     'foggy'
-                   when 24
-                     'windy'
-                   when 41, 42, 43
-                     'snow'
-                   when 37, 38, 39, 40, 47
-                     'thunder'
-                   when 44
-                     'cloud'
-                   else
-                     weather
-                 end
+      @weather = weather_name(weather_code)
+    end
+
+    def weather_name(weather_code)
+      case weather_code
+        when '01d'
+          'sunny'
+        when '01n'
+          'moonly'
+        when '02d'
+          'day_cloud'
+        when '02n'
+          'night_cloud'
+        when '50d', '50n'
+          'foggy'
+        when '10d'
+          'day_rain'
+        when '10n'
+          'night_rain'
+        when '09d', '09n'
+          'heavy_rain'
+        when '13d', '13n'
+          'snow'
+        when '11d', '11n'
+          'thunder'
+        when '03d', '03n', '04d', '04n'
+          'cloud'
+        else
+          'good'
+      end
     end
   end
 end

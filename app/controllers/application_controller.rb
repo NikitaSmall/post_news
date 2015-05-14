@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_weather
-    @weather = Weather::Weather.new
+    city_name = 'odesa' # Odessa city_code in Yahoo weather
+    @weather = Weather::Weather.new(city_name)
   end
 end
