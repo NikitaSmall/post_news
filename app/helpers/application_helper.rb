@@ -43,8 +43,8 @@ module ApplicationHelper
              when 'good'
                '<i class="wi wi-thermometer-exterior"></i>'
              else
-               '<i class="wi wi-alien"></i>'
+               '<i class="wi wi-cloud-refresh"></i>'
            end
-    icon
+    icon.html_safe
   end
 end

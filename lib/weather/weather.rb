@@ -15,6 +15,7 @@ module Weather
         @weather = weather_name(weather_code)
       rescue OpenURI::HTTPError => e
         if e.message == '404 Not Found' || e.message == '500 Not Found'
+          # puts "#{e.message} WE GOT AN ERROR"
           @temp = ''
           @weather = '42'
         end

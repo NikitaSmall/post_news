@@ -17,9 +17,9 @@
           <%= link_to (image_tag 'logo.jpg'), root_path, class: 'logo-img' %>
           <%= link_to 'APEX NEWS', root_path, class: 'logo-text' %>
           <div class="weather">
-            <%= weather_selector(@weather.weather).html_safe %>
+            <%= weather_selector(@weather.weather) %>
             <%# image_tag 'sun.png' %>
-            <span>Одесса <br/> <%= @weather.temp %></span>
+            <span>Одесса <br/><% if @weather.temp %> C&deg;<% end %> <%= @weather.temp %></span>
           </div>
         </div>
       </div>
