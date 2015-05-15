@@ -35,27 +35,27 @@
   <!-- Discus BEGIN -->
   <div class="news-content">
     <div id="disqus_thread"></div>
-    <div id="disqus_thread"></div>
     <script type="text/javascript">
+        var disqus_loaded = false;
+        var disqus_shortname = 'apexnews';
 
-        if(typeof DISQUS === "undefined"){
-            var disqus_shortname = 'apexnews'; // required: replace example with your forum shortname
-
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        } else {
-            DISQUS.reset({
-                reload: true,
-                config: function () {
-                    this.page.identifier = document.title;
-                    this.page.url = location.href;
-                }
-            });
+        function load_disqus () {
+            disqus_loaded = true;
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         }
 
+        on_ready = function(e) {
+            if (disqus_loaded == false) {
+                load_disqus()
+            }
+        };
+
+        $(document).on('page:load', on_ready);
+        $(document).ready(on_ready);
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
