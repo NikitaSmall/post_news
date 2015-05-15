@@ -14,11 +14,12 @@ module Weather
         @temp = "+#{@temp}" unless @temp.index('-')
         @weather = weather_name(weather_code)
       rescue OpenURI::HTTPError => e
-        if e.message == '404 Not Found' || e.message == '500 Internal Error'
+        retry
+        # if e.message == '404 Not Found' || e.message == '500 Internal Error'
           # puts "#{e.message} WE GOT AN ERROR"
-          @temp = ''
-          @weather = '42'
-        end
+          # @temp = ''
+          # @weather = '42'
+        # end
       end
     end
 

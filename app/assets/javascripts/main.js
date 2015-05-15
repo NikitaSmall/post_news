@@ -53,13 +53,6 @@ on_ready = function() {
     });
     // END РїРѕСЃР»РµРґРЅРёРµ РЅРѕРІРѕСЃС‚Рё СЃР»Р°Р№РґРµСЂ
 
-
-};
-
-$(document).ready(on_ready);
-$(document).on('page:load', on_ready);
-
-$(window).load(function() {
     // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
     if ( $('.news-item').length > 0 ) {
         $('.news-item').each(function(){
@@ -93,5 +86,13 @@ $(window).load(function() {
         });
     }
     // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+
+
+};
+
+$(document).ready(on_ready);
+$(document).on('page:load', on_ready);
+
+$(window).load(function() {
 
 });

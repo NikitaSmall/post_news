@@ -115,39 +115,41 @@
 </div>
 <!-- discus count BEGIN -->
 <script type="text/javascript">
-    $(document).on('page:change', function () {
-        var disqusPublicKey = "WtKqgFBR3q7PkVrmnJdUXw1VYyrrSrpTQGZ6dbvOESUy25xGDhriuDeRvWoawxwy"; // Replace with your own public key
-        var disqusShortname = "apexnews"; // Replace with your own shortname
+  disqus_count = function () {
+      var disqusPublicKey = "WtKqgFBR3q7PkVrmnJdUXw1VYyrrSrpTQGZ6dbvOESUy25xGDhriuDeRvWoawxwy"; // Replace with your own public key
+      var disqusShortname = "apexnews"; // Replace with your own shortname
 
-        var urlArray = [];
+      var urlArray = [];
 
-        $('.disqus-comment-count').each(function () {
-            var url = $(this).attr('data-disqus-url');
-            urlArray.push('link:' + url);
-        });
+      $('.disqus-comment-count').each(function () {
+          var url = $(this).attr('data-disqus-url');
+          urlArray.push('link:' + url);
+      });
 
-        $.ajax({
-            type: 'GET',
-            url: "https://disqus.com/api/3.0/threads/set.jsonp",
-            data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
-            cache: false,
-            dataType: 'jsonp',
-            success: function (result) {
-                console.log(urlArray);
-                for (var i in result.response) {
+      $.ajax({
+          type: 'GET',
+          url: "https://disqus.com/api/3.0/threads/set.jsonp",
+          data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+          cache: false,
+          dataType: 'jsonp',
+          success: function (result) {
+              //console.log(urlArray);
+              //console.log(result);
+              for (var i in result.response) {
 
-                    var countText = "";
-                    var count = result.response[i].posts;
+                  var countText = "";
+                  var count = result.response[i].posts;
 
-                    if (count == 1)
-                        countText = "";
+                  if (count == 1)
+                      countText = "";
 
-                    $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + countText);
+                  $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + countText);
 
-                }
-            }
-        });
-    });
+              }
+          }
+      });
+  };
+    $(document).on('fotorama:show', disqus_count);
 </script>
 <!-- discus count END-->
 
