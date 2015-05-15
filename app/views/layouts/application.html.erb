@@ -115,16 +115,39 @@
 </div>
 <!-- discus count BEGIN -->
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'apexnews'; // required: replace example with your forum shortname
+    $(document).on('page:change', function () {
+        var disqusPublicKey = "WtKqgFBR3q7PkVrmnJdUXw1VYyrrSrpTQGZ6dbvOESUy25xGDhriuDeRvWoawxwy"; // Replace with your own public key
+        var disqusShortname = "apexnews"; // Replace with your own shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+        var urlArray = [];
+
+        $('.disqus-comment-count').each(function () {
+            var url = $(this).attr('data-disqus-url');
+            urlArray.push('link:' + url);
+        });
+
+        $.ajax({
+            type: 'GET',
+            url: "https://disqus.com/api/3.0/threads/set.jsonp",
+            data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+            cache: false,
+            dataType: 'jsonp',
+            success: function (result) {
+                console.log(urlArray);
+                for (var i in result.response) {
+
+                    var countText = "";
+                    var count = result.response[i].posts;
+
+                    if (count == 1)
+                        countText = "";
+
+                    $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + countText);
+
+                }
+            }
+        });
+    });
 </script>
 <!-- discus count END-->
 

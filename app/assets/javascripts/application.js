@@ -33,7 +33,7 @@ jQuery.validator.addMethod('right_email', (function(value, element) {
 
 on_ready = function(){
     window.disqus_no_style = true;
-    $.getScript("http://disqus.com/forums/rapexegesis/embed.js");
+    //$.getScript("http://disqus.com/forums/rapexegesis/embed.js");
 };
 
 $(document).on('page:load', on_ready);
