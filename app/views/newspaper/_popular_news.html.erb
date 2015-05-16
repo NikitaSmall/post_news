@@ -1,4 +1,4 @@
-<div class="popular-news">
+<!--<div class="popular-news">
   <p class="title">популярные теги</p>
   <div class="popupal-items-wrap">
     <% @popular_tags.each do |tag| %>
@@ -6,5 +6,23 @@
         <span><%= tag.name %></span>
       <% end %>
     <% end %>
+  </div>
+</div>-->
+
+
+<div class="popular-tags">
+  <p class="title">популярные теги</p>
+  <div class="popupal-items-wrap">
+  <ul>
+    <% @popular_tags.each do |tag| %>
+      <li>
+      <%= link_to '#', class: 'popular-item' do %>
+        <span><%= tag.name %></span>
+      <% end %>
+      </li>
+
+    <% end %>
+    <li class="helper"></li>
+    </ul>
   </div>
 </div>
