@@ -5,7 +5,7 @@ module Weather
     def initialize(city_name)
       link = "http://api.openweathermap.org/data/2.5/weather?q=#{city_name}&mode=xml&units=metric" #Odesa
       attempts = 3
-      
+
       begin
         data = Nokogiri::XML(open(link))
 

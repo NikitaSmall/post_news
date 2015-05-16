@@ -15,6 +15,10 @@ class NewspaperController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def feed
+    @posts = Post.all.order(created_at: :desc)
+  end
+
   def all
     @posts = Post.all.by_position
   end

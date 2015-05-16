@@ -2,6 +2,7 @@ PostNews::Application.routes.draw do
   root 'newspaper#index'
 
   get '/read/:id' => 'newspaper#read', as: 'read_post'
+  get '/feed' => 'newspaper#feed', as: 'feed'
 
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
@@ -25,7 +26,7 @@ PostNews::Application.routes.draw do
   post '/user_check_email' => 'user#check_email', as: 'check_email'
   # get '/check_recaptcha' => 'user#check_recaptcha'
 
-  resources :posts
+  resources :posts#, except: 'feed'
   get '/admin' => 'posts#index'
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
   get '/posts_main' => 'posts#main', as: 'main_posts'
@@ -46,7 +47,7 @@ PostNews::Application.routes.draw do
   patch '/hide/:id' => 'posts#hide', as: 'hide'
 
   # devise_for :users
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   mount Ckeditor::Engine => '/ckeditor'
   
   # The priority is based upon order of creation: first created -> highest priority.
