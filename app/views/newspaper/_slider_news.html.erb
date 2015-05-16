@@ -14,7 +14,7 @@
           <a href="#" class="views">
             <i><span></span></i> 359
           </a>
-          <%= link_to '#', class: 'comments' do %>
+          <%= link_to read_post_path(post.id, anchor: 'disqus_thread'), class: 'comments' do %>
               <i><span></span></i> <span class="disqus-comment-count" data-disqus-url="<%= read_post_url(post.id) %>"></span>
           <% end %>
 

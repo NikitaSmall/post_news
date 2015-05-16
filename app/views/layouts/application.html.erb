@@ -143,7 +143,7 @@
                   if (count == 1)
                       countText = "";
 
-                  $('span[data-disqus-url="' + result.response[i].link + '"]').html(count + countText);
+                  $('span[data-disqus-url="' + result.response[i].link + '"]').replaceWith(count + countText);
 
               }
           }

@@ -4,7 +4,8 @@ module Weather
 
     def initialize(city_name)
       link = "http://api.openweathermap.org/data/2.5/weather?q=#{city_name}&mode=xml&units=metric" #Odesa
-
+      attempts = 3
+      
       begin
         data = Nokogiri::XML(open(link))
 
@@ -14,12 +15,8 @@ module Weather
         @temp = "+#{@temp}" unless @temp.index('-')
         @weather = weather_name(weather_code)
       rescue OpenURI::HTTPError => e
-        retry
-        # if e.message == '404 Not Found' || e.message == '500 Internal Error'
-          # puts "#{e.message} WE GOT AN ERROR"
-          # @temp = ''
-          # @weather = '42'
-        # end
+        attempts -= 1
+        retry unless attempts.zero?
       end
     end
 
