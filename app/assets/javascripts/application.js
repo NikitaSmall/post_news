@@ -21,6 +21,7 @@
 //= require_tree ./ckeditor
 //= require fotorama
 //= require disqus_rails
+//= require social-share-button
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {

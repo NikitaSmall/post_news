@@ -92,7 +92,3 @@ on_ready = function() {
 
 $(document).ready(on_ready);
 $(document).on('page:load', on_ready);
-
-$(window).load(function() {
-
-});

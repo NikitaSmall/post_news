@@ -8,6 +8,7 @@
  *= require_self
  *= require style
  *= require swiper.min
+ *= require social-share-button
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -22,4 +23,30 @@
   width: 57px;
   float: right;
   color: #9933cc;
+}
+
+.social-share-button {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+
+.social-share-button-facebook {
+  @extend .social-share-button;
+  background: url("/social/facebook.png") no-repeat;
+}
+
+.social-share-button-twitter {
+  @extend .social-share-button;
+  background: url("/social/twitter.png") no-repeat;
+}
+
+.social-share-button-google_plus {
+  @extend .social-share-button;
+  background: url('/social/googleplus.png') no-repeat
+}
+
+.social-share-button-tumblr {
+  @extend .social-share-button;
+  background: url("/social/tumblr.png") no-repeat;
 }

@@ -67,6 +67,9 @@ gem 'weather-icons-rails'
 # gem for discus integration
 gem 'disqus_rails'
 
+# gem for social sharing
+gem 'social-share-button'
+
 gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
