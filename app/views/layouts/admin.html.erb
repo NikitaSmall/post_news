@@ -35,6 +35,7 @@
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
         <li <% if (params[:action] == 'index' || params[:action] == 'main' || params[:action] == 'hidden') && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Список новостей', posts_path %></li>
+        <li <% if params[:action] == 'my_posts' && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Мои новости', my_posts_path %></li>
         <li <% if params[:action] == 'index' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Список пользователей', users_path %></li>
       </ul>
       <ul class="nav nav-sidebar">

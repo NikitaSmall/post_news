@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :feature, :defeature, :to_main, :hide]
   before_action :authenticate_user!
   before_action :check_role
-  before_action :check_empty_page, only: [:index, :hidden]
+  before_action :check_empty_page, only: [:index, :hidden, :my_posts]
 
   layout 'admin'
 
@@ -24,6 +24,11 @@ class PostsController < ApplicationController
 
   def hidden
     @posts = Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7)
+  end
+
+  # GET /posts_my
+  def my_posts
+    @posts = Post.user_posts(current_user).by_position.paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /posts/1
@@ -219,6 +224,9 @@ class PostsController < ApplicationController
     def check_empty_page
       if params[:action] == 'hidden'
         params[:page] = (params[:page].to_i - 1).to_s while Post.hidden.by_position.paginate(:page => params[:page], :per_page => 7).empty? unless Post.hidden.empty?
+      end
+      if params[:action] == 'my_posts'
+        params[:page] = (params[:page].to_i - 1).to_s while Post.user_posts(current_user).by_position.paginate(:page => params[:page], :per_page => 7).empty? unless Post.user_posts(current_user).empty?
       end
       if params[:action] == 'index'
         unless params[:tag].nil?
