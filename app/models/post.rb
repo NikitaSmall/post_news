@@ -69,6 +69,11 @@ class Post < ActiveRecord::Base
     self.save
   end
 
+  def shared!
+    self.shared += 1
+    save
+  end
+
   def self.search(word)
     word = "%#{word}%"
     where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase

@@ -1,5 +1,6 @@
 class NewspaperController < ApplicationController
   before_filter :get_popular_tags
+  before_action :set_post, only: [:read, :share]
   layout 'application'
 
   def index
@@ -12,7 +13,15 @@ class NewspaperController < ApplicationController
   end
 
   def read
-    @post = Post.find(params[:id])
+  end
+
+  def share
+    @post.shared!
+
+    respond_to do |format|
+      format.html { redirect_to read_post_url(@post) }
+      format.js {}
+    end
   end
 
   def feed
@@ -30,5 +39,9 @@ class NewspaperController < ApplicationController
   protected
   def get_popular_tags
     @popular_tags = Post.popular_tags(8)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

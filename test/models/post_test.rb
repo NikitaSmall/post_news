@@ -157,4 +157,16 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal @my_posts.count, 5
   end
+
+  test "should_create_new_post_with_zero_shares" do
+    post = create(:post_one, title: 'Str1', id: 7)
+
+    assert_equal post.shared, 0
+  end
+
+  test "should_rise_shared_count_by_one" do
+    assert_difference('@post_one.shared', 1) do
+      @post_one.shared!
+    end
+  end
 end

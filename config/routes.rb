@@ -2,6 +2,7 @@ PostNews::Application.routes.draw do
   root 'newspaper#index'
 
   get '/read/:id' => 'newspaper#read', as: 'read_post'
+  post '/share/:id' => 'newspaper#share', as: 'share_post'
   get '/feed' => 'newspaper#feed', as: 'feed'
 
   get '/all' => 'newspaper#all', as: 'all_posts'
