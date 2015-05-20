@@ -111,6 +111,9 @@ body {
 .logo-text:active {
   color: #9933cc;
 }
+.logo-text:focus {
+  color: #9933cc;
+}
 .header-main .container {
   padding-left: 147px;
 }
@@ -537,6 +540,7 @@ nav {
   width: 48%;
   margin-left: 4%;
   max-height: 374px;
+  height: 374px;
 }
 .news-items .news-item.big:first-of-type {
   margin-left: 0;
@@ -544,6 +548,9 @@ nav {
 .news-items .news-item.small {
   width: 31%;
   margin-left: 3.5%;
+}
+.news-items .news-item.small:first-child {
+  margin-left: 0;
 }
 .news-items .news-item.big + .small {
   margin-left: 0;
@@ -970,3 +977,4 @@ footer {
   }
 }
 /*  END media */
+/*# sourceMappingURL=style.css.map */
