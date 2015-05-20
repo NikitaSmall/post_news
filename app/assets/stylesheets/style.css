@@ -25,6 +25,9 @@
     src: url('MyriadPro-Semibold.eot?#iefix') format('embedded-opentype'), url('MyriadPro-Semibold.woff') format('woff'), url('MyriadPro-Semibold.ttf') format('truetype'), url('MyriadPro-Semibold.svg#MyriadPro-Semibold') format('svg');
 }
 /*  END fonts */
+a:focus {
+    outline: none;
+}
 .clear {
     clear: both;
 }
@@ -547,7 +550,7 @@ nav {
 .news-items .news-item.small {
     width: 31%;
     margin-left: 3.5%;
-    max-height: 220px;
+    max-height: 240px;
 }
 .news-items .news-item.small:first-child {
     margin-left: 0;
