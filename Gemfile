@@ -64,8 +64,14 @@ gem 'nokogiri'
 # pretty weather icons (ready to bootstraping!)
 gem 'weather-icons-rails'
 
+# weather for easy weather state checking (my own gem!). Link: https://github.com/NikitaSmall/pretty_weather
+gem 'pretty_weather'
+
 # gem for discus integration
 gem 'disqus_rails'
+
+# gem for social sharing
+gem 'social-share-button'
 
 gem 'rspec-rails'
 

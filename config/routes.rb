@@ -2,6 +2,7 @@ PostNews::Application.routes.draw do
   root 'newspaper#index'
 
   get '/read/:id' => 'newspaper#read', as: 'read_post'
+  post '/share/:id' => 'newspaper#share', as: 'share_post'
   get '/feed' => 'newspaper#feed', as: 'feed'
 
   get '/all' => 'newspaper#all', as: 'all_posts'
@@ -31,6 +32,7 @@ PostNews::Application.routes.draw do
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
   get '/posts_main' => 'posts#main', as: 'main_posts'
   get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
+  get '/posts_own' => 'posts#my_posts', as: 'my_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
 
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'

@@ -12,6 +12,9 @@ atom_feed(language: 'ru-RU') do |feed|
       entry.published Russian::strftime(post.created_at, "%d %B %Y, %A, %H:%M")
       entry.updated Russian::strftime(post.updated_at, "%d %B %Y, %A, %H:%M")
       entry.author post.user.username
+
+      entry.link read_post_url(post)
+      entry.guide read_post_url(post)
     end
   end
 end

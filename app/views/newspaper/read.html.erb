@@ -28,7 +28,11 @@
 
     <!--  END теги  -->
 
-
+    <!-- BEGIN social sharing -->
+    <div id="social_share" data-id="<%= @post.id %>">
+      <%= social_share_button_tag @post.title %>
+    </div>
+    <!-- END social sharing -->
 
   </div>
   <!--  END one news content -->

@@ -483,4 +483,28 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_select 'td a'
   end
+
+  test "should_get_my_posts_page" do
+    get :my_posts
+
+    assert_response :success
+    assert_select 'td a'
+  end
+
+  test "should_get_empty_my_posts_page_for corrector" do
+    sign_out @user
+    sign_in @corrector
+
+    get :my_posts
+
+    assert_response :success
+    assert_select 'td a', 0
+  end
+
+  test "should_get_not_empty_my_posts_page_on_pagination_after_last_page" do
+    get :my_posts, page: '3'
+
+    assert_response :success
+    assert_select 'td a'
+  end
 end

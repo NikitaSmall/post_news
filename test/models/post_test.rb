@@ -149,4 +149,24 @@ class PostTest < ActiveSupport::TestCase
     assert_equal @popular_posts.first, @tagged_one
     assert_equal @popular_posts.last, @tagged_three
   end
+
+  test "should_return_my_posts" do
+    @user = create(:one)
+
+    @my_posts = Post.user_posts(@user)
+
+    assert_equal @my_posts.count, 5
+  end
+
+  test "should_create_new_post_with_zero_shares" do
+    post = create(:post_one, title: 'Str1', id: 7)
+
+    assert_equal post.shared, 0
+  end
+
+  test "should_rise_shared_count_by_one" do
+    assert_difference('@post_one.shared', 1) do
+      @post_one.shared!
+    end
+  end
 end
