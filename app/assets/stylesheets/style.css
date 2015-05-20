@@ -532,15 +532,13 @@ nav {
   background: rgba(126, 118, 129, 0.9);
 }
 .news-items .news-item img {
-  display: inline-block;
+  display: block;
+  vertical-align: top;
   width: 100%;
-  max-width: 100%;
 }
 .news-items .news-item.big {
   width: 48%;
   margin-left: 4%;
-  max-height: 374px;
-  height: 374px;
 }
 .news-items .news-item.big:first-of-type {
   margin-left: 0;
@@ -977,4 +975,3 @@ footer {
   }
 }
 /*  END media */
-/*# sourceMappingURL=style.css.map */
