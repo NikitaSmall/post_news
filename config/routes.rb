@@ -1,4 +1,6 @@
 PostNews::Application.routes.draw do
+  resources :advertisements
+
   root 'newspaper#index'
 
   get '/read/:id' => 'newspaper#read', as: 'read_post'

@@ -1,0 +1,41 @@
+<%= form_for(@advertisement) do |f| %>
+  <% if @advertisement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+
+      <ul>
+      <% @advertisement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, 'Заголовок' %><br>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, 'Описание' %><br>
+    <%= f.cktext_area :description, :id => 'content', :ckeditor => {:toolbar => 'mini'} %>
+  </div>
+  <div class="form-group">
+    <%= f.check_box :enabled %> <%= f.label :enabled, 'Реклама отображается на главной' %>
+  </div>
+
+    <div class="form-group">
+      <%= f.label :photo, 'Главное фото рекламы:' %><br>
+      <% if @advertisement.photo.exists? %>
+          <label class="col-md-offset-1">Фото уже прикрепили:</label>
+          <div class="form-group col-md-offset-1">
+
+            <%= image_tag @advertisement.photo.url, width: 200 %>
+          </div>
+      <% end %>
+      <%= f.file_field :photo %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit 'Опубликовать', class: 'btn btn-default' %>
+  </div>
+<% end %>

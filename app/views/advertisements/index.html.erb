@@ -1,0 +1,58 @@
+<h1>Реклама</h1>
+<% if !@advertisements.empty? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Заголовок</th>
+          <th>Описание</th>
+          <th>Активность</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @advertisements.each do |advertisement| %>
+          <tr id="adv-<%= advertisement.id %>">
+            <td><%= advertisement.title %></td>
+            <td><%= truncate strip_tags(advertisement.description.html_safe), length: 50 %></td>
+            <td id="enabled_adv-<%= advertisement.id %>">
+              <% if advertisement.enabled %>
+                  <%# link_to disable_path(advertisement), method: :patch, remote: true, class: 'btn btn-default' do %>
+                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <%# end %>
+              <% else %>
+                  <%# link_to enable_path(advertisement), method: :patch, remote: true, class: 'btn btn-default' do %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <%# end %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to advertisement, class: "btn btn-default"  do %>
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to edit_advertisement_path(advertisement), class: "btn btn-info" do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to advertisement, method: :delete, remote: true, data: { confirm: 'Вы действительно хотите удалить эту рекламу? Это действие невозможно отменить.' }, class: 'btn btn-danger' do %>
+                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% else %>
+    <h3 class="text-center">Вы пока что не разместили никакой рекламы</h3>
+<% end %>
+
+<br>
+
+<%= link_to 'Новое рекламное объявление', new_advertisement_path, class: 'btn btn-default' %>
+
+<br />
