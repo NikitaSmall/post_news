@@ -53,39 +53,55 @@ on_ready = function() {
     });
     // END РїРѕСЃР»РµРґРЅРёРµ РЅРѕРІРѕСЃС‚Рё СЃР»Р°Р№РґРµСЂ
 
-    // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
-    if ( $('.news-item').length > 0 ) {
-        $('.news-item').each(function(){
-            var $this = $(this);
-            var itemHeight, imgHeight;
-            itemHeight = $this.height();
-            imgHeight = $this.children('img').height();
-            console.log(imgHeight);
-            console.log(itemHeight);
-            if ( imgHeight > itemHeight ) {
-                console.log('yup');
-                $(this).find('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
-            }
-        });
-    }
-    // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
+    $(window).load(function() {
+        $('.news-item-row').each(function() {
+            var minHeight = 9999;
+            var childItem = $(this).children('.news-item');
+            childItem.each(function () {
+                var $this = $(this);
+                var itemHeight = $this.height();
+                console.log(itemHeight);
+                if (itemHeight < minHeight){
+                    minHeight = $(this).height();
+                }
 
-    // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
-    if ( $('.fotorama-slide').length > 0 ) {
-        $('.fotorama-slide').each(function(){
-            var $this = $(this);
-            var itemHeight, imgHeight;
-            itemHeight = $this.height();
-            imgHeight = $this.find('img').height();
-            console.log(imgHeight);
-            console.log(itemHeight);
-            if ( imgHeight > itemHeight ) {
-                console.log('yup');
-                $(this).children('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
-            }
+            });
+            childItem.css('height', minHeight + 'px');
+
         });
-    }
-    // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+
+
+        // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
+        if ( $('.news-item').length > 0 ) {
+            $('.news-item').each(function(){
+                var $this = $(this);
+                var itemHeight, imgHeight;
+                itemHeight = $this.height();
+                imgHeight = $this.children('img').height();
+                if ( imgHeight > itemHeight ) {
+                    $(this).find('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
+                }
+            });
+        }
+        // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ news-item
+
+        // Begin РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+        if ( $('.fotorama-slide').length > 0 ) {
+            $('.fotorama-slide').each(function(){
+                var $this = $(this);
+                var itemHeight, imgHeight;
+                itemHeight = $this.height();
+                imgHeight = $this.find('img').height();
+                if ( imgHeight > itemHeight ) {
+                    $(this).children('img').css('margin-top', -(imgHeight-itemHeight)/2+ 'px');
+                }
+            });
+        }
+        // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+    });
+
+
+
 
 
 };
