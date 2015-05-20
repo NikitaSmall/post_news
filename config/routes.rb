@@ -1,4 +1,7 @@
 PostNews::Application.routes.draw do
+
+  patch '/advertisement_enable/:id' => 'advertisements#enable', as: 'enable'
+  patch '/advertisement_disable/:id' => 'advertisements#disable', as: 'disable'
   resources :advertisements
 
   root 'newspaper#index'

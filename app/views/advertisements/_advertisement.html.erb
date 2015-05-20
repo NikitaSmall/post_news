@@ -1,0 +1,30 @@
+<tr id="adv-<%= advertisement.id %>">
+  <td><%= link_to advertisement.title, advertisement  %></td>
+  <td><%= link_to (truncate strip_tags(advertisement.description.html_safe), length: 50), advertisement %></td>
+  <td id="enabled_adv-<%= advertisement.id %>">
+    <% if advertisement.enabled %>
+        <%= link_to disable_path(advertisement), method: :patch, remote: true, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <% end %>
+    <% else %>
+        <%= link_to enable_path(advertisement), method: :patch, remote: true, class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to advertisement, class: "btn btn-default"  do %>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to edit_advertisement_path(advertisement), class: "btn btn-info" do %>
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to advertisement, method: :delete, remote: true, data: { confirm: 'Вы действительно хотите удалить эту рекламу? Это действие невозможно отменить.' }, class: 'btn btn-danger' do %>
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <% end %>
+  </td>
+</tr>

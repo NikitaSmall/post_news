@@ -21,8 +21,9 @@ class AdvertisementsControllerTest < ActionController::TestCase
   end
 
   test "should create advertisement" do
+    photo = fixture_file_upload('missing.png', 'image/png')
     assert_difference('Advertisement.count') do
-      post :create, advertisement: { description: @advertisement.description, enabled: @advertisement.enabled, title: @advertisement.title }
+      post :create, advertisement: { description: "#{@advertisement.description}1", enabled: @advertisement.enabled, title: "#{@advertisement.title}2", photo: photo }
     end
 
     assert_redirected_to advertisement_path(assigns(:advertisement))
@@ -49,5 +50,23 @@ class AdvertisementsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to advertisements_path
+  end
+
+  test "should_enable_advertisement" do
+    patch :enable, id: @advertisement
+    @advertisement = Advertisement.find(@advertisement.id)
+
+    assert_redirected_to advertisements_path
+    assert @advertisement.enabled
+  end
+
+  test "should_disable_advertisement" do
+    @adv = create(:advertisement, enabled: true)
+
+    patch :disable, id: @adv
+    @advertisement = Advertisement.find(@advertisement.id)
+
+    assert_redirected_to advertisements_path
+    assert !@advertisement.enabled
   end
 end

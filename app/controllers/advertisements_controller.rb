@@ -1,10 +1,10 @@
 class AdvertisementsController < ApplicationController
-  before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :set_advertisement, only: [:show, :edit, :update, :destroy, :enable, :disable]
   before_action :authenticate_user!
   before_action :check_role
 
   layout 'admin'
-  respond_to :html
+  respond_to :html, except: [:enable, :disable]
 
   def index
     @advertisements = Advertisement.all
@@ -32,6 +32,24 @@ class AdvertisementsController < ApplicationController
   def update
     @advertisement.update(advertisement_params)
     respond_with(@advertisement)
+  end
+
+  def enable
+    @advertisement.enabled!
+
+    respond_to do |format|
+      format.html { redirect_to advertisements_path }
+      format.js {}
+    end
+  end
+
+  def disable
+    @advertisement.disabled!
+
+    respond_to do |format|
+      format.html { redirect_to advertisements_path }
+      format.js {}
+    end
   end
 
   def destroy
