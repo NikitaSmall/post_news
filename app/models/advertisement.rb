@@ -4,7 +4,7 @@ class Advertisement < ActiveRecord::Base
                           }.merge(PAPERCLIP_STORAGE_ADV_OPTIONS)
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
-  validates :title, :description, :photo, presence: true
+  validates :title, :description, :photo, :link, presence: true
 
   def enabled!
     self.enabled = true

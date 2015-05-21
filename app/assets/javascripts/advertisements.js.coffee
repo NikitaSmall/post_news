@@ -10,6 +10,8 @@ on_ready = ->
     rules:
       'advertisement[title]':
         required: true
+      'advertisement[link]':
+        required: true
       'advertisement[photo]':
         required: true
       'advertisement[description]':

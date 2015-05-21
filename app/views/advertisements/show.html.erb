@@ -10,6 +10,10 @@
   <%= @advertisement.description.html_safe %>
 </div>
 
+<div>
+  Ссылка: <%= link_to @advertisement.link, @advertisement.link %>
+</div>
+
 <br />
 
 <%= link_to 'Редактировать', edit_advertisement_path(@advertisement), class: 'btn btn-default' %>
