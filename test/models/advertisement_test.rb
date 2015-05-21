@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AdvertisementTest < ActiveSupport::TestCase
   setup do
-    @advertisement = create(:advertisement)
+    @advertisement = create(:advertisement, enabled: true)
   end
 
   test "should_make_enabled_advertisement" do
@@ -16,5 +16,14 @@ class AdvertisementTest < ActiveSupport::TestCase
     @advertisement.disabled!
 
     assert !@advertisement.enabled
+  end
+
+  test "should_get_rand_advertisement" do
+    second = create(:advertisement, enabled: true)
+    third = create(:advertisement, enabled: true)
+
+    record = Advertisement.random
+
+    assert_kind_of Advertisement, record
   end
 end

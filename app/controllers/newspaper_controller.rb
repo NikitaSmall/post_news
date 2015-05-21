@@ -13,6 +13,7 @@ class NewspaperController < ApplicationController
   end
 
   def read
+    @advertisement = get_random_advertisement
   end
 
   def share
@@ -39,6 +40,25 @@ class NewspaperController < ApplicationController
   protected
   def get_popular_tags
     @popular_tags = Post.popular_tags(8)
+  end
+
+  def get_random_advertisement
+    advertisement = Advertisement.random
+    advertisement = Advertisement.random while bothered?(advertisement) && !tired?
+    tired? ? nil : advertisement
+  end
+
+  def bothered?(adv)
+    session[:adv] ||= Hash.new(0)
+    session[:adv][adv.id] += 1
+    return true if session[:adv][adv.id] > 4
+    false
+  end
+
+  def tired?
+    sum = 0
+    session[:adv].each { |i, x| sum += x }
+    sum >= (4 * Advertisement.enabled.count + 1)
   end
 
   def set_post
