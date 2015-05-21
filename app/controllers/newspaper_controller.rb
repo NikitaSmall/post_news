@@ -4,7 +4,7 @@ class NewspaperController < ApplicationController
   layout 'application'
 
   def index
-    @posts = Post.main.by_position
+    @posts = Post.main.by_position.to_a.insert(rand_position, get_random_advertisement) # for good flexibility relation turned to array
     @featured_posts = Post.featured.by_position
   end
 
@@ -44,8 +44,8 @@ class NewspaperController < ApplicationController
 
   def get_random_advertisement
     advertisement = Advertisement.random
-    advertisement = Advertisement.random while bothered?(advertisement) && !tired?
-    tired? ? nil : advertisement
+    # advertisement = Advertisement.random while bothered?(advertisement) && !tired?
+    # tired? ? nil : advertisement
   end
 
   def bothered?(adv)
@@ -58,7 +58,11 @@ class NewspaperController < ApplicationController
   def tired?
     sum = 0
     session[:adv].each { |i, x| sum += x }
-    sum >= (4 * Advertisement.enabled.count + 1)
+    sum >= (5 * Advertisement.enabled.count + 1)
+  end
+
+  def rand_position
+    rand (Post.main.count / 2).to_i
   end
 
   def set_post
