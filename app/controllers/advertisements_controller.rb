@@ -63,7 +63,7 @@ class AdvertisementsController < ApplicationController
     end
 
     def advertisement_params
-      params.require(:advertisement).permit(:title, :description, :enabled, :photo, :link)
+      params.require(:advertisement).permit(:title, :content, :enabled, :photo, :link)
     end
 
     def check_role

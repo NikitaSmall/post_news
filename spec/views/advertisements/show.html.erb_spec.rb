@@ -4,7 +4,7 @@ RSpec.describe "advertisements/show", type: :view do
   before(:each) do
     @advertisement = assign(:advertisement, Advertisement.create!(
       :title => "Title",
-      :description => "Description",
+      :content => "Description",
       :enabled => false
     ))
   end

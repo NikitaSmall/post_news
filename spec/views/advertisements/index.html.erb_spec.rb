@@ -5,12 +5,12 @@ RSpec.describe "advertisements/index", type: :view do
     assign(:advertisements, [
       Advertisement.create!(
         :title => "Title",
-        :description => "Description",
+        :content => "Description",
         :enabled => false
       ),
       Advertisement.create!(
         :title => "Title",
-        :description => "Description",
+        :content => "Description",
         :enabled => false
       )
     ])

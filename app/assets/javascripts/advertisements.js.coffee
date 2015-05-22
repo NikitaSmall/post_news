@@ -14,14 +14,14 @@ on_ready = ->
         required: true
       'advertisement[photo]':
         required: true
-      'advertisement[description]':
+      'advertisement[content]':
         required: (textarea) ->
           CKEDITOR.instances[textarea.id].updateElement() # update textarea
           editorcontent = textarea.value.replace(/<[^>]*>/gi, '') # strip tags
           return editorcontent.length == 0
     errorPlacement: (error, element) ->
-      if element.attr('id') == 'description'
-        error.insertBefore 'textarea#description'
+      if element.attr('id') == 'content'
+        error.insertBefore 'textarea#content'
       else
         error.insertBefore element
   )

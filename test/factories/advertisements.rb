@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :advertisement do
     title "MyString"
-    description "MyString"
+    content "MyString"
     enabled false
     link "google.com"
     photo_file_name { 'missing.png' }
