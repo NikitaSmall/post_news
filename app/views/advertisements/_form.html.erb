@@ -23,7 +23,7 @@
 
   <div class="form-group">
     <%= f.label :content, 'Описание' %><br>
-    <%= f.cktext_area :content, :id => 'content', :ckeditor => {:toolbar => 'mini'} %>
+    <%= f.cktext_area :content, :id => 'content', :ckeditor => {:toolbar => 'mini'}, class: 'content' %>
   </div>
   <div class="form-group">
     <%= f.check_box :enabled %> <%= f.label :enabled, 'Реклама отображается на главной' %>

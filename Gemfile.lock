@@ -42,7 +42,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     builder (3.1.4)
-    ckeditor (4.1.2)
+    ckeditor (4.1.1)
       cocaine
       orm_adapter (~> 0.5.0)
     climate_control (0.0.3)
@@ -293,7 +293,7 @@ DEPENDENCIES
   aws-sdk (~> 1.36.1)
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 3.3.3)
-  ckeditor
+  ckeditor (= 4.1.1)
   coffee-rails (~> 4.0.0)
   devise
   disqus_rails

@@ -19,7 +19,7 @@ gem 'devise'
 gem 'acts-as-taggable-on'
 
 # gem for wysiwyg editor
-gem 'ckeditor'
+gem 'ckeditor', '4.1.1'
 
 # gem for uploads
 gem 'paperclip'
