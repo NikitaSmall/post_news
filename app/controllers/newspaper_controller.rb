@@ -4,7 +4,7 @@ class NewspaperController < ApplicationController
   layout 'application'
 
   def index
-    @posts = Post.main.by_position.to_a.insert(rand_position, get_random_advertisement) # for good flexibility relation turned to array
+    @posts = Post.main.by_position.to_a.insert(rand_position, get_random_advertisement).compact # for good flexibility relation turned to array
     @featured_posts = Post.featured.by_position
   end
 

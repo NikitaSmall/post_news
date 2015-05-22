@@ -40,7 +40,7 @@
   <!-- ADVERTISEMENT block begins -->
   <% unless @advertisement.nil? %>
     <div id="advertisement">
-      <%= link_to @advertisement.link, @advertisement.link %>
+      <%= link_to @advertisement.link, @advertisement.link, target: '_blank' %>
     </div>
   <% end %>
   <!-- ADVERTISEMENT block ends -->

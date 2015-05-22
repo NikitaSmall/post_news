@@ -4,7 +4,6 @@ class NewspaperControllerTest < ActionController::TestCase
   setup do
     @post = create(:post_one)
     @user = create(:admin, id: 1)
-    @advertisement = create(:advertisement, enabled: true)
   end
 
   test "should_get_index" do
@@ -30,9 +29,19 @@ class NewspaperControllerTest < ActionController::TestCase
   end
 
   test "should_get_read_post_with_advertisement" do
+    @advertisement = create(:advertisement, enabled: true)
     get :read, id: @post.id
 
     assert_response :success
     assert_select 'div#advertisement a'
+  end
+
+  test "should_get_index_with_advertisement" do
+    @advertisement = create(:advertisement, enabled: true)
+
+    get :index
+
+    assert_response :success
+    assert_not_nil assigns(:posts)
   end
 end
