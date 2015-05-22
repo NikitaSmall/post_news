@@ -43,22 +43,19 @@ class NewspaperController < ApplicationController
   end
 
   def get_random_advertisement
-    advertisement = Advertisement.random
-    # advertisement = Advertisement.random while bothered?(advertisement) && !tired?
-    # tired? ? nil : advertisement
+    set_session
+
+    id = session[:adv].select { |k, v| v < 5 }.keys.sample
+    session[:adv][id] += 1
+
+    return Advertisement.find(id) unless id.nil?
+    nil
   end
 
-  def bothered?(adv)
+  def set_session
+    adv = Advertisement.enabled
     session[:adv] ||= Hash.new(0)
-    session[:adv][adv.id] += 1
-    return true if session[:adv][adv.id] > 4
-    false
-  end
-
-  def tired?
-    sum = 0
-    session[:adv].each { |i, x| sum += x }
-    sum >= (5 * Advertisement.enabled.count + 1)
+    adv.each { |record| session[:adv][record.id] += 0 }
   end
 
   def rand_position
