@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NewspaperControllerTest < ActionController::TestCase
   setup do
-    @post = create(:post_one)
+    @post = create(:post_one, main: true)
     @user = create(:admin, id: 1)
   end
 
@@ -36,12 +36,28 @@ class NewspaperControllerTest < ActionController::TestCase
     assert_select 'div#advertisement a'
   end
 
-  test "should_get_index_with_advertisement" do
+  test "should_get_index_with_few_posts_and_without_advertisement" do
     @advertisement = create(:advertisement, enabled: true)
 
     get :index
 
     assert_response :success
     assert_not_nil assigns(:posts)
+
+    assert_select 'a.news-item', 1
+  end
+
+  test "should_get_undex_with_lot_of_posts_and_advertisement" do
+    @advertisement = create(:advertisement, enabled: true)
+    second = create(:post_two, main: true)
+    three = create(:post_three, main: true)
+    four = create(:post_four, main: true)
+
+    get :index
+
+    assert_response :success
+    assert_not_nil assigns(:posts)
+
+    assert_select 'a.news-item', 5
   end
 end

@@ -4,7 +4,8 @@ class NewspaperController < ApplicationController
   layout 'application'
 
   def index
-    @posts = Post.main.by_position.to_a.insert(rand_position, get_random_advertisement).compact # for good flexibility relation turned to array
+    @posts = Post.main.by_position.to_a # for good flexibility relation turned to array
+    @posts.insert(rand_position, get_random_advertisement).compact if @posts.count > 3  # advertisement will not appear if there a few posts on main page
     @featured_posts = Post.featured.by_position
   end
 
