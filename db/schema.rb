@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522102434) do
+ActiveRecord::Schema.define(version: 20150523194700) do
 
   create_table "advertisements", force: true do |t|
     t.string   "title"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150522102434) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "link"
+    t.integer  "visits",             default: 0
   end
 
   create_table "ckeditor_assets", force: true do |t|

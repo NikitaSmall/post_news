@@ -26,6 +26,16 @@ class NewspaperController < ApplicationController
     end
   end
 
+  def visit_advertisement
+    @advertisement = Advertisement.find(params[:id])
+    @advertisement.visits!
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js {}
+    end
+  end
+
   def feed
     @posts = Post.all.order(created_at: :desc)
   end

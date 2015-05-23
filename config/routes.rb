@@ -5,11 +5,12 @@ PostNews::Application.routes.draw do
   resources :advertisements
 
   root 'newspaper#index'
-
   get '/read/:id' => 'newspaper#read', as: 'read_post'
-  post '/share/:id' => 'newspaper#share', as: 'share_post'
-  get '/feed' => 'newspaper#feed', as: 'feed'
 
+  post '/share/:id' => 'newspaper#share', as: 'share_post'
+  post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'
+
+  get '/feed' => 'newspaper#feed', as: 'feed'
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
 

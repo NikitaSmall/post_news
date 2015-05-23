@@ -26,4 +26,10 @@ class AdvertisementTest < ActiveSupport::TestCase
 
     assert_kind_of Advertisement, record
   end
+
+  test "should_increase_vesets_count" do
+    assert_difference('@advertisement.visits', 1) do
+      @advertisement.visits!
+    end
+  end
 end

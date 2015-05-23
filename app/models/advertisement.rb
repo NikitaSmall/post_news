@@ -22,4 +22,9 @@ class Advertisement < ActiveRecord::Base
     offset = rand(Advertisement.enabled.count)
     Advertisement.enabled.offset(offset).first
   end
+
+  def visits!
+    self.visits += 1
+    save
+  end
 end

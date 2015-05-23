@@ -14,5 +14,15 @@ on_ready = ->
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")
 
+  advertisement_id = $("a[target='_blank']").data('id')
+  $("a[target='_blank']").on 'click', ->
+    $.ajax
+      url: '/advertise/' + advertisement_id
+      method: 'post'
+      success:
+        console.log('advertisement ' + advertisement_id + ' was shared!')
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log("AJAX Error: #{textStatus}")
+
 $(document).ready(on_ready)
 $(document).on('page:load', on_ready)

@@ -71,4 +71,13 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "should_increase_advertisement_visits_count" do
+    @advertisement = create(:advertisement, enabled: true)
+
+    post :visit_advertisement, id: @advertisement.id
+    new = Advertisement.find(@advertisement.id)
+
+    assert_equal new.visits, @advertisement. visits + 1
+  end
 end
