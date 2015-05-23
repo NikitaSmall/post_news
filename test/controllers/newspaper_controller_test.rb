@@ -60,4 +60,15 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_select 'a.news-item', 5
   end
+
+  test "should_get_undex_with_lot_of_posts_and_advertisement_a_lot_of_times" do
+    @advertisement = create(:advertisement, enabled: true)
+    second = create(:post_two, main: true)
+    three = create(:post_three, main: true)
+    four = create(:post_four, main: true)
+
+    10.times { get :index }
+
+    assert_response :success
+  end
 end
