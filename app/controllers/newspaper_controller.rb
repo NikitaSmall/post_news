@@ -1,6 +1,6 @@
 class NewspaperController < ApplicationController
   before_filter :get_popular_tags
-  before_action :set_post, only: [:read, :share]
+  before_action :set_post, only: [:read, :share, :visit_post]
   layout 'application'
 
   def index
@@ -29,6 +29,15 @@ class NewspaperController < ApplicationController
   def visit_advertisement
     @advertisement = Advertisement.find(params[:id])
     @advertisement.visits!
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js {}
+    end
+  end
+
+  def visit_post
+    @post.visits!
 
     respond_to do |format|
       format.html { redirect_to root_url }

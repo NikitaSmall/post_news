@@ -9,6 +9,7 @@ PostNews::Application.routes.draw do
 
   post '/share/:id' => 'newspaper#share', as: 'share_post'
   post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'
+  post '/visit_post/:id' => 'newspaper#visit_post', as: 'visit_post'
 
   get '/feed' => 'newspaper#feed', as: 'feed'
   get '/all' => 'newspaper#all', as: 'all_posts'

@@ -80,4 +80,11 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_equal new.visits, @advertisement. visits + 1
   end
+
+  test "should_increase_post_visits_count" do
+    post :visit_post, id: @post.id
+    new = Post.find(@post.id)
+
+    assert_equal new.visits, @post.visits + 1
+  end
 end
