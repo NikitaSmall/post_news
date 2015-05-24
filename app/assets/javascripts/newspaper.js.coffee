@@ -4,13 +4,14 @@
 
 on_ready = ->
   id = $('#social_share').data('id')
-  $.ajax
-    url: '/visit_post/' + id
-    method: 'post'
-    success:
-      console.log('post ' + id + ' was viewed')
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log("AJAX Error: #{textStatus}")
+  if(typeof id != 'undefined')
+    $.ajax
+      url: '/visit_post/' + id
+      method: 'post'
+      success:
+        console.log('post ' + id + ' was viewed')
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log("AJAX Error: #{textStatus}")
 
   # console.log(id)
   $('.social-share-button a').on 'click', ->
