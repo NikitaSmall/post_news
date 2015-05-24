@@ -12,6 +12,7 @@ on_ready = ->
     rules:
       'post[title]':
         required: true
+        maxlength: 250
         remote:
           url: '/posts_check_title.json'
           type: 'post'

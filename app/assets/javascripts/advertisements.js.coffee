@@ -10,8 +10,10 @@ on_ready = ->
     rules:
       'advertisement[title]':
         required: true
+        maxlength: 250
       'advertisement[link]':
         required: true
+        maxlength: 250
       'advertisement[photo]':
         required: true
       'advertisement[content]':

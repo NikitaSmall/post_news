@@ -4,6 +4,8 @@
 
 on_ready = ->
   id = $('#social_share').data('id')
+
+  # calling a request for visit post check
   if(typeof id != 'undefined')
     $.ajax
       url: '/visit_post/' + id
@@ -13,7 +15,7 @@ on_ready = ->
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")
 
-  # console.log(id)
+  # calling a request for share post check
   $('.social-share-button a').on 'click', ->
     $.ajax
       url: '/share/' + id
@@ -23,6 +25,7 @@ on_ready = ->
       error: (jqXHR, textStatus, errorThrown) ->
         console.log("AJAX Error: #{textStatus}")
 
+  # calling a request for visit advertisement check
   advertisement_id = $("a[target='_blank']").data('id')
   $("a[target='_blank']").on 'click', ->
     $.ajax
