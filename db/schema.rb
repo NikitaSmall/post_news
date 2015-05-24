@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523194700) do
+ActiveRecord::Schema.define(version: 20150524145746) do
 
   create_table "advertisements", force: true do |t|
     t.string   "title"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150523194700) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "shared",             default: 0
+    t.integer  "visits",             default: 0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree

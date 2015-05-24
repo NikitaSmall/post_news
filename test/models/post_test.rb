@@ -169,4 +169,11 @@ class PostTest < ActiveSupport::TestCase
       @post_one.shared!
     end
   end
+
+  test "should_rise_counter_by_one" do
+    assert_difference('@post_one.visits', 1) do
+      @post_one.visits!
+    end
+  end
+
 end
