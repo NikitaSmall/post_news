@@ -9,7 +9,7 @@ development:
   database: post_news
   pool: 5
   username: root
-  password: toor
+  password: flamingo
   host: localhost
 
 # Warning: The database defined as "test" will be erased and

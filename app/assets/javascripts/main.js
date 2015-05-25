@@ -11,8 +11,10 @@ on_ready = function() {
         width: '100%',
         maxwidth: '100%',
         nav: false,
-        //autoplay: '3000',
+        autoplay: '4000',
         transitionduration: '850',
+        click: false,
+        swipe: false,
         loop: true,
         ratio: '1200/585'
     });
