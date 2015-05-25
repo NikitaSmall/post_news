@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 on_ready = ->
+
+  $(document).on 'click', '.pagination[remote=true] a', ->
+    window.history.pushState(null, 'hi', $(this).attr("href"))
+    $.rails.handleRemote($(this))
+    return false
+
   id = $('#social_share').data('id')
 
   # calling a request for visit post check

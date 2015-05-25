@@ -19,6 +19,11 @@ class NewspaperController < ApplicationController
 
   def news_search
     @posts = Post.search(params[:word]).paginate(:page => params[:page], :per_page => 7)
+
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
   end
 
   def share
