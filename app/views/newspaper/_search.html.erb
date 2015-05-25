@@ -21,7 +21,7 @@
 <hr/>
 <div class="result-items-wrapper">
   <% @posts.each do |post| %>
-      <%= link_to read_post_path(post), class: 'clearfix item-result' do %>
+      <%= link_to link_selector(post), target: target_selector(post), class: 'clearfix item-result' do %>
           <%= image_tag post.photo.url, height: 110 %>
           <time><%= Russian::strftime(post.created_at, "%d %B %Y") %></time>
           <span class="title"><%= post.title %></span>
