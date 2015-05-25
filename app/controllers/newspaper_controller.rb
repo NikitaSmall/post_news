@@ -1,10 +1,11 @@
 class NewspaperController < ApplicationController
   before_filter :get_popular_tags
-  before_action :set_post, only: [:read, :share]
+  before_action :set_post, only: [:read, :share, :visit_post]
   layout 'application'
 
   def index
-    @posts = Post.main.by_position
+    @posts = Post.main.by_position.to_a # for good flexibility relation turned to array
+    @posts.insert(rand_position, get_random_advertisement).compact! if @posts.count > 3  # advertisement will not appear if there a few posts on main page
     @featured_posts = Post.featured.by_position
   end
 
@@ -13,6 +14,7 @@ class NewspaperController < ApplicationController
   end
 
   def read
+    @advertisement = get_random_advertisement
   end
 
   def share
@@ -20,6 +22,25 @@ class NewspaperController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to read_post_url(@post) }
+      format.js {}
+    end
+  end
+
+  def visit_advertisement
+    @advertisement = Advertisement.find(params[:id])
+    @advertisement.visits!
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.js {}
+    end
+  end
+
+  def visit_post
+    @post.visits!
+
+    respond_to do |format|
+      format.html { redirect_to root_url }
       format.js {}
     end
   end
@@ -39,6 +60,26 @@ class NewspaperController < ApplicationController
   protected
   def get_popular_tags
     @popular_tags = Post.popular_tags(8)
+  end
+
+  def get_random_advertisement
+    set_session
+
+    id = session[:adv].select { |k, v| v < 5 }.keys.sample
+    session[:adv][id] += 1
+
+    return Advertisement.find(id) unless id.nil?
+    nil
+  end
+
+  def set_session
+    adv = Advertisement.enabled
+    session[:adv] ||= Hash.new(0)
+    adv.each { |record| session[:adv][record.id] += 0 }
+  end
+
+  def rand_position
+    rand (Post.main.count / 2).to_i
   end
 
   def set_post

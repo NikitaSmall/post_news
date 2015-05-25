@@ -1,10 +1,17 @@
 PostNews::Application.routes.draw do
+
+  patch '/advertisement_enable/:id' => 'advertisements#enable', as: 'enable'
+  patch '/advertisement_disable/:id' => 'advertisements#disable', as: 'disable'
+  resources :advertisements
+
   root 'newspaper#index'
-
   get '/read/:id' => 'newspaper#read', as: 'read_post'
-  post '/share/:id' => 'newspaper#share', as: 'share_post'
-  get '/feed' => 'newspaper#feed', as: 'feed'
 
+  post '/share/:id' => 'newspaper#share', as: 'share_post'
+  post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'
+  post '/visit_post/:id' => 'newspaper#visit_post', as: 'visit_post'
+
+  get '/feed' => 'newspaper#feed', as: 'feed'
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
 

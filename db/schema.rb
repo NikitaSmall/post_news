@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519200817) do
+ActiveRecord::Schema.define(version: 20150524145746) do
+
+  create_table "advertisements", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "link"
+    t.integer  "visits",             default: 0
+  end
 
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
@@ -43,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150519200817) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "shared",             default: 0
+    t.integer  "visits",             default: 0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree

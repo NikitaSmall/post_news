@@ -8,6 +8,16 @@ module ApplicationHelper
     'btn-default'
   end
 
+  def link_selector(post)
+    return read_post_path(post) unless post.try(:link)
+    post.link
+  end
+
+  def target_selector(post)
+    return '' unless post.try(:link)
+    '_blank'
+  end
+
   def size(index)
     num = index % 5
     return 'big' if num <= 2 && num != 0

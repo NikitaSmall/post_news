@@ -19,7 +19,7 @@ gem 'devise'
 gem 'acts-as-taggable-on'
 
 # gem for wysiwyg editor
-gem 'ckeditor'
+gem 'ckeditor', '4.1.1'
 
 # gem for uploads
 gem 'paperclip'
@@ -73,7 +73,7 @@ gem 'disqus_rails'
 # gem for social sharing
 gem 'social-share-button'
 
-gem 'rspec-rails'
+# gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
