@@ -32,8 +32,8 @@ on_ready = ->
         console.log("AJAX Error: #{textStatus}")
 
   # calling a request for visit advertisement check
-  advertisement_id = $("a[target='_blank']").data('id')
-  $("a[target='_blank']").on 'click', ->
+  $(document).on 'click', "a[target='_blank']", ->
+    advertisement_id = $(this).data('id')
     $.ajax
       url: '/advertise/' + advertisement_id
       method: 'post'
