@@ -96,12 +96,13 @@
   <div class="popup-wrapper popup-search">
     <button class="popup-close"><i></i><i></i></button>
     <div class="popup-search-content">
-      <%= form_tag news_search_path, method: :get, enforce_utf8: false do %>
+      <%= form_tag news_search_path, method: :get, remote: true, enforce_utf8: false do %>
           <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'input-search', placeholder: 'Введите слово или фразу для поиска...' %>
           <%= button_tag class: 'search-btn' do %>
               <i class="glyphicon glyphicon-search"></i>
           <% end %>
       <% end %>
+      <div class="search-results-wrap"></div>
     </div>
   </div>
 
