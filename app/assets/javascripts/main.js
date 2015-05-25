@@ -53,6 +53,25 @@ on_ready = function() {
     });
     // END РїРѕСЃР»РµРґРЅРёРµ РЅРѕРІРѕСЃС‚Рё СЃР»Р°Р№РґРµСЂ
 
+
+    $('.search-btn').on('click', function () {
+        $('.search-results-wrap').toggle();
+        $('.popup-search-content').toggleClass('active');
+        setHeightResultsWrap();
+    });
+
+    var setHeightResultsWrap = function () {
+        setTimeout(function () {
+            var windowH = $(window).height();
+            var offset = $('.result-items-wrapper').offset().top;
+            console.log(windowH);
+            console.log(offset);
+            $('.result-items-wrapper').css('max-height', (windowH-offset)+'px');
+        }, 300);
+
+    }
+
+
     $(window).load(function() {
         $('.news-item-row').each(function() {
             var minHeight = 9999;

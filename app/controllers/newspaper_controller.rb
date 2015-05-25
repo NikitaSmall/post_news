@@ -17,6 +17,10 @@ class NewspaperController < ApplicationController
     @advertisement = get_random_advertisement
   end
 
+  def news_search
+    @posts = Post.search(params[:word]).paginate(:page => params[:page], :per_page => 7)
+  end
+
   def share
     @post.shared!
 
