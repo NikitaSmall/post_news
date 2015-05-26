@@ -19,14 +19,14 @@
 </div>
 
 <hr/>
-<div class="result-items-wrapper">
-  <% @posts.each do |post| %>
-      <%= link_to link_selector(post), target: target_selector(post), data: {id: post.id}, class: 'clearfix item-result' do %>
-          <%= image_tag post.photo.url, height: 110 %>
-          <time><%= Russian::strftime(post.created_at, "%d %B %Y") %></time>
-          <span class="title"><%= post.title %></span>
-          <span class="text"><%= truncate strip_tags(post.content.html_safe), length: 150 %></span>
+<div class="result-items-wrapper nano">
+    <div class="nano-content">
+    <% @posts.each do |post| %>
+          <%= link_to link_selector(post), target: target_selector(post), data: {id: post.id}, class: 'clearfix item-result' do %>
+              <%= image_tag post.photo.url %>
+              <time><%= Russian::strftime(post.created_at, "%d %B %Y") %></time>
+              <span class="title"><%= post.title %></span>
+              <span class="text"><%= truncate strip_tags(post.content.html_safe), length: 150 %></span>
+          <% end %>
+          <hr/>
       <% end %>
-      <hr/>
-  <% end %>
-</div>
