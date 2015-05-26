@@ -1,4 +1,8 @@
 <h1>Реклама</h1>
+
+<%= link_to 'Новое рекламное объявление', new_advertisement_path, class: 'btn btn-default' %>
+<br />
+
 <% if !@advertisements.empty? %>
     <table class="table table-striped">
       <thead>
@@ -12,7 +16,6 @@
           <th></th>
         </tr>
       </thead>
-
       <tbody>
         <% @advertisements.each do |advertisement| %>
           <%= render partial: advertisement %>
@@ -23,8 +26,5 @@
     <h3 class="text-center">Вы пока что не разместили никакой рекламы</h3>
 <% end %>
 
-<br>
-
-<%= link_to 'Новое рекламное объявление', new_advertisement_path, class: 'btn btn-default' %>
 
 <br />
