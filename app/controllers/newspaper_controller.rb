@@ -17,6 +17,16 @@ class NewspaperController < ApplicationController
     @advertisement = get_random_advertisement
   end
 
+  def news_search
+    @posts = Post.search(params[:word]).paginate(:page => params[:page], :per_page => 7).to_a
+    @posts.insert(rand_position, get_random_advertisement).compact! if @posts.count > 3  # advertisement will not appear if there a few posts on a search page
+
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end
+  end
+
   def share
     @post.shared!
 

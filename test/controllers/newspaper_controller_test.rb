@@ -87,4 +87,9 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_equal new.visits, @post.visits + 1
   end
+
+  test "should_show_search_result" do
+    get :news_search, word: 'Str'
+    assert_response :success
+  end
 end

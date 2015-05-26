@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 on_ready = ->
+
+  $(document).on 'click', '.pagination[remote=true] a', ->
+    window.history.pushState(null, 'hi', $(this).attr("href"))
+    $.rails.handleRemote($(this))
+    return false
+
   id = $('#social_share').data('id')
 
   # calling a request for visit post check
@@ -26,8 +32,8 @@ on_ready = ->
         console.log("AJAX Error: #{textStatus}")
 
   # calling a request for visit advertisement check
-  advertisement_id = $("a[target='_blank']").data('id')
-  $("a[target='_blank']").on 'click', ->
+  $(document).on 'click', "a[target='_blank']", ->
+    advertisement_id = $(this).data('id')
     $.ajax
       url: '/advertise/' + advertisement_id
       method: 'post'
