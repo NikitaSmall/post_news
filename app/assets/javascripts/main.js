@@ -62,7 +62,6 @@ on_ready = function() {
             childItem.each(function () {
                 var $this = $(this);
                 var itemHeight = $this.height();
-                console.log(itemHeight);
                 if (itemHeight < minHeight){
                     minHeight = $(this).height();
                 }
