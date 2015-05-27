@@ -11,8 +11,10 @@ on_ready = function() {
         width: '100%',
         maxwidth: '100%',
         nav: false,
-        //autoplay: '3000',
+        autoplay: '4000',
         transitionduration: '850',
+        click: false,
+        swipe: false,
         loop: true,
         ratio: '1200/585'
     });
@@ -23,12 +25,14 @@ on_ready = function() {
     $('.js-search').on('click', function(e){
         e.preventDefault();
         $(this).toggleClass('active');
+        $('.wrapper').toggleClass('openedPopup');
         $('.popup-wrapper.popup-search').toggleClass('open');
         $('.input-search').focus();
     });
     $('.js-archive').on('click', function(e){
         e.preventDefault();
         $(this).toggleClass('active');
+        $('.wrapper').toggleClass('openedPopup');
         $('.popup-wrapper.popup-archive').toggleClass('open');
     });
     $('.popup-search .popup-close').on('click', function(e){
@@ -64,12 +68,24 @@ on_ready = function() {
         setTimeout(function () {
             var windowH = $(window).height();
             var offset = $('.result-items-wrapper').offset().top;
-            console.log(windowH);
-            console.log(offset);
-            $('.result-items-wrapper').css('max-height', (windowH-offset)+'px');
+            $('.result-items-wrapper').css('height', (windowH-offset)+'px');
         }, 300);
 
-    }
+        setTimeout(function () {
+            $(".slimScroll").slimScroll({
+                height: '450px',
+                alwaysVisible: true
+            });
+            $( document ).ajaxComplete(function() {
+                $(".slimScroll").slimScroll({
+                    height: '450px',
+                    alwaysVisible: true
+                });
+            });
+
+            console.log('yup!!');
+        }, 0);
+    };
 
 
     $(window).load(function() {
@@ -79,7 +95,6 @@ on_ready = function() {
             childItem.each(function () {
                 var $this = $(this);
                 var itemHeight = $this.height();
-                console.log(itemHeight);
                 if (itemHeight < minHeight){
                     minHeight = $(this).height();
                 }

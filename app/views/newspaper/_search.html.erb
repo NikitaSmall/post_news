@@ -19,7 +19,7 @@
 </div>
 
 <hr/>
-<div class="result-items-wrapper">
+<div class="result-items-wrapper slimScroll">
   <% @posts.each do |post| %>
       <%= link_to link_selector(post), target: target_selector(post), data: {id: post.id}, class: 'clearfix item-result' do %>
           <%= image_tag post.photo.url %>
@@ -32,4 +32,6 @@
   <div class="text-center">
     <%= will_paginate @posts, remote: true %>
   </div>
+  <br />
+  <br />
 </div>
