@@ -4,7 +4,7 @@
 
 on_ready = ->
 
-  $(document).on 'click', '.pagination[remote=true] a', ->
+  $(document).on 'click', '.search-results-wrap .pagination[remote=true] a', ->
     window.history.pushState(null, 'hi', $(this).attr("href"))
     $.rails.handleRemote($(this))
     return false
