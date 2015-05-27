@@ -83,9 +83,10 @@ class NewspaperController < ApplicationController
   end
 
   def set_session
-    adv = Advertisement.enabled
+    adv = Advertisement.enabled.pluck(:id)
     session[:adv] ||= Hash.new(0)
-    adv.each { |record| session[:adv][record.id] += 0 }
+    adv.each { |id| session[:adv][id] += 0 }
+    session[:adv].delete_if { |k, v| !adv.include?(k) }
   end
 
   def rand_position

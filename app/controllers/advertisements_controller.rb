@@ -54,7 +54,11 @@ class AdvertisementsController < ApplicationController
 
   def destroy
     @advertisement.destroy
-    respond_with(@advertisement)
+
+    respond_to do |format|
+      format.html { redirect_to advertisements_path }
+      format.js {}
+    end
   end
 
   private

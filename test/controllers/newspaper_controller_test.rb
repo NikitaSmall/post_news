@@ -92,4 +92,17 @@ class NewspaperControllerTest < ActionController::TestCase
     get :news_search, word: 'Str'
     assert_response :success
   end
+
+  test "should_show_correct_number_at_advertisment_state_changing" do
+    @advertisement = create(:advertisement, enabled: true)
+    second = create(:post_two, main: true)
+    three = create(:post_three, main: true)
+    four = create(:post_four, main: true)
+
+    get :index
+    Advertisement.delete_all
+    get :index
+
+    assert_select 'a.news-item', 4
+  end
 end
