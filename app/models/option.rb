@@ -8,6 +8,8 @@ class Option < ActiveRecord::Base
   end
 
   def self.get_value(name)
-    find_by_name(name).value
+    option = find_by_name(name)
+    return option.value unless option.nil?
+    nil
   end
 end

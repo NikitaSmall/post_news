@@ -23,4 +23,10 @@ class OptionTest < ActiveSupport::TestCase
 
     assert_equal option.to_i, 42
   end
+
+  test "should_not_fail_on_returning_option_value" do
+    option = Option.get_value('num')
+
+    assert_nil option
+  end
 end

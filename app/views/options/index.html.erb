@@ -1,0 +1,8 @@
+<%= form_tag set_option_path, method: :patch, class: 'form-inline' do %>
+    <div class="form-group">
+      <%= label_tag @options['ads_num'], 'Количество показов рекламы пользователю' %>
+      <%= hidden_field_tag 'name', 'ads_num' %>
+      <%= number_field_tag 'value', @options['ads_num'] || 0, step: 1, class: 'form-control' %>
+      <%= submit_tag 'Установить', class: 'btn btn-default' %>
+    </div>
+<% end %>

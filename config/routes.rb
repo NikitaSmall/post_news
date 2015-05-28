@@ -1,5 +1,8 @@
 PostNews::Application.routes.draw do
 
+  get '/options' => 'options#index', as: 'options'
+  patch '/options_set' => 'options#set_option', as: 'set_option'
+
   patch '/advertisement_enable/:id' => 'advertisements#enable', as: 'enable'
   patch '/advertisement_disable/:id' => 'advertisements#disable', as: 'disable'
   resources :advertisements
