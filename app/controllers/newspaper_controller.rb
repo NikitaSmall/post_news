@@ -74,8 +74,9 @@ class NewspaperController < ApplicationController
 
   def get_random_advertisement
     set_session
+    ads_num = Option.get_value('ads_num').to_i
 
-    id = session[:adv].select { |k, v| v < 5 }.keys.sample
+    id = session[:adv].select { |k, v| v < ads_num }.keys.sample
     session[:adv][id] += 1
 
     return Advertisement.find(id) unless id.nil?

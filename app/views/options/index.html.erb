@@ -1,4 +1,4 @@
-<%= form_tag set_option_path, method: :patch, class: 'form-inline' do %>
+<%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline' do %>
     <div class="form-group">
       <%= label_tag @options['ads_num'], 'Количество показов рекламы пользователю' %>
       <%= hidden_field_tag 'name', 'ads_num' %>
