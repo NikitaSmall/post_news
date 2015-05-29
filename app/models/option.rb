@@ -12,4 +12,8 @@ class Option < ActiveRecord::Base
     return option.value unless option.nil?
     nil
   end
+
+  def self.get_options
+    pluck(:name, :value).to_h
+  end
 end

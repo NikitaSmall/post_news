@@ -5,7 +5,7 @@ class OptionsController < ApplicationController
   layout 'admin'
 
   def index
-    @options = Option.pluck(:name, :value).to_h
+    @options = Option.get_options
   end
 
   def set_option

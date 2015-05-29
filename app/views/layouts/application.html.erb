@@ -71,10 +71,10 @@
       <div class="container">
         <div class="row">
           <div class="social">
-            <%= link_to '#', class: 'social social-fb' do %><span class="social social-fb-hover"></span><% end %>
-            <%= link_to '#', class: 'social social-tw' do %><span class="social social-tw-hover"></span><% end %>
-            <%= link_to '#', class: 'social social-vk' do %><span class="social social-vk-hover"></span><% end %>
-            <%= link_to '#', class: 'social social-rss' do %><span class="social social-rss-hover"></span><% end %>
+            <%= link_to @options['fb-link'] || '#', class: 'social social-fb' do %><span class="social social-fb-hover"></span><% end %>
+            <%= link_to @options['tw-link'] || '#', class: 'social social-tw' do %><span class="social social-tw-hover"></span><% end %>
+            <%= link_to @options['vk-link'] || '#', class: 'social social-vk' do %><span class="social social-vk-hover"></span><% end %>
+            <%= link_to feed_url(format: "atom"), class: 'social social-rss' do %><span class="social social-rss-hover"></span><% end %>
           </div>
         </div>
       </div>

@@ -29,4 +29,19 @@ class OptionTest < ActiveSupport::TestCase
 
     assert_nil option
   end
+
+  test "should_get_all_options_as_hash" do
+    Option.set_value('num', 42)
+    Option.set_value('str', 'foo')
+    options = Option.get_options
+
+    assert_kind_of Hash, options
+    assert_equal options['num'], Option.get_value('num')
+  end
+
+  test "should_be_ok_to_work_with_empty_options" do
+    options = Option.get_options
+
+    assert_kind_of Hash, options
+  end
 end
