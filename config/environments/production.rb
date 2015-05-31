@@ -12,6 +12,19 @@ PostNews::Application.configure do
       fog_directory: ENV["FOG_DIRECTORY"]
   }
 
+  PAPERCLIP_STORAGE_ADV_OPTIONS = {
+      :styles => { :medium => "500x500>", :thumb => "100x100>" },
+      :url  => ":s3_domain_url",
+      :path => "public/adv/:id/:style_:basename.:extension",
+      :storage => :fog,
+      :fog_credentials => {
+          provider: 'AWS',
+          aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+          aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+      },
+      fog_directory: ENV["FOG_DIRECTORY"]
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

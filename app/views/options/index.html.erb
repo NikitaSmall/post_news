@@ -1,0 +1,25 @@
+<div>
+  <h4>Настройки для рекламы:</h4>
+<%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline text-right' do %>
+    <div class="form-group">
+      <%= label_tag @options['ads_num'], 'Количество показов рекламы пользователю' %>
+      <%= hidden_field_tag 'name', 'ads_num' %>
+      <%= number_field_tag 'value', @options['ads_num'] || 0, step: 1, class: 'form-control' %>
+      <%= submit_tag 'Установить', class: 'btn btn-default' %>
+    </div>
+<% end %>
+</div>
+<div>
+  <h4>Настройки ссылок для социальных сетей:</h4>
+  <% {'fb-link' => 'facebook', 'tw-link' => 'twitter', 'vk-link' => 'Вконтакте'}.each do |link, name| %>
+      <%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline text-right' do %>
+          <div class="form-group">
+            <%= label_tag @options[link], "Ссылка для #{name}" %>
+            <%= hidden_field_tag 'name', link %>
+            <%= text_field_tag 'value', @options[link] || '', style: 'width: 300px;', class: 'form-control' %>
+            <%= submit_tag 'Установить', class: 'btn btn-default' %>
+          </div>
+      <% end %>
+      <br />
+  <% end %>
+</div>

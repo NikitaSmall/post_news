@@ -8,20 +8,21 @@
           <%= post.title %>
         </p>
         <p class="text">
-          <%= truncate strip_tags(post.content.html_safe), length: 50 %>
+          <%= truncate strip_tags(post.content.html_safe), length: 150 %>
         </p>
         <div class="counters">
           <a href="#" class="views">
-            <i><span></span></i> 359
+            <i><span></span></i> <%= post.visits %>
           </a>
-          <a href="#" class="comments">
-            <i><span></span></i> 245
-          </a>
+          <%= link_to read_post_path(post.id, anchor: 'disqus_thread'), class: 'comments' do %>
+              <i><span></span></i> <span class="disqus-comment-count" data-disqus-url="<%= read_post_url(post.id) %>"></span>
+          <% end %>
+
           <a href="#" class="shares">
-            <i><span></span></i> 169
+            <i><span></span></i> <%= post.shared %>
           </a>
         </div>
-        <%= link_to 'Читать полностью', '#', class: 'read-more-btn' %>
+        <%= link_to 'Читать полностью', read_post_path(post), class: 'read-more-btn' %>
       </div>
     </div>
     <% end %>

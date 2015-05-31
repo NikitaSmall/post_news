@@ -1,11 +1,28 @@
-<div class="popular-news">
-  <p class="title">популярное</p>
+<!--<div class="popular-news">
+  <p class="title">популярные теги</p>
   <div class="popupal-items-wrap">
-    <%# there should be a loop for popular posts %>
+    <% @popular_tags.each do |tag| %>
       <%= link_to '#', class: 'popular-item' do %>
-        <time>19:48</time>
-        <span>Яценюк приехал тушить пожар в зоне Чернобыльской АЭС</span>
+        <span><%= tag.name %></span>
       <% end %>
-    <%# end %>
+    <% end %>
+  </div>
+</div>-->
+
+
+<div class="popular-tags">
+  <p class="title">популярные теги</p>
+  <div class="popupal-items-wrap">
+  <ul>
+    <% @popular_tags.each do |tag| %>
+      <li>
+      <%= link_to '#', class: 'popular-item' do %>
+        <span><%= tag.name %></span>
+      <% end %>
+      </li>
+
+    <% end %>
+    <li class="helper"></li>
+    </ul>
   </div>
 </div>

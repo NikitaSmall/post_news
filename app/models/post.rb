@@ -2,11 +2,14 @@ class Post < ActiveRecord::Base
   acts_as_taggable
 
   belongs_to :user
+
+  scope :none, -> { where('1 = 0') }
   scope :main, -> { where(main: true) }
   scope :hidden, -> { where(main: false) }
   scope :featured, -> { where(featured: true) }
   scope :by_position, -> { order(position: :desc) }
   scope :by_position_asc, -> { order(position: :asc) }
+  scope :user_posts, ->(user) { where(user: user) }
 
   has_attached_file :photo, {
                               :styles => {:thumb => '50x50#', :original => '800x800>'}
@@ -66,9 +69,33 @@ class Post < ActiveRecord::Base
     self.save
   end
 
+  def shared!
+    self.shared += 1
+    save
+  end
+
+  def visits!
+    self.visits += 1
+    save
+  end
+
   def self.search(word)
     word = "%#{word}%"
     where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase
+  end
+
+  def self.popular_tags(limit = 20)
+    ActsAsTaggableOn::Tag.most_used(limit).where('taggings_count > 0')
+  end
+
+  def self.popular_tagged_post(limit = 20)
+    tags = popular_tags(limit)
+    popular_posts = Array.new
+
+    tags.each do |tag|
+      popular_posts << tagged_with(tag.name).to_a
+    end
+    popular_posts.flatten.first(limit)
   end
 
   protected

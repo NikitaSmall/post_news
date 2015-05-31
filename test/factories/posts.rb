@@ -7,6 +7,7 @@ FactoryGirl.define do
     main false
     featured false
     position 1
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
@@ -21,6 +22,7 @@ FactoryGirl.define do
     main false
     featured 0
     position 2
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
@@ -34,6 +36,7 @@ FactoryGirl.define do
     main true
     featured 0
     position 3
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
@@ -47,6 +50,7 @@ FactoryGirl.define do
     main true
     featured true
     position 4
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
@@ -60,6 +64,7 @@ FactoryGirl.define do
     main false
     featured 0
     position 5
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }
@@ -73,6 +78,7 @@ FactoryGirl.define do
     main true
     featured 0
     position 6
+    visits 0
     photo_file_name { 'missing.png' }
     photo_content_type { 'image/png' }
     photo_file_size { 1024 }

@@ -1,0 +1,33 @@
+<% if @posts.count > 0 %>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Название</th>
+        <th>Текст</th>
+        <th>Автор</th>
+        <th>Главная</th>
+        <th>Зафичерено</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+          <%= render partial: post %>
+      <% end %>
+      </tbody>
+    </table>
+    <div class=" col-sm-offset-4 col-md-offset-3">
+      <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+    </div>
+<% elsif current_user.corrector? %>
+    <h2 class="text-center">Вы корректор и пока не можете иметь свои записи</h2>
+<% else %>
+    <h2 class="text-center">У вас пока нет ни одной записи</h2>
+<% end %>
+
+<br>
+
+

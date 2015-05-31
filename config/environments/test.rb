@@ -4,6 +4,8 @@ PostNews::Application.configure do
          :path => "/post/original/:style/:basename.:extension"
 }
 
+  PAPERCLIP_STORAGE_ADV_OPTIONS = {}
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

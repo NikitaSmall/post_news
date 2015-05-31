@@ -8,12 +8,12 @@
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->
-      <% Post.main.order(created_at: :desc).first(5).each do |post|%>
+      <% Post.order(created_at: :desc).first(6).each do |post|%>
       <div class="swiper-slide">
         <p class="news-text">
-            <%= link_to post.title, '#' %>
+            <%= link_to post.title, read_post_path(post) %>
         </p>
-        <time>15 мин назад</time>
+        <time><%= time_ago_in_words(post.created_at) %> назад</time>
       </div>
       <% end %>
     </div>

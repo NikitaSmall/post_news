@@ -1,4 +1,4 @@
-<h2><%= @post.title %></h2> <p>Автор: <%= @post.user.username %></p>
+<h2><%= @post.title %></h2> <p>Автор: <%= @post.user.username %> | Посещений: <%= @post.visits %></p>
 <% if @post.main %>
     <p class="text-primary">Эта новость отображается на главной странице</p>
 <% end %>
@@ -23,4 +23,4 @@
 
 <br />
 
-<%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-default' %>
+<%= link_to 'Редактировать', edit_post_path(@post), class: 'btn btn-default' %> <%= link_to 'Читать на сайте', read_post_path(@post), class: 'btn btn-info' %>

@@ -20,12 +20,17 @@ module PostNews
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.encoding = "utf-8"
+
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.autoload_paths += Dir["#{config.root}/lib", "#{config.root}/lib/**/"]
+
     config.assets.precompile += Ckeditor.assets
     config.assets.precompile += %w(ckeditor/*)
 
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     config.i18n.default_locale = :ru
+
+    config.time_zone = 'Europe/Kiev'
   end
 end
