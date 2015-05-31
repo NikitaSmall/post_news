@@ -4,6 +4,8 @@
   <title>Apex-news</title>
   <%= stylesheet_link_tag    "newspaper", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= auto_discovery_link_tag(:atom, feed_url(format: "atom")) %>
+  <%= disqus_init %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,8 +19,9 @@
           <%= link_to (image_tag 'logo.jpg'), root_path, class: 'logo-img' %>
           <%= link_to 'APEX NEWS', root_path, class: 'logo-text' %>
           <div class="weather">
-            <%= image_tag 'sun.png' %>
-            <span>Одесса <br/> +17</span>
+            <%= weather_tag %>
+            <%# image_tag 'sun.png' %>
+            <span>Одесса <br/> C&deg; <%= weather_temp %></span>
           </div>
         </div>
       </div>
@@ -37,7 +40,7 @@
               <li><a href="#">Фото</a></li>
             </ul>
           </nav>
-          <time class="date-time"><%= @time %></time>
+          <time class="date-time"><%= @time.upcase %></time>
           <span class="notice h4 text-warning" style="margin-left: 20px;"> <%= notice %> <span class="text-danger"> <%= alert %> </span></span>
           <!--  begin search and archive  -->
           <div class="archive-search">
@@ -68,10 +71,10 @@
       <div class="container">
         <div class="row">
           <div class="social">
-            <a href="#" class="social social-fb"><span class="social social-fb-hover"></span></a>
-            <a href="#" class="social social-tw"><span class="social social-tw-hover"></span></a>
-            <a href="#" class="social social-vk"><span class="social social-vk-hover"></span></a>
-            <a href="#" class="social social-rss"><span class="social social-rss-hover"></span></a>
+            <%= link_to @options['fb-link'] || '#', class: 'social social-fb' do %><span class="social social-fb-hover"></span><% end %>
+            <%= link_to @options['tw-link'] || '#', class: 'social social-tw' do %><span class="social social-tw-hover"></span><% end %>
+            <%= link_to @options['vk-link'] || '#', class: 'social social-vk' do %><span class="social social-vk-hover"></span><% end %>
+            <%= link_to feed_url(format: "atom"), class: 'social social-rss' do %><span class="social social-rss-hover"></span><% end %>
           </div>
         </div>
       </div>
@@ -93,12 +96,13 @@
   <div class="popup-wrapper popup-search">
     <button class="popup-close"><i></i><i></i></button>
     <div class="popup-search-content">
-      <%= form_tag '#', method: :get, enforce_utf8: false do %>
+      <%= form_tag news_search_path, method: :get, autocomplete: "off", remote: true, enforce_utf8: false do %>
           <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'input-search', placeholder: 'Введите слово или фразу для поиска...' %>
           <%= button_tag class: 'search-btn' do %>
               <i class="glyphicon glyphicon-search"></i>
           <% end %>
       <% end %>
+      <div class="search-results-wrap"></div>
     </div>
   </div>
 
@@ -111,6 +115,45 @@
   <!--  END search and archive popups  -->
 
 </div>
+<!-- discus count BEGIN -->
+<script type="text/javascript">
+  disqus_count = function () {
+      var disqusPublicKey = "WtKqgFBR3q7PkVrmnJdUXw1VYyrrSrpTQGZ6dbvOESUy25xGDhriuDeRvWoawxwy"; // Replace with your own public key
+      var disqusShortname = "apexnews"; // Replace with your own shortname
+
+      var urlArray = [];
+
+      $('.disqus-comment-count').each(function () {
+          var url = $(this).attr('data-disqus-url');
+          urlArray.push('link:' + url);
+      });
+
+      $.ajax({
+          type: 'GET',
+          url: "https://disqus.com/api/3.0/threads/set.jsonp",
+          data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
+          cache: false,
+          dataType: 'jsonp',
+          success: function (result) {
+              //console.log(urlArray);
+              //console.log(result);
+              for (var i in result.response) {
+
+                  var countText = "";
+                  var count = result.response[i].posts;
+
+                  if (count == 1)
+                      countText = "";
+
+                  $('span[data-disqus-url="' + result.response[i].link + '"]').replaceWith(count + countText);
+
+              }
+          }
+      });
+  };
+    $(document).on('fotorama:show', disqus_count);
+</script>
+<!-- discus count END-->
 
 </body>
 </html>

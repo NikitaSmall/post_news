@@ -4,9 +4,11 @@
 
 /*
  *
+ *= require weather-icons
  *= require_self
  *= require style
  *= require swiper.min
+ * require social-share-button
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -14,4 +16,113 @@
 
 #register .error {
   color: #ff0000;
+}
+
+.weather i {
+  font-size: 57px;
+  width: 57px;
+  float: right;
+  color: #9933cc;
+}
+
+.social-share-button {
+  display: inline-block;
+  width: 140px;
+  height: 32px;
+  float: right;
+  margin-right: 0px;
+}
+
+.social-share {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-left: 3px;
+  float: left;
+}
+
+.social-share-button-facebook {
+  @extend .social-share;
+  background: url("social/facebook.png") no-repeat;
+}
+
+.social-share-button-twitter {
+  @extend .social-share;
+  background: url("social/twitter.png") no-repeat;
+}
+
+.social-share-button-google_plus {
+  @extend .social-share;
+  background: url('social/googleplus.png') no-repeat
+}
+
+.social-share-button-tumblr {
+  @extend .social-share;
+  background: url("social/tumblr.png") no-repeat;
+}
+
+.pagination {
+  border-radius: 0;
+  font-size: 1.375em;
+}
+.pagination .disabled {
+  display: none;
+}
+.pagination em {
+  font-style: normal;
+  color: #9933cc;
+}
+.pagination a {
+  color: #ffffff;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.pagination a:hover {
+  color: #9933cc;
+}
+.pagination .next_page .glyphicon {
+  display: none;
+}
+.pagination .next_page:after {
+  content: ">";
+}
+.pagination .previous_page .glyphicon {
+  display: none;
+}
+.pagination .previous_page:before {
+  content: "<";
+}
+
+.result-items-wrapper {
+  margin: 15px 0 0;
+}
+.item-result {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+}
+.item-result img {
+  float: left;
+  margin-right: 15px;
+  width: 190px;
+  height: auto;
+}
+.item-result time {
+  display: block;
+  color: #ffffff;
+  font-size: 0.92857143em;
+}
+.item-result .title {
+  display: block;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.28571429em;
+}
+.item-result .text {
+  color: #ffffff;
+  display: block;
+  font-size: 1em;
 }

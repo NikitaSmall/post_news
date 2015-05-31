@@ -1,0 +1,22 @@
+<h2><%= @advertisement.title %></h2>
+<% if @advertisement.enabled %>
+    <p class="text-primary">Эта реклама включена к показу на сайте</p>
+<% end %>
+
+<div id="admin-content">
+  <div style="float: right;">
+    <%= image_tag @advertisement.photo.url, width: 200, class: 'img-thumbnail img-responsive' %>
+  </div>
+  <%= @advertisement.content.html_safe %>
+</div>
+
+<div>
+  Ссылка: <%= link_to @advertisement.link, @advertisement.link, target: '_blank' %>
+</div>
+<div>
+  Посещений: <%= @advertisement.visits %>
+</div>
+
+<br />
+
+<%= link_to 'Редактировать', edit_advertisement_path(@advertisement), class: 'btn btn-default' %>

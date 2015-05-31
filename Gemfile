@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -19,7 +20,7 @@ gem 'devise'
 gem 'acts-as-taggable-on'
 
 # gem for wysiwyg editor
-gem 'ckeditor'
+gem 'ckeditor', '4.1.1'
 
 # gem for uploads
 gem 'paperclip'
@@ -58,7 +59,22 @@ gem 'json'
 # gem for good russian translation
 gem 'russian', '~> 0.6.0'
 
-gem 'rspec-rails'
+# for site parsing (for weather forecasting!)
+gem 'nokogiri'
+
+# pretty weather icons (ready to bootstraping!)
+gem 'weather-icons-rails'
+
+# weather for easy weather state checking (my own gem!). Link: https://github.com/NikitaSmall/pretty_weather
+gem 'pretty_weather'
+
+# gem for discus integration
+gem 'disqus_rails'
+
+# gem for social sharing
+gem 'social-share-button'
+
+# gem 'rspec-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

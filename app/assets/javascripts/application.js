@@ -18,8 +18,10 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_ru
-//= require_tree ./ckeditor
+// require ckeditor/config
 //= require fotorama
+//= require disqus_rails
+//= require social-share-button
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
@@ -29,3 +31,11 @@ jQuery.validator.addMethod('lettersonly', (function(value, element) {
 jQuery.validator.addMethod('right_email', (function(value, element) {
     return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i.test(value);
 }), 'Допустим только корректный электронный адрес');
+
+on_ready = function(){
+    window.disqus_no_style = true;
+    //$.getScript("http://disqus.com/forums/rapexegesis/embed.js");
+};
+
+$(document).on('page:load', on_ready);
+$(document).ready(on_ready);

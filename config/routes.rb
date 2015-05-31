@@ -1,10 +1,25 @@
 PostNews::Application.routes.draw do
-  root 'newspaper#index'
 
+  get '/options' => 'options#index', as: 'options'
+  patch '/options_set' => 'options#set_option', as: 'set_option'
+
+  patch '/advertisement_enable/:id' => 'advertisements#enable', as: 'enable'
+  patch '/advertisement_disable/:id' => 'advertisements#disable', as: 'disable'
+  resources :advertisements
+
+  root 'newspaper#index'
+  get '/read/:id' => 'newspaper#read', as: 'read_post'
+  get '/search' => 'newspaper#news_search', as: 'news_search'
+
+  post '/share/:id' => 'newspaper#share', as: 'share_post'
+  post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'
+  post '/visit_post/:id' => 'newspaper#visit_post', as: 'visit_post'
+
+  get '/feed' => 'newspaper#feed', as: 'feed'
   get '/all' => 'newspaper#all', as: 'all_posts'
   get '/all_users' => 'newspaper#all_users', as: 'all_users'
 
-  get '/users' => 'user#index', as: 'users'
+  get '/users_admin' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
   #devise_scope :user do
   #  get '/registration' => 'users/registrations#new'
@@ -23,11 +38,12 @@ PostNews::Application.routes.draw do
   post '/user_check_email' => 'user#check_email', as: 'check_email'
   # get '/check_recaptcha' => 'user#check_recaptcha'
 
-  resources :posts
+  resources :posts#, except: 'feed'
   get '/admin' => 'posts#index'
   get '/posts/tag/:tag' => 'posts#index', as: 'tag_posts'
   get '/posts_main' => 'posts#main', as: 'main_posts'
   get '/posts_hidden' => 'posts#hidden', as: 'hidden_posts'
+  get '/posts_own' => 'posts#my_posts', as: 'my_posts'
   # post '/posts/search' => 'posts#index', as: 'search'
 
   patch '/switch_to/:first/:second' => 'posts#switch', as: 'switch'
@@ -43,7 +59,8 @@ PostNews::Application.routes.draw do
   patch '/main/:id' => 'posts#to_main', as: 'to_main'
   patch '/hide/:id' => 'posts#hide', as: 'hide'
 
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   mount Ckeditor::Engine => '/ckeditor'
   
   # The priority is based upon order of creation: first created -> highest priority.
