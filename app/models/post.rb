@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   validates :title, :content, :photo, presence: true
-  validates :title, uniqueness: true
+  validates :title, uniqueness: { case_sensitive: false }
 
   after_create :check_featured, :set_position
 

@@ -175,5 +175,4 @@ class PostTest < ActiveSupport::TestCase
       @post_one.visits!
     end
   end
-
 end

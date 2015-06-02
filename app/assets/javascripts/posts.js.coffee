@@ -30,6 +30,25 @@ on_ready = ->
         error.insertBefore element
   )
 
+  $('.edit_post').validate(
+    #debug: true
+    ignore: []
+    rules:
+      'post[title]':
+        required: true
+        maxlength: 250
+      'post[content]':
+        required: (textarea) ->
+          CKEDITOR.instances[textarea.id].updateElement() # update textarea
+          editorcontent = textarea.value.replace(/<[^>]*>/gi, '') # strip tags
+          return editorcontent.length == 0
+    errorPlacement: (error, element) ->
+      if element.attr('id') == 'content'
+        error.insertBefore 'textarea#content'
+      else
+        error.insertBefore element
+  )
+
   if $('#post_main').is(':checked')
     $('#post_featured').prop 'disabled', false
   else

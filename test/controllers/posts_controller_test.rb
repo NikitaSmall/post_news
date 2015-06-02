@@ -507,4 +507,13 @@ class PostsControllerTest < ActionController::TestCase
     assert_response :success
     assert_select 'td a'
   end
+
+
+  test "should_create_only_one_post_and_did not update" do
+    @post_two = create(:post_two)
+    patch :update, id: @post_two, post: { title: @post.title.downcase }
+    @p = Post.find(@post_two.id)
+
+    assert_equal @p.title, @post_two.title
+  end
 end

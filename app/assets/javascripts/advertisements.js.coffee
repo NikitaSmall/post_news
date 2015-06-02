@@ -28,5 +28,27 @@ on_ready = ->
         error.insertBefore element
   )
 
+  $('.edit_advertisement').validate(
+    #debug: true
+    ignore: []
+    rules:
+      'advertisement[title]':
+        required: true
+        maxlength: 250
+      'advertisement[link]':
+        required: true
+        maxlength: 250
+      'advertisement[content]':
+        required: (textarea) ->
+          CKEDITOR.instances[textarea.id].updateElement() # update textarea
+          editorcontent = textarea.value.replace(/<[^>]*>/gi, '') # strip tags
+          return editorcontent.length == 0
+    errorPlacement: (error, element) ->
+      if element.attr('id') == 'content'
+        error.insertBefore 'textarea#content'
+      else
+        error.insertBefore element
+  )
+
 $(document).ready(on_ready)
 $(document).on('page:load', on_ready)

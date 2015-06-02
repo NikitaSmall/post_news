@@ -1,9 +1,12 @@
 require 'test_helper'
 
 class NewspaperControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @post = create(:post_one, main: true)
     @user = create(:admin, id: 1)
+    @option = create(:option, name: 'ads_num', value: '1')
   end
 
   test "should_get_index" do
