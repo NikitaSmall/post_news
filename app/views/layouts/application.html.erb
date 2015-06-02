@@ -41,7 +41,13 @@
             </ul>
           </nav>
           <time class="date-time"><%= @time.upcase %></time>
-          <span class="notice h4 text-warning" style="margin-left: 20px;"> <%= notice %> <span class="text-danger"> <%= alert %> </span></span>
+          <span class="notice h4 text-warning" style="margin-left: 20px;"> <%= notice %>
+            <% if current_user %>
+              <% unless current_user.newbie? %>
+                <%= link_to 'В админку', posts_path, class: 'text-right' %>
+              <% end %>
+            <% end %>
+            <span class="text-danger"> <%= alert %> </span></span>
           <!--  begin search and archive  -->
           <div class="archive-search">
             <a href="#" class="js-search search-button">
