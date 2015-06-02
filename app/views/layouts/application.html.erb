@@ -44,7 +44,7 @@
           <span class="notice h4 text-warning" style="margin-left: 20px;"> <%= notice %>
             <% if current_user %>
               <% unless current_user.newbie? %>
-                <%= link_to 'В админку', posts_path, class: 'text-right' %>
+                <%= link_to 'В админку', posts_path, class: 'btn btn-default' %>
               <% end %>
             <% end %>
             <span class="text-danger"> <%= alert %> </span></span>
