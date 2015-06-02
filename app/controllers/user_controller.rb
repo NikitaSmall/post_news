@@ -19,7 +19,7 @@ class UserController < ApplicationController
 
   def change_avatar
     @user = User.find(current_user.id)
-    @user.update_attribute(:avatar, params[:user][:avatar])
+    @user.update_attribute(:avatar, params[:user][:avatar]) if params[:user].present?
 
     respond_to do |format|
       format.html { redirect_to user_url(current_user.id) }

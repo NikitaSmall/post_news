@@ -6,7 +6,7 @@
       <% @user.posts.each do |post| %>
           <tr>
             <td><%= link_to post.title, post_path(post) %></td>
-            <td><%= truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)' %></td>
+            <td><%= truncate strip_tags(post.content.html_safe), length: 50, omission: '...' %></td>
           </tr>
       <% end %>
     </table>
