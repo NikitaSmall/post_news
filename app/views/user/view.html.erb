@@ -13,7 +13,7 @@
   </div>
 
   <div class="col-md-4">
-    <%= image_tag @user.avatar.url, class: 'img-thumbnail img-responsive' %>
+    <%= image_tag @user.avatar.url(:medium), class: 'img-thumbnail img-responsive' %>
     <br /><br />
     <% if current_user.id == @user.id %>
         <%= form_for @user, url: change_avatar_path, html: { method: :patch, class: '' } do |f| %>
