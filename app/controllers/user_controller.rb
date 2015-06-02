@@ -14,7 +14,7 @@ class UserController < ApplicationController
 
   # GET /users/1
   def view
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end
 
   def change_avatar

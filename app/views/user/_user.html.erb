@@ -3,7 +3,7 @@
     <%= image_tag user.avatar.url(:medium), width: '80' %>
   </td>
   <td style="vertical-align: middle;">
-    <%= user.username %>
+    <%= link_to user.username, user_path(user.id) %>
   </td>
   <td style="vertical-align: middle;">
     <%= user.email %>
