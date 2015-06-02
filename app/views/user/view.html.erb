@@ -1,2 +1,25 @@
-<h1>User#view</h1>
-<p>Find me in app/views/user/view.html.erb</p>
+<h2><%= @user.username %></h2> <p>Ранг: <%= select_rank(@user) %></p>
+
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <% @user.posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post_path(post) %></td>
+            <td><%= post.content.html_safe %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-md-4">
+    <%= image_tag @user.avatar.url, class: 'img-thumbnail img-responsive' %>
+    <br /><br />
+    <%= form_for @user, url: change_avatar_path, html: { method: :patch, class: '' } do |f| %>
+        <%= f.file_field :avatar %><br />
+      <%= f.submit 'Сменить аватар', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
+
+<br />

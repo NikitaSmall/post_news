@@ -1,8 +1,7 @@
 class UserController < ApplicationController
-  # require "#{Rails.root}/lib/recaptcha"
   before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor, :destroy]
-  before_action :authenticate_user!, except: [:view, :check_email, :check_username, :check_recaptcha]
-  before_action :check_role, except: [:view, :check_email, :check_username, :check_recaptcha]
+  before_action :authenticate_user!, except: [:view, :check_email, :check_username]
+  before_action :check_role, except: [:view, :check_email, :check_username]
   before_action :check_empty_page, only: [:index]
 
   layout :resolve_layout
@@ -15,6 +14,17 @@ class UserController < ApplicationController
 
   # GET /users/1
   def view
+    @user = User.find(current_user.id)
+  end
+
+  def change_avatar
+    @user = User.find(current_user.id)
+    @user.update_attribute(:avatar, params[:user][:avatar])
+
+    respond_to do |format|
+      format.html { redirect_to user_url(current_user.id) }
+      format.js {}
+    end
   end
 
   def destroy
@@ -95,14 +105,6 @@ class UserController < ApplicationController
     end
   end
 
-  # def check_recaptcha
-  #   answer = Captcha::Recaptcha.verify(params)
-  #
-  #   respond_to do |format|
-  #     format.json { render json: answer }
-  #   end
-  # end
-
   protected
   def set_user
     @user = User.find(params[:id])
@@ -126,7 +128,7 @@ class UserController < ApplicationController
 
   def resolve_layout
     case params[:action]
-      when 'view'
+      when #'view'
         'application'
       else
         'admin'

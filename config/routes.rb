@@ -21,6 +21,9 @@ PostNews::Application.routes.draw do
 
   get '/users_admin' => 'user#index', as: 'users'
   get '/users/show/:id' => 'user#view', as: 'user'
+
+  patch '/user_avatar' => 'user#change_avatar', as: 'change_avatar'
+
   #devise_scope :user do
   #  get '/registration' => 'users/registrations#new'
   #end

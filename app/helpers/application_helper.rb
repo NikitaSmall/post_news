@@ -57,4 +57,19 @@ module ApplicationHelper
            end
     icon.html_safe
   end
+
+  def select_rank(user)
+    case user.rank
+      when 0
+        'Новенький'
+      when 1
+        'Корректор'
+      when 2
+        'Автор'
+      when 3
+        'Редактор'
+      when 4
+        'Администратор'
+    end
+  end
 end

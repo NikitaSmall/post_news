@@ -31,7 +31,11 @@
   </td>
   <td style="vertical-align: middle;">
     <% if current_user.id == user.id %>
-        <abbr title="Это вы"><span class="btn btn-default"><span class="glyphicon glyphicon-user"></span></span></abbr>
+        <abbr title="Это вы">
+          <%= link_to user_path(current_user.id), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-user"></span>
+          <% end%>
+        </abbr>
     <% elsif current_user.admin? && !user.admin? %>
         <%= link_to delete_user_path(user), method: :delete, remote: true, data: { confirm: 'Вы действительно хотите удалить этого пользователя? Это действие невозможно отменить.' }, class: 'btn btn-danger' do %>
             <span class="glyphicon glyphicon-trash"></span>
