@@ -59,8 +59,9 @@ on_ready = function() {
 
 
     $('.search-btn').on('click', function () {
-        $('.search-results-wrap').toggle();
-        $('.popup-search-content').toggleClass('active');
+        $('.search-results-wrap').toggle(true); // добавил true, чтобы она не опускалась после первого нажатия
+        $('.popup-search-content').addClass('active'); // изменил, чтобы лишний раз не нажимать поиск
+        // 50-я строка в style.css закоментирована, чтобы не исчезал ползунок (очень просили)
         setHeightResultsWrap();
     });
 

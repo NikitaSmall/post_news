@@ -47,7 +47,7 @@ body {
   background-color: #e6dfe6;
   font-family: 'MyriadPro-Regular';
   font-weight: 400;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 .wrapper.openedPopup {
   height: 100%;
