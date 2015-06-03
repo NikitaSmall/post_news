@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   before_action :set_user, only: [:view, :to_admin, :to_author, :to_corrector, :to_editor, :destroy]
-  before_action :authenticate_user!, except: [:view, :check_email, :check_username]
-  before_action :check_role, except: [:view, :check_email, :check_username]
+  before_action :authenticate_user!, except: [:check_email, :check_username]
+  before_action :check_role, except: [:view, :check_email, :check_username, :change_avatar]
   before_action :check_empty_page, only: [:index]
 
   layout :resolve_layout
