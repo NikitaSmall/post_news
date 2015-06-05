@@ -24,6 +24,7 @@ on_ready = ->
       'user[password]':
         required: true
         minlength: 8
+        maxlength: 128
       'user[password_confirmation]':
         required: true
         equalTo: '#user_password'
