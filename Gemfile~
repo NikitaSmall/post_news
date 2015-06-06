@@ -40,8 +40,10 @@ gem 'figaro'
 # gem for better fixtures
 gem 'factory_girl_rails'
 
-# gem for bdd
+# gems for bdd
 gem 'capybara'
+gem 'selenium-webdriver'
+gem 'capybara-screenshot', :group => :test
 
 # gem for ajax validation
 gem 'jquery-validation-rails'

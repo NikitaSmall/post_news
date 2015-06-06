@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 require 'factory_girl'
+require 'capybara-screenshot/minitest'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!

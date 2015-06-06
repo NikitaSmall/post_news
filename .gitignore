@@ -28,3 +28,4 @@
 /netbeans/*
 /nbproject/
 nbproject/*
+/test/integration/screens/

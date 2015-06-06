@@ -43,6 +43,7 @@ gem 'factory_girl_rails'
 # gems for bdd
 gem 'capybara'
 gem 'selenium-webdriver'
+gem 'capybara-screenshot', :group => :test
 
 # gem for ajax validation
 gem 'jquery-validation-rails'
