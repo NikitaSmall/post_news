@@ -9,6 +9,15 @@
     <% end %>
   </div>
 
+  <% unless @tags.empty? %>
+  <div class="tags text-center">
+    <span class="h4">С данным тегом часто <% if @tags.count > 1 %>встречаются эти теги: <% else %> встречается тег <% end %></span>
+    <% @tags.each do |tag| %>
+      <%= link_to tag, read_tag_path(tag) %>
+    <% end %>
+  </div>
+  <% end %>
+
   <hr/>
   <div class="result-items-wrapper slimScroll">
     <% @posts.each do |post| %>
