@@ -98,6 +98,19 @@ class Post < ActiveRecord::Base
     popular_posts.flatten.first(limit)
   end
 
+  def self.related_tags(tag)
+    posts = Post.tagged_with(tag)
+    tags = Hash.new(0)
+
+    posts.each do |post|
+      post.tag_list.each do |t|
+        tags[t] += 1
+      end
+    end
+    tags = tags.delete_if {|t, count| count <= 1 || t == tag.downcase }
+    tags.keys
+  end
+
   protected
   def check_featured
     defeature! unless main

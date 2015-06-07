@@ -8,6 +8,8 @@ class PostTest < ActiveSupport::TestCase
     @post_four = create(:post_four)
     @post_five = create(:post_five)
     @post_six = create(:post_six)
+
+    @option = create(:option, name: 'tag_count', value: 2)
   end
 
   test "should_show_next_post" do
@@ -174,5 +176,16 @@ class PostTest < ActiveSupport::TestCase
     assert_difference('@post_one.visits', 1) do
       @post_one.visits!
     end
+  end
+
+  test "should_return_related_tag" do
+    @tagged_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test, repo', id: 7)
+    @tagged_two = create(:post_one, title: 'TaggedString2', tag_list: 'test, tag', id: 8)
+    @tagged_three = create(:post_one, title: 'TaggedString3', tag_list: 'tag, test', id: 9)
+    @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'tag', id: 10)
+
+    tag_name = Post.related_tags('test').first
+
+    assert_equal tag_name, 'tag'
   end
 end
