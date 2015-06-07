@@ -99,6 +99,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.related_tags(tag)
+    tag_count = Option.get_value('tag_count').to_i
     posts = Post.tagged_with(tag)
     tags = Hash.new(0)
 
@@ -107,7 +108,7 @@ class Post < ActiveRecord::Base
         tags[t] += 1
       end
     end
-    tags = tags.delete_if {|t, count| count <= 1 || t == tag.downcase }
+    tags = tags.delete_if {|t, count| count < tag_count || t.downcase == tag.downcase }
     tags.keys
   end
 

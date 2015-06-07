@@ -10,6 +10,17 @@
 <% end %>
 </div>
 <div>
+  <h4>Настройки для связанных тегов:</h4>
+  <%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline text-right' do %>
+      <div class="form-group">
+        <%= label_tag @options['ads_num'], 'Теги связаны, если встречаются вместе больше чем:' %>
+        <%= hidden_field_tag 'name', 'tag_count' %>
+        <%= number_field_tag 'value', @options['tag_count'] || 0, step: 1, class: 'form-control' %>
+        <%= submit_tag 'Установить', class: 'btn btn-default' %>
+      </div>
+  <% end %>
+</div>
+<div>
   <h4>Настройки ссылок для социальных сетей:</h4>
   <% {'fb-link' => 'facebook', 'tw-link' => 'twitter', 'vk-link' => 'Вконтакте'}.each do |link, name| %>
       <%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline text-right' do %>
