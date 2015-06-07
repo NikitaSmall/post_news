@@ -16,7 +16,7 @@
   <ul>
     <% @popular_tags.each do |tag| %>
       <li>
-      <%= link_to '#', class: 'popular-item' do %>
+      <%= link_to read_tag_path(tag.name), class: 'popular-item' do %>
         <span><%= tag.name %></span>
       <% end %>
       </li>

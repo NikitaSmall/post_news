@@ -1,0 +1,29 @@
+<div class="container search-page">
+  <div class="search-result-head">
+    <% if @posts.total_entries.zero? %>
+        <h2>По тегу «<%= params[:tag] %>» не найдено ни одной новости</h2>
+    <% elsif @posts.total_entries == 1 %>
+        <h2>По тегу «<%= params[:tag] %>» найдена одна новость</h2>
+    <% else %>
+        <h2>По тегу «<%= params[:tag] %>» найдено новостей: <%= @posts.total_entries %></h2>
+    <% end %>
+  </div>
+
+  <hr/>
+  <div class="result-items-wrapper slimScroll">
+    <% @posts.each do |post| %>
+        <%= link_to link_selector(post), target: target_selector(post), data: {id: post.id}, class: 'clearfix item-result' do %>
+            <%= image_tag post.photo.url %>
+            <time><%= Russian::strftime(post.created_at, "%d %B %Y") %></time>
+            <span class="title"><%= post.title %></span>
+            <span class="text"><%= truncate strip_tags(post.content.html_safe), length: 150 %></span>
+        <% end %>
+        <hr/>
+    <% end %>
+    <div class="text-center">
+      <%= will_paginate @posts, remote: true %>
+    </div>
+    <br />
+    <br />
+  </div>
+</div>

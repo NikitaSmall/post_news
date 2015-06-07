@@ -27,6 +27,10 @@ class NewspaperController < ApplicationController
     end
   end
 
+  def tagged_news
+    @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7)
+  end
+
   def share
     @post.shared!
 

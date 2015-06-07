@@ -10,6 +10,7 @@ PostNews::Application.routes.draw do
   root 'newspaper#index'
   get '/read/:id' => 'newspaper#read', as: 'read_post'
   get '/search' => 'newspaper#news_search', as: 'news_search'
+  get '/read/tag/:tag' => 'newspaper#tagged_news', as: 'read_tag'
 
   post '/share/:id' => 'newspaper#share', as: 'share_post'
   post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'
