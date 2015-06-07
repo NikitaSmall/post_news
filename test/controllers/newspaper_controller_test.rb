@@ -108,4 +108,27 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_select 'a.news-item', 4
   end
+
+  test "should_show_read_tag_page" do
+    @tagged_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @tagged_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+
+    get :tagged_news, tag: 'test'
+    assert_response :success
+
+    assert_select 'a.item-result', 2
+  end
+
+  test "should_show_read_tag_page_with_advertisment" do
+    @tagged_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @tagged_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+    @tagged_three = create(:post_one, title: 'TaggedString3', tag_list: 'tag, test', id: 9)
+    @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'test', id: 10)
+    @advertisement = create(:advertisement, enabled: true)
+
+    get :tagged_news, tag: 'test'
+    assert_response :success
+
+    assert_select 'a.item-result', 5
+  end
 end

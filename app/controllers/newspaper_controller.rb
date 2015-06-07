@@ -28,7 +28,8 @@ class NewspaperController < ApplicationController
   end
 
   def tagged_news
-    @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7)
+    @posts = Post.tagged_with(params[:tag]).by_position.paginate(:page => params[:page], :per_page => 7).to_a
+    @posts.insert(rand_position, get_random_advertisement).compact! if @posts.count > 3  # advertisement will not appear if there a few posts on a tag page
   end
 
   def share
