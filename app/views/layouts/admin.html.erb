@@ -20,6 +20,17 @@
       <%= link_to 'Административная панель', posts_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <div class="hidden-md hidden-lg hidden-print hidden-sm">
+          <ul class="nav navbar-nav navbar-left">
+            <li <% if params[:action] == 'view' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Личный кабинет', user_path(current_user.id) %></li>
+            <li <% if params[:action] == 'index' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Список пользователей', users_path %></li>
+            <li <% if params[:controller] == 'advertisements' %>class="active" <% end %>><%= link_to 'Управление рекламой', advertisements_path %></li>
+            <li <% if params[:controller] == 'options' %>class="active" <% end %>><%= link_to 'Настройки', options_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-left">
+            <li <% if params[:action] == 'new' && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Новый пост', new_post_path %></li>
+          </ul>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></li>
       </ul>
