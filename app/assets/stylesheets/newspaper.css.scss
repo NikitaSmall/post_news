@@ -130,8 +130,8 @@
 .advertisement-wrap {
   display: inline-block;
   float: right;
-  width: 28%;
-  padding: 30px 0 0;
+  width: 29%;
+  padding-top: 0;
 }
 .advertisement-item {
   color: #000;
@@ -140,8 +140,13 @@
   display: block;
   font-size: 1.125em;
   color: #000000;
+  text-align: center;
+  margin: 5px 0 0;
 }
 .advertisement-item:hover {
   text-decoration: underline;
   color: #000;
+}
+.search-page .result-items-wrapper {
+  overflow: visible;
 }
