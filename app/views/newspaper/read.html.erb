@@ -40,18 +40,18 @@
 
     <br />
   <!-- Discus BEGIN -->
-  <div class="news-content row">
+  <div class="news-content row comments-wrap">
     <div id="disqus_thread" class=""></div>
   </div>
   <!-- Discus END -->
 
   <!-- ADVERTISEMENT block begins -->
   <% unless @advertisement.nil? %>
-      <div class="news-items small col-md-4">
-      <div id="advertisement" class="news-item big">
+      <div class="advertisement-wrap">
+      <div id="advertisement" class="advertisement-item">
         <%= link_to @advertisement.link, data: {id: @advertisement.id}, target: '_blank' do %>
             <%= image_tag @advertisement.photo.url %>
-            <span class="news-descrip">
+            <span class="ad-title">
                 <%= truncate @advertisement.title, length: 190 %>
               </span>
         <% end %>

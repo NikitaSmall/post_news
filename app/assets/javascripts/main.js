@@ -133,6 +133,13 @@ on_ready = function() {
             });
         }
         // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
+
+
+        var $advertisement = $('.comments-wrap + .advertisement-wrap');
+        if ($advertisement.length){
+            var $commWrap = $('.comments-wrap');
+            $commWrap.css({'float': 'left','width': '70%'});
+        }
     });
 
 
