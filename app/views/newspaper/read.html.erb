@@ -40,14 +40,16 @@
 
     <br />
   <!-- Discus BEGIN -->
-  <div class="news-content row comments-wrap">
-    <div id="disqus_thread" class=""></div>
+  <div class="row">
+    <div class="news-content col-md-8 comments-wrap">
+      <div id="disqus_thread"></div>
+    </div>
   </div>
   <!-- Discus END -->
 
   <!-- ADVERTISEMENT block begins -->
   <% unless @advertisement.nil? %>
-      <div class="advertisement-wrap">
+      <div class="advertisement-wrap col-md-4">
       <div id="advertisement" class="advertisement-item">
         <%= link_to @advertisement.link, data: {id: @advertisement.id}, target: '_blank' do %>
             <%= image_tag @advertisement.photo.url %>

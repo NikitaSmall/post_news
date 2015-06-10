@@ -142,13 +142,6 @@ on_ready = function() {
         }
     });
 
-
-};
-
-$(document).ready(on_ready);
-$(document).on('page:load', on_ready);
-
-$(window).load(function () {
     $('#dateRangePicker').dateRangePicker({
         inline:true,
         container: '#dateRangePicker',
@@ -161,4 +154,9 @@ $(window).load(function () {
             'next':null
         }
     });
-})
+
+};
+
+$(document).ready(on_ready);
+$(document).on('page:load', on_ready);
+
