@@ -169,5 +169,20 @@
 </script>
 <!-- discus count END-->
 
+<script type="text/javascript" data-turbolinks-eval=false>
+    // calling a request for visit advertisement check
+    $(document).on('click', "a[target='_blank']", function() {
+        var advertisement_id;
+        advertisement_id = $(this).data('id');
+        return $.ajax({
+            url: '/advertise/' + advertisement_id,
+            method: 'post',
+            success: console.log('advertisement ' + advertisement_id + ' was shared!'),
+            error: function(jqXHR, textStatus, errorThrown) {
+                return console.log("AJAX Error: " + textStatus);
+            }
+        });
+    });
+</script>
 </body>
 </html>
