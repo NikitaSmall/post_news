@@ -42,14 +42,14 @@ html,
 body {
   height: 100%;
 }
-.wrapper {
+.wrapper-main {
   min-height: 100%;
   background-color: #e6dfe6;
   font-family: 'MyriadPro-Regular';
   font-weight: 400;
   /*overflow: hidden;*/
 }
-.wrapper.openedPopup {
+.wrapper-main.openedPopup {
   height: 100%;
 }
 .clear {
@@ -214,7 +214,7 @@ nav {
 }
 .search-results-wrap hr {
   display: block;
-  backface-visibility: #ffffff;
+  /*backface-visibility: #ffffff;*/
   height: 1px;
   max-width: 580px;
   margin: 10px auto;

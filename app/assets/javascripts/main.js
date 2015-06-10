@@ -135,6 +135,13 @@ on_ready = function() {
         // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
     });
 
+
+};
+
+$(document).ready(on_ready);
+$(document).on('page:load', on_ready);
+
+$(window).load(function () {
     $('#dateRangePicker').dateRangePicker({
         inline:true,
         container: '#dateRangePicker',
@@ -147,10 +154,4 @@ on_ready = function() {
             'next':null
         }
     });
-
-
-};
-
-$(document).ready(on_ready);
-$(document).on('page:load', on_ready);
-
+})

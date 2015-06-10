@@ -40,7 +40,7 @@
 
     <br />
   <!-- Discus BEGIN -->
-  <div class="news-content row col-md-<% if @advertisement.nil? %>12<% else %>7<% end %>">
+  <div class="news-content row">
     <div id="disqus_thread" class=""></div>
   </div>
   <!-- Discus END -->
@@ -48,7 +48,7 @@
   <!-- ADVERTISEMENT block begins -->
   <% unless @advertisement.nil? %>
       <div class="news-items small col-md-4">
-      <div id="advertisement" class="news-item big" style="width: 100%;">
+      <div id="advertisement" class="news-item big">
         <%= link_to @advertisement.link, data: {id: @advertisement.id}, target: '_blank' do %>
             <%= image_tag @advertisement.photo.url %>
             <span class="news-descrip">
