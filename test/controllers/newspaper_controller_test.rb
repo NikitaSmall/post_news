@@ -141,4 +141,17 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_select 'a.item-result', 3
   end
+
+  test "should_show_archived_posts_with_advertisment" do
+    @post_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @post_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+    @tagged_three = create(:post_one, title: 'TaggedString3', tag_list: 'tag, test', id: 9)
+    @tagged_four = create(:post_one, title: 'TaggedString4', tag_list: 'test', id: 10)
+    @advertisement = create(:advertisement, enabled: true)
+
+    get :archived_posts, start_date: 1.day.ago.to_s, end_date: Date.today.to_s
+    assert_response :success
+
+    assert_select 'a.item-result', 6
+  end
 end

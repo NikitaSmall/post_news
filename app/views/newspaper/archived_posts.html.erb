@@ -1,7 +1,10 @@
 <div class="container search-page">
   <div class="search-result-head">
+    <br />
+    <span class="h1">
         Архив новостей с <%= Russian::strftime(Date.parse(params[:start_date]), "%d %B %Y") %>
         по <%= Russian::strftime(Date.parse(params[:end_date]), "%d %B %Y") %>
+    </span>
     <% if @posts.total_entries.zero? %>
         <h2>В указанном промежутке времени не найдено ни одной новости</h2>
     <% elsif @posts.total_entries == 1 %>

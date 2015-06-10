@@ -35,7 +35,8 @@ class NewspaperController < ApplicationController
   end
 
   def archived_posts
-    @posts = Post.archived_posts(params[:start_date], params[:end_date]).paginate(:page => params[:page], :per_page => 7)
+    @posts = Post.archived_posts(params[:start_date], params[:end_date]).paginate(:page => params[:page], :per_page => 7).to_a
+    @posts.insert(rand_position, get_random_advertisement).compact! if @posts.count > 3  # advertisement will not appear if there a few posts on a archive page
   end
 
   def share
