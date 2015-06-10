@@ -135,11 +135,22 @@ on_ready = function() {
         // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
     });
 
-
-
+    $('#dateRangePicker').dateRangePicker({
+        inline:true,
+        container: '#dateRangePicker',
+        alwaysOpen:true,
+        endDate: '[today]',
+        format: 'YYYY-MM-DD',
+        shortcuts : {
+            'prev-days': [3,5,7],
+            'next-days':null,
+            'next':null
+        }
+    });
 
 
 };
 
 $(document).ready(on_ready);
 $(document).on('page:load', on_ready);
+

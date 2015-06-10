@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+// require jquery_ui
 //= require jquery_ujs
 //= require turbolinks
 //= require ckeditor/init
@@ -22,6 +23,8 @@
 //= require fotorama
 //= require disqus_rails
 //= require social-share-button
+//= require moment.min
+//= require jquery.daterangepicker
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
