@@ -247,7 +247,7 @@ nav {
 }
 .result-items-wrapper {
   margin: 15px 0 0;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 .item-result {
   display: block;

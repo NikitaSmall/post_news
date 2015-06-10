@@ -68,8 +68,8 @@ on_ready = function() {
     var setHeightResultsWrap = function () {
         setTimeout(function () {
             var windowH = $(window).height();
-            var offset = $('.result-items-wrapper').offset().top;
-            $('.result-items-wrapper').css('height', (windowH-offset)+'px');
+            var offset = $('.popup-search .result-items-wrapper').offset().top;
+            $('.popup-search .result-items-wrapper').css('height', (windowH-offset)+'px');
         }, 300);
 
         setTimeout(function () {
@@ -133,13 +133,6 @@ on_ready = function() {
             });
         }
         // END РІРµСЂС‚РёРєР°Р»СЊРЅРѕРµ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёРµ С„РѕС‚РѕРє РІ СЃР»Р°Р№РґРµСЂРµ
-
-
-        var $advertisement = $('.comments-wrap + .advertisement-wrap');
-        if ($advertisement.length){
-            var $commWrap = $('.comments-wrap');
-            $commWrap.css({'float': 'left','width': '70%'});
-        }
     });
 
     $('#dateRangePicker').dateRangePicker({
