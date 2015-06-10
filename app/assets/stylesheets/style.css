@@ -42,15 +42,12 @@ html,
 body {
   height: 100%;
 }
-.wrapper-main {
+.wrapper {
   min-height: 100%;
   background-color: #e6dfe6;
   font-family: 'MyriadPro-Regular';
   font-weight: 400;
-  /*overflow: hidden;*/
-}
-.wrapper-main.openedPopup {
-  height: 100%;
+  overflow: hidden;
 }
 .clear {
   clear: both;
@@ -214,7 +211,7 @@ nav {
 }
 .search-results-wrap hr {
   display: block;
-  /*backface-visibility: #ffffff;*/
+  backface-visibility: #ffffff;
   height: 1px;
   max-width: 580px;
   margin: 10px auto;
@@ -250,6 +247,7 @@ nav {
 }
 .result-items-wrapper {
   margin: 15px 0 0;
+  overflow-y: scroll;
 }
 .item-result {
   display: block;
@@ -259,8 +257,6 @@ nav {
 .item-result img {
   float: left;
   margin-right: 15px;
-  width: 190px;
-  height: auto;
 }
 .item-result time {
   display: block;
@@ -344,7 +340,7 @@ nav {
   background-color: #ffffff;
 }
 .fotorama__nav-wrap {
-  margin-top: -30px;
+  margin-top: -29.99999999px;
 }
 .fotorama__arr {
   display: inline-block;
@@ -882,6 +878,7 @@ footer {
   width: 100%;
   height: 100%;
   z-index: 777;
+  overflow: hidden;
   background-color: rgba(64, 49, 97, 0.9);
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
@@ -1072,213 +1069,213 @@ footer {
 .search-result-head {
   text-align: center;
 }
-.pagination {
-  border-radius: 0;
-  font-size: 1.375em;
+.popup-archive-content {
+  text-align: center;
+  width: 760px;
+  margin: auto;
 }
-.pagination .disabled {
-  display: none;
+.date-range-picker {
+  margin-top: 8%;
+  text-align: left;
 }
-.pagination em {
-  font-style: normal;
+.search-archive-btn {
+  display: block;
   color: #9933cc;
-}
-.pagination a {
-  color: #c6c6c6;
+  margin: 25px auto auto;
+  text-transform: uppercase;
+  background: #ffffff;
+  border: none;
+  padding: 8px;
+  font-weight: bold;
+  width: 100%;
+  font-size: 1.625em;
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -ms-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-.pagination a:hover {
+.search-archive-btn:hover {
+  background: #9933cc;
+  color: #ffffff;
+}
+.shortcuts p {
+  font-size: 1.5em;
+  font-family: 'MyriadPro-Bold';
   color: #9933cc;
-}
-.pagination .next_page .glyphicon {
-  display: none;
-}
-.pagination .next_page:after {
-  content: ">";
-}
-.pagination .previous_page .glyphicon {
-  display: none;
-}
-.pagination .previous_page:before {
-  content: "<";
+  text-align: center;
+  text-transform: uppercase;
 }
 .date-picker-wrapper .header {
-    background: #ffffff;
-    padding: 10px 20px 15px;
-    text-align: center;
+  background: #ffffff;
+  padding: 10px 20px 15px;
+  text-align: center;
 }
 .date-picker-wrapper a {
-    display: inline-block;
-    padding: 4px 20px;
-    margin: 0 0 0 30px;
-    color: #ffffff;
-    font-family: 'MyriadPro-Bold';
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-    font-size: 1.5em;
-    background: #9933cc;
+  display: inline-block;
+  padding: 4px 20px;
+  margin: 0 0 0 30px;
+  color: #ffffff;
+  font-family: 'MyriadPro-Bold';
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 1.5em;
+  background: #9933cc;
 }
 .date-picker-wrapper a:first-child {
-    margin-left: 0;
+  margin-left: 0;
 }
 .date-picker-wrapper a:hover {
-    color: #9933cc;
-    background: #ffffff;
+  color: #9933cc;
+  background: #ffffff;
 }
 .date-picker-wrapper .drp_top-bar {
-    margin: 22px 0 35px;
-    text-align: center;
+  margin: 22px 0 35px;
+  text-align: center;
 }
 .date-picker-wrapper .drp_top-bar .default-top {
-    display: block;
-    color: #FFF;
-    font-size: 1.375em;
-    height: 46px;
-    line-height: 46px;
+  display: block;
+  color: #FFF;
+  font-size: 1.375em;
+  height: 46px;
+  line-height: 46px;
 }
 .date-picker-wrapper .start-day {
-    position: relative;
-    display: inline-block;
-    padding: 8px 48px 8px 20px;
-    font-size: 1.5em;
-    background: #ffffff;
-    color: #9933cc;
+  position: relative;
+  display: inline-block;
+  padding: 8px 48px 8px 20px;
+  font-size: 1.5em;
+  background: #ffffff;
+  color: #9933cc;
 }
 .date-picker-wrapper .start-day .glyphicon {
-    position: absolute;
-    top: 11px;
-    right: 15px;
+  position: absolute;
+  top: 11px;
+  right: 15px;
 }
 .date-picker-wrapper .end-day {
-    position: relative;
-    display: inline-block;
-    padding: 8px 20px 8px 48px;
-    font-size: 1.5em;
-    background: #ffffff;
-    color: #9933cc;
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px 8px 48px;
+  font-size: 1.5em;
+  background: #ffffff;
+  color: #9933cc;
 }
 .date-picker-wrapper .end-day .glyphicon {
-    position: absolute;
-    top: 11px;
-    left: 15px;
+  position: absolute;
+  top: 11px;
+  left: 15px;
 }
 .date-picker-wrapper .separator-day {
-    display: inline-block;
-    width: 25px;
-    height: 4px;
-    margin: 22px 10px 0;
-    vertical-align: top;
-    background-color: #ffffff;
+  display: inline-block;
+  width: 25px;
+  height: 4px;
+  margin: 22px 10px 0;
+  vertical-align: top;
+  background-color: #ffffff;
 }
 .month1-wrap {
-    position: relative;
-    display: inline-block;
-    float: left;
-    width: 49%;
-    padding: 10px 15px;
-    background: #ffffff;
+  position: relative;
+  display: inline-block;
+  float: left;
+  width: 49%;
+  padding: 10px 15px;
+  background: #ffffff;
 }
 .month1-wrap:after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: 55px;
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-    border-bottom: 20px solid #ffffff;
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 55px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 20px solid #ffffff;
 }
 .month1-wrap table {
-    width: 100%;
+  width: 100%;
 }
 .month2-wrap {
-    position: relative;
-    display: inline-block;
-    float: right;
-    width: 49%;
-    padding: 10px 15px;
-    background: #ffffff;
+  position: relative;
+  display: inline-block;
+  float: right;
+  width: 49%;
+  padding: 10px 15px;
+  background: #ffffff;
 }
 .month2-wrap:after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 55px;
-    width: 0;
-    height: 0;
-    border-left: 17px solid transparent;
-    border-right: 17px solid transparent;
-    border-bottom: 20px solid #ffffff;
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 55px;
+  width: 0;
+  height: 0;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+  border-bottom: 20px solid #ffffff;
 }
 .month2-wrap table {
-    width: 100%;
+  width: 100%;
 }
 .date-picker-wrapper table .caption {
-    padding: 5px;
-    height: 36px;
-    font-size: 1.125em;
+  padding: 5px;
+  height: 36px;
+  font-size: 1.125em;
 }
 .date-picker-wrapper table .caption .prev {
-    padding: 10px;
+  padding: 10px;
 }
 .date-picker-wrapper table .caption .next {
-    padding: 10px;
+  padding: 10px;
 }
 .date-picker-wrapper table .week-name {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 .date-picker-wrapper table .week-name th {
-    padding: 5px 0 0;
+  padding: 5px 0 0;
 }
 .date-picker-wrapper table td {
-    padding: 4px;
+  padding: 4px;
 }
 .date-picker-wrapper table .day {
-    width: 40px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 1.125em;
-    margin: 0;
-    font-family: 'MyriadPro-Semibold';
+  width: 40px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 1.125em;
+  margin: 0;
+  font-family: 'MyriadPro-Semibold';
 }
 .date-picker-wrapper table .day.checked {
-    background-color: #a46dba;
+  background-color: #a46dba;
 }
 .date-picker-wrapper table .day.real-today {
-    background-color: #cdafd9;
+  background-color: #cdafd9;
 }
 .date-picker-wrapper table .day.real-today.checked {
-    background-color: #7e4694;
+  background-color: #7e4694;
 }
-.search-archive-btn {
-    display: block;
-    color: #9933cc;
-    margin: 25px auto auto;
-    text-transform: uppercase;
-    background: #ffffff;
-    border: none;
-    padding: 8px;
-    font-weight: bold;
-    width: 100%;
-    font-size: 1.625em;
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -ms-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+.advertisement-wrap {
+  display: inline-block;
+  float: right;
+  width: 28%;
+  padding: 30px 0 0;
 }
-.search-archive-btn:hover {
-    background: #9933cc;
-    color: #ffffff;
+.advertisement-item {
+  color: #000;
+}
+.ad-title {
+  display: block;
+  font-size: 1.125em;
+  color: #000000;
+}
+.advertisement-item:hover {
+  text-decoration: underline;
+  color: #000;
 }
 /*  begin media  */
 @media (max-width: 1200px) {
