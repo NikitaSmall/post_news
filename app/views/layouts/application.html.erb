@@ -118,12 +118,12 @@
     <div class="popup-archive-content">
       <div id="dateRangePicker" class="date-range-picker">
       </div>
-      <form action="#">
 
+      <%= form_tag '#', method: :get do %>
         <input type="hidden" name="start-date" id="start-date-input"/>
         <input type="hidden" name="end-date" id="end-date-input"/>
         <button class="search-archive-btn">Поиск</button>
-      </form>
+      <% end %>
     </div>
   </div>
   <!--  END search and archive popups  -->

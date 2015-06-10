@@ -188,4 +188,11 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal tag_name, 'tag'
   end
+
+  test "should_return_fresh_post" do
+    post = Post.archived_posts 2.day.ago.to_s, Time.now.to_s
+
+    # most fresh post is @post_one - it is created firstly at each test
+    assert_equal post.first, @post_one
+  end
 end

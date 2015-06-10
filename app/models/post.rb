@@ -84,6 +84,13 @@ class Post < ActiveRecord::Base
     where 'lower(title) LIKE ? OR lower(content) LIKE ?', word.downcase, word.downcase
   end
 
+  def self.archived_posts(start_date, end_date)
+    date_from = Date.parse start_date
+    date_to = Date.parse end_date
+
+    where(created_at: date_from.beginning_of_day..date_to.end_of_day)
+  end
+
   def self.popular_tags(limit = 20)
     ActsAsTaggableOn::Tag.most_used(limit).where('taggings_count > 0')
   end
