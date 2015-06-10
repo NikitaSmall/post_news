@@ -1,22 +1,15 @@
 <div class="container search-page">
   <div class="search-result-head">
+        Архив новостей с <%= Russian::strftime(Date.parse(params[:start_date]), "%d %B %Y") %>
+        по <%= Russian::strftime(Date.parse(params[:end_date]), "%d %B %Y") %>
     <% if @posts.total_entries.zero? %>
-        <h2>По тегу «<%= params[:tag] %>» не найдено ни одной новости</h2>
+        <h2>В указанном промежутке времени не найдено ни одной новости</h2>
     <% elsif @posts.total_entries == 1 %>
-        <h2>По тегу «<%= params[:tag] %>» найдена одна новость</h2>
+        <h2>В указанном промежутке времени найдена одна новость</h2>
     <% else %>
-        <h2>По тегу «<%= params[:tag] %>» найдено новостей: <%= @posts.total_entries %></h2>
+        <h2>В указанном промежутке времени найдено новостей: <%= @posts.total_entries %></h2>
     <% end %>
   </div>
-
-  <% unless @tags.empty? %>
-  <div class="tags text-center">
-    <span class="h4">С данным тегом часто <% if @tags.count > 1 %>встречаются эти теги: <% else %> встречается тег <% end %></span>
-    <% @tags.each do |tag| %>
-      <%= link_to tag, read_tag_path(tag) %>
-    <% end %>
-  </div>
-  <% end %>
 
   <hr/>
   <div class="result-items-wrapper slimScroll">

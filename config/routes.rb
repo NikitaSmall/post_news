@@ -11,6 +11,7 @@ PostNews::Application.routes.draw do
   get '/read/:id' => 'newspaper#read', as: 'read_post'
   get '/search' => 'newspaper#news_search', as: 'news_search'
   get '/read/tag/:tag' => 'newspaper#tagged_news', as: 'read_tag'
+  get '/archive' => 'newspaper#archived_posts', as: 'archived_posts'
 
   post '/share/:id' => 'newspaper#share', as: 'share_post'
   post '/advertise/:id' => 'newspaper#visit_advertisement', as: 'visit_advertisement'

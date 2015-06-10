@@ -119,9 +119,9 @@
       <div id="dateRangePicker" class="date-range-picker">
       </div>
 
-      <%= form_tag '#', method: :get do %>
-        <input type="hidden" name="start-date" id="start-date-input"/>
-        <input type="hidden" name="end-date" id="end-date-input"/>
+      <%= form_tag archived_posts_path, method: :get do %>
+        <input type="hidden" name="start_date" id="start-date-input"/>
+        <input type="hidden" name="end_date" id="end-date-input"/>
         <button class="search-archive-btn">Поиск</button>
       <% end %>
     </div>

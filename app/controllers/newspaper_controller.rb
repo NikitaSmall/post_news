@@ -34,6 +34,10 @@ class NewspaperController < ApplicationController
     @tags = Post.related_tags(params[:tag])
   end
 
+  def archived_posts
+    @posts = Post.archived_posts(params[:start_date], params[:end_date]).paginate(:page => params[:page], :per_page => 7)
+  end
+
   def share
     @post.shared!
 

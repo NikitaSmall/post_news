@@ -131,4 +131,14 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_select 'a.item-result', 5
   end
+
+  test "should_show_archived_posts" do
+    @post_one = create(:post_one, title: 'TaggedString1', tag_list: 'tag, test', id: 7)
+    @post_two = create(:post_one, title: 'TaggedString2', tag_list: 'test', id: 8)
+
+    get :archived_posts, start_date: 1.day.ago.to_s, end_date: Date.today.to_s
+    assert_response :success
+
+    assert_select 'a.item-result', 3
+  end
 end
