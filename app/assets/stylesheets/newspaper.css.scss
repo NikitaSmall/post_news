@@ -127,3 +127,21 @@
   display: block;
   font-size: 1em;
 }
+.advertisement-wrap {
+  display: inline-block;
+  float: right;
+  width: 28%;
+  padding: 30px 0 0;
+}
+.advertisement-item {
+  color: #000;
+}
+.ad-title {
+  display: block;
+  font-size: 1.125em;
+  color: #000000;
+}
+.advertisement-item:hover {
+  text-decoration: underline;
+  color: #000;
+}

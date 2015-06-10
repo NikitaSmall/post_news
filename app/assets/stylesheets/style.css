@@ -42,7 +42,7 @@ html,
 body {
   height: 100%;
 }
-.wrapper {
+.wrapper-main {
   min-height: 100%;
   background-color: #e6dfe6;
   font-family: 'MyriadPro-Regular';
@@ -1258,24 +1258,6 @@ footer {
 }
 .date-picker-wrapper table .day.real-today.checked {
   background-color: #7e4694;
-}
-.advertisement-wrap {
-  display: inline-block;
-  float: right;
-  width: 28%;
-  padding: 30px 0 0;
-}
-.advertisement-item {
-  color: #000;
-}
-.ad-title {
-  display: block;
-  font-size: 1.125em;
-  color: #000000;
-}
-.advertisement-item:hover {
-  text-decoration: underline;
-  color: #000;
 }
 /*  begin media  */
 @media (max-width: 1200px) {
