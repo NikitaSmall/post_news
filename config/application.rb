@@ -32,5 +32,8 @@ module PostNews
     config.i18n.default_locale = :ru
 
     config.time_zone = 'Europe/Kiev'
+
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_token => "3f2a5127-f828-4737-9dd5-465c8c1ebccb" }
   end
 end

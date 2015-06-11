@@ -32,10 +32,13 @@ gem 'bootstrap-sass', '~> 3.3.3'
 # gem for pretty pagination
 gem 'will_paginate-bootstrap'
 
-# gems to make frindship for paperclip, aws, heroku and ckeditor
+# gems to make friendship for paperclip, aws, heroku and ckeditor
 gem 'aws-sdk', '~> 1.36.1'
 gem 'fog'
 gem 'figaro'
+
+# gem for mailing
+gem 'postmark-rails', '~> 0.10.0'
 
 # gem for better fixtures
 gem 'factory_girl_rails'
