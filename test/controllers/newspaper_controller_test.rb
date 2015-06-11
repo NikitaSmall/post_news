@@ -154,4 +154,18 @@ class NewspaperControllerTest < ActionController::TestCase
 
     assert_select 'a.item-result', 6
   end
+
+  test "should_show_archived_post_with_empty_param" do
+    get :archived_posts, start_date: 1.day.ago.to_s, end_date: ''
+    assert_response :success
+
+    assert_select 'a.item-result', 1
+  end
+
+  test "should_show_archived_post_with_empty_params" do
+    get :archived_posts, start_date: '', end_date: ''
+    assert_response :success
+
+    assert_select 'a.item-result', 1
+  end
 end

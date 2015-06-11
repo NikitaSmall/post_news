@@ -2,8 +2,16 @@
   <div class="search-result-head">
     <br />
     <span class="h1">
-        Архив новостей с <%= Russian::strftime(Date.parse(params[:start_date]), "%d %B %Y") %>
-        по <%= Russian::strftime(Date.parse(params[:end_date]), "%d %B %Y") %>
+      <% if params[:start_date].blank? %>
+        Архив новостей за последний год
+      <% else %>
+        Архив новостей с <%= Russian::strftime(Date.parse(params[:start_date]), "%d %B %Y") %> по
+          <% if params[:end_date].blank? %>
+            сей день
+          <% else %>
+            <%= Russian::strftime(Date.parse(params[:end_date]), "%d %B %Y") %>
+          <% end %>
+      <% end %>
     </span>
     <% if @posts.total_entries.zero? %>
         <h2>В указанном промежутке времени не найдено ни одной новости</h2>

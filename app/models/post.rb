@@ -85,8 +85,8 @@ class Post < ActiveRecord::Base
   end
 
   def self.archived_posts(start_date, end_date)
-    date_from = Date.parse start_date
-    date_to = Date.parse end_date
+    date_from = start_date.blank? ? 1.year.ago : Date.parse(start_date)
+    date_to = end_date.blank? ? Date.today : Date.parse(end_date)
 
     where(created_at: date_from.beginning_of_day..date_to.end_of_day)
   end

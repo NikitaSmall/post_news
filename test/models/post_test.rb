@@ -195,4 +195,18 @@ class PostTest < ActiveSupport::TestCase
     # most fresh post is @post_one - it is created firstly at each test
     assert_equal post.first, @post_one
   end
+
+  test "should_return_fresh_post_with_empty_param" do
+    post = Post.archived_posts 2.day.ago.to_s, ''
+
+    # most fresh post is @post_one - it is created firstly at each test
+    assert_equal post.first, @post_one
+  end
+
+  test "should_return_fresh_post_with_empty_params" do
+    post = Post.archived_posts '', ''
+
+    # most fresh post is @post_one - it is created firstly at each test
+    assert_equal post.first, @post_one
+  end
 end
