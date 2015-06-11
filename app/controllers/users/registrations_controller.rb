@@ -15,16 +15,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    def create
-      if verify_recaptcha
-        super
-      else
-        build_resource(sign_up_params)
-        clean_up_passwords(resource)
-        flash.now[:alert] = "Пройдите капчу и докажите, что вы человек"
-        flash.delete :recaptcha_error
-        render :new
-      end
+    if verify_recaptcha
+      super
+    else
+      build_resource(sign_up_params)
+      clean_up_passwords(resource)
+      flash.now[:alert] = "Пройдите капчу и докажите, что вы человек"
+      flash.delete :recaptcha_error
+      render :new
     end
   end
 
