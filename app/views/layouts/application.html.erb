@@ -141,31 +141,32 @@
           var url = $(this).attr('data-disqus-url');
           urlArray.push('link:' + url);
       });
+      if(urlArray.length != 0) {
+          $.ajax({
+              type: 'GET',
+              url: "https://disqus.com/api/3.0/threads/set.jsonp",
+              data: { api_key: disqusPublicKey, forum: disqusShortname, thread: urlArray },
+              cache: false,
+              dataType: 'jsonp',
+              success: function (result) {
+                  //console.log(urlArray);
+                  //console.log(result);
+                  for (var i in result.response) {
 
-      $.ajax({
-          type: 'GET',
-          url: "https://disqus.com/api/3.0/threads/set.jsonp",
-          data: { api_key: disqusPublicKey, forum : disqusShortname, thread : urlArray },
-          cache: false,
-          dataType: 'jsonp',
-          success: function (result) {
-              //console.log(urlArray);
-              //console.log(result);
-              for (var i in result.response) {
+                      var countText = "";
+                      var count = result.response[i].posts;
 
-                  var countText = "";
-                  var count = result.response[i].posts;
+                      if (count == 1)
+                          countText = "";
 
-                  if (count == 1)
-                      countText = "";
+                      $('span[data-disqus-url="' + result.response[i].link + '"]').replaceWith(count + countText);
 
-                  $('span[data-disqus-url="' + result.response[i].link + '"]').replaceWith(count + countText);
-
+                  }
               }
-          }
-      });
+          });
+      }
   };
-    $(document).on('fotorama:show', disqus_count);
+    $(document).on('fotorama:showend', disqus_count);
 </script>
 <!-- discus count END-->
 
