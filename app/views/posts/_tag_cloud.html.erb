@@ -1,3 +1,3 @@
 <% tag_cloud Post.tag_counts, %w[s m l] do |tag| %>
-    <%= link_to tag.name, tag_posts_path(tag.name), class: "btn #{tag_selected(tag.name)}", style: 'line-height: 1.5;' %>
+    <%= link_to tag.name, tag_posts_path(tag.name), class: "btn #{tag_selected(tag.name)}", style: 'line-height: 1.5; margin-bottom: 5px; margin-left: 5px;' %>
 <% end %>

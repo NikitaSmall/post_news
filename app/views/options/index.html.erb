@@ -4,8 +4,8 @@
     <div class="form-group col-xs-12">
       <%= label_tag @options['ads_num'], 'Количество показов рекламы пользователю', class: 'col-xs-4' %>
       <%= hidden_field_tag 'name', 'ads_num' %>
-      <%= number_field_tag 'value', @options['ads_num'] || 0, style: 'width: 300px;', step: 1, class: 'form-control col-xs-8' %>
-      <%= submit_tag 'Установить', class: 'btn btn-default' %>
+      <%= number_field_tag 'value', @options['ads_num'] || 0, id: 'ads_num', style: 'width: 300px;', step: 1, class: 'form-control col-xs-8' %>
+      <%= submit_tag 'Установить', class: 'btn btn-default', id: 'ads_butt' %>
     </div>
 <% end %>
 </div>
@@ -15,8 +15,8 @@
       <div class="form-group col-xs-12">
         <%= label_tag @options['ads_num'], 'Теги связаны, если встречаются вместе больше чем:', class: 'col-xs-4' %>
         <%= hidden_field_tag 'name', 'tag_count' %>
-        <%= number_field_tag 'value', @options['tag_count'] || 0, style: 'width: 300px;', step: 1, class: 'form-control col-xs-8' %>
-        <%= submit_tag 'Установить', class: 'btn btn-default' %>
+        <%= number_field_tag 'value', @options['tag_count'] || 0, id: 'tag_num', style: 'width: 300px;', step: 1, class: 'form-control col-xs-8' %>
+        <%= submit_tag 'Установить', class: 'btn btn-default', id: 'tag_butt' %>
       </div>
   <% end %>
 </div>
@@ -27,8 +27,8 @@
           <div class="form-group col-xs-12">
             <%= label_tag @options[link], "Ссылка для #{name}", class: 'col-xs-4' %>
             <%= hidden_field_tag 'name', link %>
-            <%= text_field_tag 'value', @options[link] || '', style: 'width: 300px;', class: 'form-control col-xs-8' %>
-            <%= submit_tag 'Установить', class: 'btn btn-default' %>
+            <%= text_field_tag 'value', @options[link] || '', id: link, style: 'width: 300px;', class: 'form-control col-xs-8' %>
+            <%= submit_tag 'Установить', class: 'btn btn-default', id: "#{link}_butt" %>
           </div>
       <% end %>
       <br />
