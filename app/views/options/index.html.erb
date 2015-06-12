@@ -24,7 +24,7 @@
   <h4>Настройки ссылок для социальных сетей:</h4>
   <% {'fb-link' => 'facebook', 'tw-link' => 'twitter', 'vk-link' => 'Вконтакте'}.each do |link, name| %>
       <%= form_tag set_option_path, method: :patch, remote: true, class: 'form-inline text-right' do %>
-          <div class="form-group col-xs-12">
+          <div class="form-group col-xs-12" style="margin-bottom: 10px;">
             <%= label_tag @options[link], "Ссылка для #{name}", class: 'col-xs-4' %>
             <%= hidden_field_tag 'name', link %>
             <%= text_field_tag 'value', @options[link] || '', id: link, style: 'width: 300px;', class: 'form-control col-xs-8' %>
