@@ -25,6 +25,7 @@
 //= require social-share-button
 //= require moment.min
 //= require jquery.daterangepicker
+//= require options
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
@@ -46,7 +47,7 @@ on_ready = function(){
         string+= e.which.toString();
 
         if((string.indexOf('38384040373937396665') + 1) && first == 1) {
-            $('body').append("<div id='easter-2' style='position: fixed; right: 50%; bottom: 105%; font-size: 20px;'>Фин! Сражайся честно, несносный мальчишка!</div>");
+            $('body').append("<div id='easter-2' style='position: fixed; right: 50%; bottom: 105%; font-size: 26px;'>Фин! Сражайся честно, несносный мальчишка!</div>");
             $('#easter').animate({bottom:'0px'}, {duration:600});
             $('#easter-2').animate({bottom:'-50px'}, {duration:5000});
             $('#easter').animate({bottom:'-10px'}, {duration:300});
