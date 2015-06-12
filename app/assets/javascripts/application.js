@@ -26,6 +26,7 @@
 //= require moment.min
 //= require jquery.daterangepicker
 //= require options
+//= require posts
 //= require_tree .
 
 jQuery.validator.addMethod('lettersonly', (function(value, element) {
