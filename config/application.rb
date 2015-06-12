@@ -19,7 +19,7 @@ module PostNews
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
 
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.autoload_paths += Dir["#{config.root}/lib", "#{config.root}/lib/**/"]
@@ -35,6 +35,6 @@ module PostNews
     config.time_zone = 'Europe/Kiev'
 
     config.action_mailer.delivery_method = :postmark
-    config.action_mailer.postmark_settings = { :api_token => "3f2a5127-f828-4737-9dd5-465c8c1ebccb" }
+    config.action_mailer.postmark_settings = { api_token: '3f2a5127-f828-4737-9dd5-465c8c1ebccb' }
   end
 end

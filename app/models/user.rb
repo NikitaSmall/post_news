@@ -29,22 +29,22 @@ class User < ActiveRecord::Base
   # methods that make the admins from newbie
   def admin!
     self.rank = 4
-    self.save
+    save
   end
 
   def editor!
     self.rank = 3 unless admin_alone?
-    self.save
+    save
   end
 
   def author!
     self.rank = 2 unless admin_alone?
-    self.save
+    save
   end
 
   def corrector!
     self.rank = 1 unless admin_alone?
-    self.save
+    save
   end
 
   # methods that check the user status
@@ -85,6 +85,7 @@ class User < ActiveRecord::Base
   end
 
   protected
+  
   def check_for_admin
     !admin?
   end

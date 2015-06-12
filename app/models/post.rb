@@ -41,23 +41,23 @@ class Post < ActiveRecord::Base
   def switch(post)
     self.position, post.position = post.position, self.position
     post.save
-    self.save
+    save
   end
 
   def main!
     self.main = true
-    self.save
+    save
   end
 
   def hide!
     self.main = false
     defeature!
-    self.save
+    save
   end
 
   def featured!
     self.featured = true if main
-    self.save
+    save
   end
 
   def featured?
@@ -66,7 +66,7 @@ class Post < ActiveRecord::Base
 
   def defeature!
     self.featured = false
-    self.save
+    save
   end
 
   def shared!
@@ -115,17 +115,18 @@ class Post < ActiveRecord::Base
         tags[t] += 1
       end
     end
-    tags = tags.delete_if {|t, count| count < tag_count || t.downcase == tag.downcase }
+    tags = tags.delete_if { |t, count| count < tag_count || t.downcase == tag.downcase }
     tags.keys
   end
 
   protected
+
   def check_featured
     defeature! unless main
   end
 
   def set_position
-    self.position ||= self.id
-    self.save
+    self.position ||= id
+    save
   end
 end

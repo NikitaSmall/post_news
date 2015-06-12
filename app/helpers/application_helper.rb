@@ -1,9 +1,7 @@
 module ApplicationHelper
   def tag_selected(tag)
     if params[:tag]
-      if params[:tag] == tag
-        return 'btn-info'
-      end
+      return 'btn-info' if params[:tag] == tag
     end
     'btn-default'
   end
@@ -26,50 +24,50 @@ module ApplicationHelper
 
   def weather_selector(weather)
     icon = case weather
-             when 'sunny'
-               '<i class="wi wi-day-sunny"></i>'
-             when 'moonly'
-               '<i class="wi wi-night-clear"></i>'
-             when 'day_cloud'
-               '<i class="wi wi-day-cloudy"></i>'
-             when 'night_cloud'
-               '<i class="wi wi-night-alt-cloudy"></i>'
-             when 'foggy'
-               '<i class="wi wi-dust"></i>'
-             when 'day_rain'
-               '<i class="wi wi-day-showers"></i>'
-             when 'night_rain'
-               '<i class="wi wi-night-alt-sprinkle"></i>'
-             when 'heavy_rain'
-               '<i class="wi wi-sprinkle"></i>'
-             when 'windy'
-               '<i class="wi wi-cloudy-gusts"></i>'
-             when 'snow'
-               '<i class="wi wi-snow"></i>'
-             when 'thunder'
-               '<i class="wi wi-thunderstorm"></i>'
-             when 'cloud'
-               '<i class="wi wi-cloudy"></i>'
-             when 'good'
-               '<i class="wi wi-thermometer-exterior"></i>'
-             else
-               '<i class="wi wi-cloud-refresh"></i>'
+           when 'sunny'
+             '<i class="wi wi-day-sunny"></i>'
+           when 'moonly'
+             '<i class="wi wi-night-clear"></i>'
+           when 'day_cloud'
+             '<i class="wi wi-day-cloudy"></i>'
+           when 'night_cloud'
+             '<i class="wi wi-night-alt-cloudy"></i>'
+           when 'foggy'
+             '<i class="wi wi-dust"></i>'
+           when 'day_rain'
+             '<i class="wi wi-day-showers"></i>'
+           when 'night_rain'
+             '<i class="wi wi-night-alt-sprinkle"></i>'
+           when 'heavy_rain'
+             '<i class="wi wi-sprinkle"></i>'
+           when 'windy'
+             '<i class="wi wi-cloudy-gusts"></i>'
+           when 'snow'
+             '<i class="wi wi-snow"></i>'
+           when 'thunder'
+             '<i class="wi wi-thunderstorm"></i>'
+           when 'cloud'
+             '<i class="wi wi-cloudy"></i>'
+           when 'good'
+             '<i class="wi wi-thermometer-exterior"></i>'
+           else
+             '<i class="wi wi-cloud-refresh"></i>'
            end
     icon.html_safe
   end
 
   def select_rank(user)
     case user.rank
-      when 0
-        'Новенький'
-      when 1
-        'Корректор'
-      when 2
-        'Автор'
-      when 3
-        'Редактор'
-      when 4
-        'Администратор'
+    when 0
+      'Новенький'
+    when 1
+      'Корректор'
+    when 2
+      'Автор'
+    when 3
+      'Редактор'
+    when 4
+      'Администратор'
     end
   end
 end
