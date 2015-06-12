@@ -15,6 +15,13 @@
 @import "bootstrap";
 @import "fotorama";
 
+#easter {
+  position: fixed;
+  right: 69%;
+  bottom: -250px;
+  height: 250px;
+}
+
 #register .error {
   color: #ff0000;
 }

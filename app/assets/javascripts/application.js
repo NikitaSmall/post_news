@@ -35,9 +35,33 @@ jQuery.validator.addMethod('right_email', (function(value, element) {
     return this.optional(element) || /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i.test(value);
 }), 'Допустим только корректный электронный адрес');
 
+var string = "";
+var first = 1;
+
 on_ready = function(){
     window.disqus_no_style = true;
     //$.getScript("http://disqus.com/forums/rapexegesis/embed.js");
+
+    $(document).keyup(function(e){
+        string+= e.which.toString();
+
+        if((string.indexOf('38384040373937396665') + 1) && first == 1) {
+            $('body').append("<div id='easter-2' style='position: fixed; right: 50%; bottom: 105%; font-size: 20px;'>Фин! Сражайся честно, несносный мальчишка!</div>");
+            $('#easter').animate({bottom:'0px'}, {duration:600});
+            $('#easter-2').animate({bottom:'-50px'}, {duration:5000});
+            $('#easter').animate({bottom:'-10px'}, {duration:300});
+            $('#easter').animate({bottom:'0px'}, {duration:300});
+            $('#easter').animate({bottom:'-15px'}, {duration:300});
+            $('#easter').animate({bottom:'-5px'}, {duration:300});
+            $('#easter').animate({bottom:'-10px'}, {duration:300});
+            $('#easter').animate({bottom:'0px'}, {duration:300});
+            $('#easter').animate({bottom:'-10px'}, {duration:300});
+            $('#easter').animate({bottom:'0px'}, {duration:300});
+            $('#easter').animate({bottom:'-30px'}, {duration:300});
+            $('#easter').animate({bottom:'-250px'}, {duration:500});
+            first = 0;
+        }
+    });
 };
 
 $(document).on('page:load', on_ready);
