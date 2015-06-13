@@ -80,6 +80,7 @@ class NewspaperController < ApplicationController
   end
 
   protected
+
   def get_popular_tags
     @popular_tags = Post.popular_tags(8)
   end

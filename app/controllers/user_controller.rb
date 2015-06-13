@@ -106,6 +106,7 @@ class UserController < ApplicationController
   end
 
   protected
+
   def set_user
     @user = User.find(params[:id])
   end
@@ -128,10 +129,10 @@ class UserController < ApplicationController
 
   def resolve_layout
     case params[:action]
-      when #'view'
-        'application'
-      else
-        'admin'
+    when #'view'
+      'application'
+    else
+      'admin'
     end
   end
 end

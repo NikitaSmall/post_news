@@ -18,6 +18,7 @@ class OptionsController < ApplicationController
   end
 
   private
+
   def check_role
     redirect_to root_path, notice: 'Ты ещё слишком молод для этого.' if current_user.newbie?
     redirect_to posts_path, notice: 'У вас нет прав для управления настройками.' if current_user.corrector? || current_user.author? || current_user.editor?

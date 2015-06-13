@@ -69,9 +69,7 @@ class User < ActiveRecord::Base
   end
 
   def check_last_stand
-    if alone_or_no_admin?
-      admin!
-    end
+    admin! if alone_or_no_admin?
   end
 
   def alone_or_no_admin?
@@ -85,7 +83,7 @@ class User < ActiveRecord::Base
   end
 
   protected
-  
+
   def check_for_admin
     !admin?
   end

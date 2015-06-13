@@ -62,6 +62,7 @@ class AdvertisementsController < ApplicationController
   end
 
   private
+
     def set_advertisement
       @advertisement = Advertisement.find(params[:id])
     end

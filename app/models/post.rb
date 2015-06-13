@@ -12,10 +12,10 @@ class Post < ActiveRecord::Base
   scope :user_posts, ->(user) { where(user: user) }
 
   has_attached_file :photo, {
-                              :styles => {:thumb => '50x50#', :original => '800x800>'}
-                          }.merge(PAPERCLIP_STORAGE_OPTIONS)
+                              styles: { thumb: '50x50#', original: '800x800>' }
+                            }.merge(PAPERCLIP_STORAGE_OPTIONS)
 
-  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
   validates :title, :content, :photo, presence: true
   validates :title, uniqueness: { case_sensitive: false }
@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
   end
 
   def switch(post)
-    self.position, post.position = post.position, self.position
+    self.position, post.position = post.position, position
     post.save
     save
   end
@@ -61,7 +61,7 @@ class Post < ActiveRecord::Base
   end
 
   def featured?
-    self.featured
+    featured
   end
 
   def defeature!
@@ -97,7 +97,7 @@ class Post < ActiveRecord::Base
 
   def self.popular_tagged_post(limit = 20)
     tags = popular_tags(limit)
-    popular_posts = Array.new
+    popular_posts = []
 
     tags.each do |tag|
       popular_posts << tagged_with(tag.name).to_a
