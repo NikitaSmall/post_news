@@ -12,20 +12,47 @@
 * Активное использование методологии TDD на протяжении разработки
 
 === Список наиболее значимых гемов:
-  1. Гемы для работы с базой данных: mysql2 и sqlite3 (для тестов).
-  2. devise для аутентификации пользователей и придоставления связанного фукнционала
-  3. paperclip для загрузки файлов на свой сервер (и сервера s3). 
-     Взят именно он из-за простоты, надёжности и гибкости использования.
-  4. Гемы для простого использования на фронте: sass-rails и bootstrap-sass.
-  5. ckeditor для включения редактрора wysiwyg.
-     Взят из-за гибкости настроек и простоты использования вместе с paperclip.
-  6. factory_girl_rails для создания удобных и динамических тестовых данных
-     (как замена стандартным фикстурам).
-  7. capybara - гем для интеграционного и поведенческого тестирования    
-  8. Комплект гемов для лёгкой связи aws s3 и проекта на heroku: aws-sdk, fog, figaro.
-  9. pretty_weather - небольшой гем собственного создания, который отвечает за связь с openweather api
-     и получением актуальной информации о погоде.
-  10. Остальные гемы с кратким описанием можно посмотреть в Gemfile.
-     Здесь они не указаны либо из-за того, что это стандартные гемы, включенные любой проект rails,
-     либо из-за того, что выполняют некоторую специфическую нишевую работу.
-  
+1. Гемы для работы с базой данных: mysql2 и sqlite3 (для тестов).
+2. devise для аутентификации пользователей и придоставления связанного фукнционала
+3. paperclip для загрузки файлов на свой сервер (и сервера s3).
+   Взят именно он из-за простоты, надёжности и гибкости использования.
+4. Гемы для простого использования на фронте: sass-rails и bootstrap-sass.
+5. ckeditor для включения редактрора wysiwyg.
+   Взят из-за гибкости настроек и простоты использования вместе с paperclip.
+6. factory_girl_rails для создания удобных и динамических тестовых данных
+   (как замена стандартным фикстурам).
+7. capybara - гем для интеграционного и поведенческого тестирования
+8. Комплект гемов для лёгкой связи aws s3 и проекта на heroku: aws-sdk, fog, figaro.
+9. pretty_weather - небольшой гем собственного создания, который отвечает за связь с openweather api
+   и получением актуальной информации о погоде.
+10. Остальные гемы с кратким описанием можно посмотреть в Gemfile.
+   Здесь они не указаны либо из-за того, что это стандартные гемы, включенные любой проект rails,
+   либо из-за того, что выполняют некоторую специфическую нишевую работу.
+
+== Apex-news project (english version of readme)
+
+This project was initiated for DataArt IT School (forth interation),
+but due to the efforts of the members of the project team and their
+devotion to their work, the project has all the chances to become independent.
+
+=== Technical features:
+* Ruby on Rails 4, mysql
+* Usage of Amazon s3 as data depository
+* hosting on heroku
+* active usage of TDD during the development
+
+=== The list of the most significant gems:
+1. Gems used for work with database: mysql2 и sqlite3 (for tests).
+2. devise used for user authentification and providing related functionality.
+3. paperclip used for uploading the files to the server (and server s3).
+   It is taken because of its simplicity, reliability and flexibility in usage.
+4. Gems for simple use in front-end: sass-rails и bootstrap-sass.
+5. ckeditor used to include text-editor wysiwyg.
+   It is taken because of flexibility of settings and because of the simplicity of its usage together with paperclip.
+6. factory_girl_rails used to create comfortable and dynamic test data (as the replacement of standard fixtures).
+7. capybara is a gem for integrational and behaviour testing.
+8. A set of gems to connect easily aws s3 with the project on heroku: aws-sdk, fog, figaro.
+9. pretty weather is a small gem created by me, which is responsible for connection openweather api
+   with getting current info about weather.
+10. The rest of the gems with a short description can be found in  Gemfile.
+   They are not mentioned here because they are standard ones, included into any rails project, or because they carry out some specific work.
