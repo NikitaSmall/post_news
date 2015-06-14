@@ -20,7 +20,7 @@
       <%= link_to 'Административная панель', posts_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <div class="hidden-md hidden-lg hidden-print hidden-sm">
+      <div class="hidden-md hidden-lg hidden-print">
           <ul class="nav navbar-nav navbar-left">
             <li <% if params[:action] == 'view' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Личный кабинет', user_path(current_user.id) %></li>
             <li <% if params[:action] == 'index' && params[:controller] == 'user' %>class="active" <% end %>><%= link_to 'Список пользователей', users_path %></li>
@@ -43,7 +43,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
+    <div class="col-md-2 sidebar hidden-sm">
       <ul class="nav nav-sidebar">
         <li <% if (params[:action] == 'index' || params[:action] == 'main' || params[:action] == 'hidden') && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Список новостей', posts_path %></li>
         <li <% if params[:action] == 'my_posts' && params[:controller] == 'posts' %>class="active" <% end %>><%= link_to 'Мои новости', my_posts_path %></li>
@@ -62,7 +62,7 @@
       </ul>
     </div>
 
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-12 col-md-10 col-md-offset-2 main">
       <p class="notice h4 text-warning"><%= notice %> <span class="text-danger"><%= alert %></span></p>
 
       <%= yield %>
