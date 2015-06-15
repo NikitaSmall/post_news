@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Apex-news</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
   <%= stylesheet_link_tag    "newspaper", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= auto_discovery_link_tag(:atom, feed_url(format: "atom")) %>
@@ -72,7 +73,41 @@
   <!--  END main content  -->
 
 
-  <!--  begin footer  -->
+
+
+
+
+  <!--  begin search and archive popups  -->
+  <div class="popup-wrapper popup-search">
+    <button class="popup-close"><i></i><i></i></button>
+    <div class="popup-search-content">
+      <%= form_tag news_search_path, method: :get, autocomplete: "off", remote: true, enforce_utf8: false do %>
+          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'input-search', placeholder: 'Введите слово или фразу для поиска...' %>
+          <%= button_tag class: 'search-btn' do %>
+              <i class="glyphicon glyphicon-search"></i>
+          <% end %>
+      <% end %>
+      <div class="search-results-wrap"></div>
+    </div>
+  </div>
+
+  <div class="popup-wrapper popup-archive">
+    <button class="popup-close"><i></i><i></i></button>
+    <div class="popup-archive-content archiveSlimScroll">
+      <div id="dateRangePicker" class="date-range-picker">
+      </div>
+
+      <%= form_tag archived_posts_path, method: :get do %>
+        <input type="hidden" name="start_date" id="start-date-input"/>
+        <input type="hidden" name="end_date" id="end-date-input"/>
+        <button class="search-archive-btn">Поиск</button>
+      <% end %>
+    </div>
+  </div>
+  <!--  END search and archive popups  -->
+
+</div>
+<!--  begin footer  -->
   <footer>
     <div class="footer-top">
       <div class="container">
@@ -97,38 +132,6 @@
   </footer>
   <!--  END footer  -->
 
-
-
-  <!--  begin search and archive popups  -->
-  <div class="popup-wrapper popup-search">
-    <button class="popup-close"><i></i><i></i></button>
-    <div class="popup-search-content">
-      <%= form_tag news_search_path, method: :get, autocomplete: "off", remote: true, enforce_utf8: false do %>
-          <%= text_field_tag :word, params[:word], :id => 'search_field', class: 'input-search', placeholder: 'Введите слово или фразу для поиска...' %>
-          <%= button_tag class: 'search-btn' do %>
-              <i class="glyphicon glyphicon-search"></i>
-          <% end %>
-      <% end %>
-      <div class="search-results-wrap"></div>
-    </div>
-  </div>
-
-  <div class="popup-wrapper popup-archive">
-    <button class="popup-close"><i></i><i></i></button>
-    <div class="popup-archive-content">
-      <div id="dateRangePicker" class="date-range-picker">
-      </div>
-
-      <%= form_tag archived_posts_path, method: :get do %>
-        <input type="hidden" name="start_date" id="start-date-input"/>
-        <input type="hidden" name="end_date" id="end-date-input"/>
-        <button class="search-archive-btn">Поиск</button>
-      <% end %>
-    </div>
-  </div>
-  <!--  END search and archive popups  -->
-
-</div>
 <!-- discus count BEGIN -->
 <script type="text/javascript">
   disqus_count = function () {
