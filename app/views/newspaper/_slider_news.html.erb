@@ -5,10 +5,10 @@
       <%= image_tag post.photo.url %>
       <div class="slide-info">
         <p class="title">
-        <%= truncate strip_tags(post.title), length: 100 %>
+        <%= truncate strip_tags(post.title), length: 100, escape: false %>
         </p>
         <p class="text">
-          <%= truncate raw(strip_tags post.content), length: 150 %>
+          <%= truncate strip_tags(raw post.content).html_safe, length: 150, escape: false %>
         </p>
         <div class="counters">
           <%= link_to read_post_path(post.id, anchor: 'main_read'), class: 'views' do %>

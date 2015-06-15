@@ -4,7 +4,7 @@
   <td>
   </td>
   <td><%= link_to post.title, post %></td>
-  <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)'), post %></td>
+  <td><%= link_to (truncate strip_tags(post.content.html_safe), length: 50, omission: '... (читать далее)', escape: false), post %></td>
   <td><% unless post.user.nil? %><%= post.user.username %> <% end %></td>
   <td id="main_post-<%= post.id %>">
     <% if post.main %>
