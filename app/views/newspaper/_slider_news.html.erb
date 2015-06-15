@@ -8,7 +8,7 @@
         <%= truncate strip_tags(post.title), length: 100 %>
         </p>
         <p class="text">
-          <%= truncate strip_tags(post.content.html_safe), length: 150 %>
+          <%= truncate raw(strip_tags post.content), length: 150 %>
         </p>
         <div class="counters">
           <%= link_to read_post_path(post.id, anchor: 'main_read'), class: 'views' do %>
