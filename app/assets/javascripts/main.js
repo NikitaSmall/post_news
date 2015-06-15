@@ -145,7 +145,7 @@ on_ready = function() {
                 });
                 newsItem.find('.img-wrap').css('height', minHeight);
                 newsItem.css('height', minHeight + 10);
-                //newsItem.find('.mobile').css('height', minHeight - 31);
+                newsItem.find('.mobile').css('height', minHeight - 31);
             }
             setNewsItemHeight();
             $(window).resize(function () {
