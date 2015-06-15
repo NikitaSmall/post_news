@@ -22,13 +22,21 @@
       <div class="news-item-row clearfix"> <%# big pictures part begins %>
       <% @posts.first(2).each_with_index do |post, index| %>
           <%= link_to link_selector(post), class: "news-item #{size(index + 1)}", data: {id: post.id}, target: target_selector(post) do %> <%# the size of pictures is taken from 'size(index)' helper %>
-            <%= image_tag post.photo.url %>
+            <span class="img-wrap">
+                <%= image_tag post.photo.url %>
+            </span>
                     <span class="news-descrip">
-                      <% if size(index + 1) == 'big' %>
+                    <strong>
+                        <% if size(index + 1) == 'big' %>
                         <%= truncate post.title, length: 150 %>
                       <% else %>
                         <%= truncate post.title, length: 70 %>
                       <% end %>
+                    </strong>
+                    <span class="mobile">
+                    <%= truncate strip_tags(post.content.html_safe), length: 150 %>
+                    </span>
+
                              <span class="read-more">Читать далее...</span>
                     </span>
           <% end %>
@@ -38,13 +46,20 @@
       <div class="news-item-row clearfix"> <%# small pictures part begins %>
         <% @posts.drop(2).first(3).each_with_index do |post, index| %> <%# you can control quantity with offset and first methods %>
             <%= link_to link_selector(post), class: "news-item #{size(index + 3)}", data: {id: post.id}, target: target_selector(post) do %>
+            <span class="img-wrap">
                 <%= image_tag post.photo.url %>
+            </span>
                 <span class="news-descrip">
+                <strong>
                       <% if size(index + 1) == 'big' %>
                         <%= truncate post.title, length: 150 %>
                       <% else %>
                         <%= truncate post.title, length: 70 %>
                       <% end %>
+                </strong>
+                <span class="mobile">
+                                    <%= truncate strip_tags(post.content.html_safe), length: 150 %>
+                                    </span>
                   <span class="read-more">Читать далее...</span>
                     </span>
             <% end %>
@@ -61,13 +76,20 @@
           <div class="news-item-row clearfix">
             <% @posts.drop(offset).first(2).each_with_index do |post, index| %>
                   <%= link_to link_selector(post), class: "news-item #{size(index + 1)}", data: {id: post.id}, target: target_selector(post) do %>
-                    <%= image_tag post.photo.url %>
+            <span class="img-wrap">
+                <%= image_tag post.photo.url %>
+            </span>
                     <span class="news-descrip">
+                    <strong>
                       <% if size(index + 1) == 'big' %>
                         <%= truncate post.title, length: 190 %>
                       <% else %>
                         <%= truncate post.title, length: 75 %>
                       <% end %>
+                    </strong>
+<span class="mobile">
+                    <%= truncate strip_tags(post.content.html_safe), length: 150 %>
+                    </span>
                     </span>
                   <% end %>
             <% end %>
@@ -76,13 +98,20 @@
           <div class="news-item-row clearfix"> <%# the small row begins %>
             <% @posts.drop(offset + 2).first(3).each_with_index do |post, index| %>
                 <%= link_to link_selector(post), class: "news-item #{size(index + 3)}", data: {id: post.id}, target: target_selector(post) do %>
-                    <%= image_tag post.photo.url %>
+            <span class="img-wrap">
+                <%= image_tag post.photo.url %>
+            </span>
                     <span class="news-descrip">
+                    <strong>
                       <% if size(index + 1) == 'big' %>
                         <%= truncate post.title, length: 190 %>
                       <% else %>
                         <%= truncate post.title, length: 75 %>
                       <% end %>
+                    </strong>
+<span class="mobile">
+                    <%= truncate strip_tags(post.content.html_safe), length: 150 %>
+                    </span>
                     </span>
                 <% end %>
             <% end %>
