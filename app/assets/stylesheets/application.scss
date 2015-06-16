@@ -17,10 +17,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.container-fluid {
-  max-height: 370px;
-}
-
 @media (max-width: 992px) {
   .navbar-header {
     float: none;
@@ -38,7 +34,11 @@
   .navbar-collapse {
     border-top: 1px solid transparent;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-    height: 140px;
+
+    max-height: 340px;
+  }
+  .navbar-inverse .navbar-form {
+    border-color: rgba(255,255,255,0.1);
   }
   .navbar-collapse.collapse {
     display: none!important;
@@ -56,6 +56,9 @@
   }
   .collapse.in{
     display:block !important;
+  }
+  .container-fluid {
+    max-height: 370px;
   }
 }
 
