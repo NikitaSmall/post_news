@@ -1,8 +1,5 @@
 PostNews::Application.configure do
-  PAPERCLIP_STORAGE_OPTIONS = {
-	 :url => "/post/original/:style/:basename.:extension",
-         :path => "/post/original/:style/:basename.:extension"
-}
+  PAPERCLIP_STORAGE_OPTIONS = {}
 
   PAPERCLIP_STORAGE_ADV_OPTIONS = {}
 
