@@ -24,3 +24,8 @@
 # Ignore application configuration
 /config/application.yml
 
+/netbeans/
+/netbeans/*
+/nbproject/
+nbproject/*
+/test/integration/screens/
