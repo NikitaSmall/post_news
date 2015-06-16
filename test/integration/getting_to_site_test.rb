@@ -15,19 +15,23 @@ class GettingToSiteTest < ActionDispatch::IntegrationTest
 	
   test 'should_shows_city_in_russian_language' do
     visit '/'  
-    assert page.has_content? 'apex -news'.upcase #TODO: see it in documentation .upcase
+    assert page.has_content? 'apex news'.upcase 
     assert page.has_content? 'Одесса'
+    find(:xpath, "//a[@class='read-more-btn']")
+    #assert page.has_content? 'Читать полностью' #.upcase 
   end
 
-  test 'should_shows_error_messages_on_login_page' do
+  test 'autorization_should_shows_error_messages_on_login_page' do
 
     visit '/admin'
     assert page.has_content? 'или зарегистрироваться' #error message
     
     visit '/users/sign_in'
+    assert page.has_content? 'Электронная почта'
+    assert page.has_content? 'Пароль'
     fill_in('user[email]', :with => '')
     fill_in('user[password]', :with => '')
-    find(:xpath, "//html/body/div/div/div/form/div/input[@class='btn btn-default']").click
+    find(:xpath, "//form/div/input[@class='btn btn-default']").click
     assert page.has_content? 'или пароль' #error message
   end  
   
