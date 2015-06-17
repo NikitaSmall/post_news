@@ -10,7 +10,7 @@ html {
 }
 body {
     min-height: 100%;
-    background-image: url(images/bg-404.jpg);
+    background-image: url(/images/bg-404.jpg);
     background-size: cover;
     font-family: 'MyriadPro-Regular', Arial;
 }
