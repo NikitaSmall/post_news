@@ -44,10 +44,12 @@ on_ready = function() {
         $('.input-search').focus();
     });
     $('.js-archive').on('click', function(e){
-        e.preventDefault();
-        $(this).toggleClass('active');
-        $('.wrapper').toggleClass('openedPopup');
-        $('.popup-wrapper.popup-archive').toggleClass('open');
+        if ($(window).width() > 768) {
+            e.preventDefault();
+            $(this).toggleClass('active');
+            $('.wrapper').toggleClass('openedPopup');
+            $('.popup-wrapper.popup-archive').toggleClass('open');
+        }
     });
     $('.popup-search .popup-close').on('click', function(e){
         e.preventDefault();
@@ -199,25 +201,27 @@ on_ready = function() {
 
     function setNewsItemImgPosition() {
         $(window).load(function () {
-            var newsItem = $('.news-item');
-            newsItem.each(function () {
-                var newsItem = $(this),
-                    imgWrap = newsItem.children('.img-wrap'),
-                    img = imgWrap.children('img'),
-                    imgHeight,
-                    imgWidth,
-                    marLeft;
-                imgHeight = img.height();
-                console.log(imgHeight);
-                if (imgHeight < 122){
-                    img.css({'height':'100%', 'max-width': 'none' , 'width': 'auto'});
-                    imgWidth = img.width();
-                    if (imgWidth > 150) {
-                        marLeft = (imgWidth - 150)/2;
-                        img.css('margin-left', -marLeft);
+            if ($(window).width() < 769) {
+                var newsItem = $('.news-item');
+                newsItem.each(function () {
+                    var newsItem = $(this),
+                        imgWrap = newsItem.children('.img-wrap'),
+                        img = imgWrap.children('img'),
+                        imgHeight,
+                        imgWidth,
+                        marLeft;
+                    imgHeight = img.height();
+                    console.log(imgHeight);
+                    if (imgHeight < 122){
+                        img.css({'height':'100%', 'max-width': 'none' , 'width': 'auto'});
+                        imgWidth = img.width();
+                        if (imgWidth > 150) {
+                            marLeft = (imgWidth - 150)/2;
+                            img.css('margin-left', -marLeft);
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     }
 
@@ -258,8 +262,11 @@ on_ready = function() {
     $(window).resize(function() {
         setupDotdotdot();
         setNewsItemImgPosition();
-    })
+    });
 
+    if ($(window).width() < 769) {
+        $('.archive-button').attr('href', 'http://apex-news.herokuapp.com/archive?utf8=%E2%9C%93&start_date=&end_date=');
+    }
 };
 
 $(document).ready(on_ready);
