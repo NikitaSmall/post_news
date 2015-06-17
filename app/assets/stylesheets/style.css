@@ -1416,6 +1416,13 @@ footer {
   .search-btn {
     font-size: 1.9em;
   }
+  .news-content time {
+    font-size: 1.2em;
+  }
+  .news-content h1 {
+    font-size: 2.2em;
+    margin-bottom: 18px;
+  }
 }
 @media (max-width: 767px) {
   .wrapper-main {
@@ -1573,6 +1580,13 @@ footer {
   .result-items-wrapper {
     margin: 3px 0 0;
   }
+  .news-content {
+    padding: 15px;
+  }
+  .tags a {
+    margin: 0 5px 10px;
+    padding: 4px 10px 1px;
+  }
 }
 @media (max-width: 480px) {
   .last-news-block {
@@ -1614,6 +1628,13 @@ footer {
   }
   .item-result img {
     width: 150px;
+  }
+  .news-content time {
+    font-size: 1em;
+  }
+  .news-content h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
   }
 }
 @media (max-width: 460px) {
