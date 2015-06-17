@@ -1401,6 +1401,7 @@ footer {
   }
   .fotorama-slide {
     margin: 20px 0;
+    min-height: 220px;
   }
   .slide-info {
     width: 64%;
@@ -1439,6 +1440,7 @@ footer {
     width: 100% !important;
     padding: 10px 7px;
     margin: 10px 0 !important;
+    height: 140px !important;
     overflow: hidden;
     background: rgba(126, 118, 129, 0.4);
   }
@@ -1447,6 +1449,7 @@ footer {
     float: left;
     position: absolute;
     width: 150px;
+    height: 122px;
     overflow: hidden;
   }
   .news-items .news-item img {
@@ -1465,6 +1468,7 @@ footer {
     display: block;
     height: 32px;
     margin: 0 0 5px;
+    line-height: 1.1;
     font-family: 'MyriadPro-Bold';
   }
   .news-items .news-item:hover .news-descrip {
@@ -1473,7 +1477,8 @@ footer {
   .mobile {
     display: block;
     overflow: hidden;
-    height: 49px;
+    height: 94px;
+    line-height: 1.1;
   }
   .slide-info .text {
     padding-right: 0;
