@@ -20,7 +20,6 @@ on_ready = function() {
             ratio: '1200/585'
         });
     } else {
-        $(window).load(function () {
             var slideBlock = $('.fotorama-slide'),
                 minHeight = 9999;
             slideBlock.each(function () {
@@ -29,7 +28,6 @@ on_ready = function() {
                 }
             });
             slideBlock.css({'height': minHeight, 'overflow': 'hidden'});
-        });
     }
 
     // END slider
@@ -200,7 +198,6 @@ on_ready = function() {
 
 
     function setNewsItemImgPosition() {
-        $(window).load(function () {
             if ($(window).width() < 769) {
                 var newsItem = $('.news-item');
                 newsItem.each(function () {
@@ -222,7 +219,6 @@ on_ready = function() {
                     }
                 });
             }
-        });
     }
 
     setNewsItemImgPosition();
