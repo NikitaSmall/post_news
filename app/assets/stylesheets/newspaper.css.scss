@@ -15,6 +15,19 @@
 @import "bootstrap";
 @import "fotorama";
 
+.amalker-title {
+  position: absolute;
+  top: 5px;
+  background: #9933cc;
+  color: #fff;
+  right: 7px;
+  text-transform: uppercase;
+  display: inline-block;
+  font-family: 'MyriadPro-Semibold';
+  padding: 2px 6px 0px;
+  font-size: 16px;
+}
+
 #easter {
   position: fixed;
   right: 69%;
