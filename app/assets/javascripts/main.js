@@ -206,12 +206,9 @@ on_ready = function() {
     function setupDotdotdot() {
         slideInfoTitle.css('height', '104px');
         slideInfoText.css('height', '111px');
-        if ($(window).width() < 992){
-            slideInfoTitle.dotdotdot();
-            slideInfoText.dotdotdot();
-        }
+
         if ($(window).width() < 768){
-            slideInfoTitle.css('height', '38px');
+            slideInfoTitle.css('height', '83px');
             slideInfoText.css('height', '67px');
             if ($(window).width() < 380) {
                 slideInfoTitle.css('height', '38px');
@@ -221,6 +218,10 @@ on_ready = function() {
             var newsItemText = $('.news-item').find('.mobile');
             newsItemTitle.dotdotdot();
             newsItemText.dotdotdot();
+            slideInfoText.dotdotdot();
+        }
+        if ($(window).width() < 992){
+            slideInfoTitle.dotdotdot();
             slideInfoText.dotdotdot();
         }
 
