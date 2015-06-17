@@ -248,14 +248,16 @@ on_ready = function() {
             slideInfoText.dotdotdot();
         }
 
+        if ($(window).width() < 769){
+            // begin news items
+            var newsItem = $('.news-item'),
+                newsItemTitle = newsItem.find('strong'),
+                newsItemText = newsItem.find('.mobile');
+            newsItemTitle.dotdotdot();
+            newsItemText.dotdotdot();
+            // END news items
+        }
 
-        // begin news items
-        var newsItem = $('.news-item'),
-            newsItemTitle = newsItem.find('strong'),
-            newsItemText = newsItem.find('.mobile');
-        newsItemTitle.dotdotdot();
-        newsItemText.dotdotdot();
-        // END news items
 
     }
     setupDotdotdot();

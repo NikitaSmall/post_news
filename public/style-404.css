@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'MyriadPro-Regular';
+    src: url('fonts/MyriadPro-Regular.eot');
+    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'), url('fonts/MyriadPro-Regular.woff') format('woff'), url('fonts/MyriadPro-Regular.ttf') format('truetype'), url('fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+    font-weight: 400;
+}
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    background-image: url(images/bg-404.jpg);
+    background-size: cover;
+    font-family: 'MyriadPro-Regular', Arial;
+}
+.wrapper {
+    min-height: 100%;
+}
+.text-404 {
+    text-align: center;
+    color: #403161;
+}
+.text-404 p {
+    font-size: 175px;
+    margin: 0;
+    line-height: 1;
+}
+.text-404 h1 {
+    font-size: 75px;
+    margin: -25px 0 -8px;
+}
+.text-404 h2 {
+    font-size: 50px;
+    margin: 0;
+}
+.text-404 h2 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.text-404 h2 a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+    .text-404 p {
+        font-size: 100px;
+    }
+    .text-404 h1 {
+        font-size: 45px;
+    }
+    .text-404 h2 {
+        font-size: 40px;
+    }
+}
+@media (max-width: 768px) {
+    .text-404 p {
+        font-size: 96px;
+    }
+    .text-404 h1 {
+        font-size: 34px;
+        margin: 0;
+    }
+    .text-404 h2 {
+        font-size: 30px;
+        margin: 4px 0 0;
+    }
+}
+@media (max-width: 480px) {
+    a {
+        display: block;
+    }
+}
