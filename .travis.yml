@@ -1,3 +1,11 @@
 language: ruby
 rvm:
-  - 2.1.5
+- 2.1.5
+deploy:
+  api_key:
+    secure: kIWlkLXXe0MQLIX4GadjLOAWJM5zUV0As+QnFv2XTaIWlwr+7uPTR3dvpvPPDZwPbVp3mvMoR/mFLZ9jG8s+wHDHPKdx81sW7u4CA+kSgFvDvqREMDbdvIM0MnXUHmlhn7qPcneuw7gmnUCAlK2eZgoqep86joOpZgYccU4ukJMm4ieuw54651JgcfRdYWVxTPFyPhaTM6g74lHyr/bMccfsrQ7FEq1WedHZ+W4MUJuWrKgPiY1gfvNlxDgl/+sa9nwEZ6+6tIWcXvMmSjcFariMNhm1MiApfwj5SL1IbM8r5HsktYNXRGeQ2NmCT2v4wIv1AVm0Brx9PVHv8SWpp12hyb7EPV1wZgdvIy2QqXaBPDoWK6KwPq5i9ULrr1qmQyngGzaNqVSrNwUWK0xkDQrJGtkJA/w5kEMzrhdoA2PQ43EW58oIpS/t5XrxprHrrGbVXQC7NBx8tmj+/hGIFp5hz9278w3R9rbTixLRMosmlWJZWIq9PCpryWRtoCWslFpdm/VzHjQEdCAlVZeBpHr9yJ/+fLzXP/3LjMSpfW1Gh+WwmrpujS2Xjulm1m79bhERR/IggYzhnfIWCKeiYc2dW9hkzqtfULY9YiZnQGv0CvzbGv8QPqsv5cRYya8Jb0rITRDDID5RQmgRNhstc6FRcvEcKprs7rFRLQHODIE=
+
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
